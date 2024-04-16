@@ -11,6 +11,7 @@ urlpatterns = [
 
 
     path('salvar/', views.salvarVet, name='salvarVet'),
-    path('updateVet/<int:id>', views.updateVets, name='updateVet'),
+    path('editarVet/<int:id>', views.editarVet, name='editarVet'),#chamar link para editar
+    path('updateVet/<int:id>', views.updateVet, name='updateVet'),#tela de editar
     path('deleteVet/<int:id>', views.deleteVet, name='deleteVet'),
 ]

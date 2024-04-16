@@ -8,6 +8,7 @@ class VeterinarioCadastro(models.Model):
     endereco = models.CharField(max_length=255)
     bairro = models.CharField(max_length=100)
     numero = models.CharField(max_length=10)
+    cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=3)
     telefone = models.CharField(max_length=15)
     crmv = models.CharField(max_length=20)
