@@ -1,7 +1,7 @@
 # PI-4-Petshop
 
 
-Como executar o projeto no ambioente Windows
+Como executar o projeto no ambiente Windows
 
 Istalar o Python
 git clone https://github.com/Valdelainecristinaribeiro/PI-4-Petshop.git
@@ -16,7 +16,7 @@ python manage.py runserver
 
 
 
-Como executar o projeto no ambioente Linux
+Como executar o projeto no ambiente Linux
 
 Istalar o Python
 Ambiente Linux:
