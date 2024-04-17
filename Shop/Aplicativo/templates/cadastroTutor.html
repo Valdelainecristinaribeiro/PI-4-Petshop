@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetSHop</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-md-center" style="background-color:#F8F8FF; padding: 80px 0 80px 0;">
+                
+                <form action="{% url 'cadastroTutor' %}" method="POST">
+                    {% csrf_token %}
+                    <hr>
+                    <h4 class="text-center">Dados do Tutor:</h4><br>
+                    <div class="form-group">
+                        <label for="nome"><b>Nome do Tutor:</b></label>
+                        <input style="width: 200px;" type="text" id="nometutor" name="nometutor" minlength="14"
+                            maxlength="14" required>
+                    <div class="form-group">
+                        <label for="email"><b>Email</b></label>
+                        <input style="width: 573px;" type="email" id="email" name="email" required>
+                    </div><br>
+                        <label for="logradouro"><b>Logradouro</b></label>
+                        <input style="width: 295px;" type="text" id="logradouro" name="logradouro" 
+                            required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="bairro"><b>Bairro</b></label>
+                        <input style="width: 393px ;" type="text" id="bairro" name="bairro" required>
+                        <label for="cep"><b>CEP</b></label>
+                        <input style="width: 100px ;" type="number" id="cep" name="cep" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="numero"><b>Número</b></label>
+                        <input style="width: 400px ;" type="number" id="numero" name="numero" required>
+                        <label for="cidade"><b>Cidade</b></label>
+                        <input style="width: 75px ;" type="text" id="cidade" name="cidade" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="estado"><b>Estado</b></label>
+                        <input style="width: 200px ;" type="text" id="estado" name="estado" required>
+                        <label for="telefone"><b>Telefone</b></label>
+                        <input style="width: 200px ;" type="number" id="telefone" name="telefone" required>
+                    </div><br>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn"
+                            style="margin: 0 20px;color: azure; background-color: #ff0000;">ENVIAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
