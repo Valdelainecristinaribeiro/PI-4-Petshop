@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from Aplicativo.models import VeterinarioCadastro
+from Aplicativo.models import VeterinarioCadastro, TutoresCadastro, Tutor
+
 
 def index(request):
     return render(request, 'index.html')
@@ -60,7 +61,45 @@ def updateVeterinario(request, id):
     return redirect("index")
 
 
-#def deleteVet(request, id):
+def deleteVet(request, id):
+    return redirect("deleteVet")
+
+
+
+def cadastroTutor(request):
+    if request.method == 'POST':
+        nometutor = request.POST.get('nometutor')
+        email = request.POST.get('email')
+        logradouro = request.POST.get('logradouro')
+        bairro = request.POST.get('bairro')
+        cep = request.POST.get('cep')
+        numero = request.POST.get('numero')
+        cidade = request.POST.get('cidade')
+        estado = request.POST.get('estado')
+        telefone = request.POST.get('telefone')
+        
+
+        # Salvar os dados no banco de dados
+        novo_tutor = Tutor(
+            nometutor=nometutor,
+            email=email,
+            logradouro=logradouro,
+            bairro=bairro,
+            cep=cep,
+            numero=numero,
+            cidade=cidade,
+            estado=estado,
+            telefone=telefone,
+            
+        )
+        novo_tutor.save()
+
+        # Redirecionar caso o cadastro seja feito
+        return redirect('index')
+    else:
+        return render(request, 'cadastroTutor.html')
+
+
 
 
 #defsalvartutor(request):
