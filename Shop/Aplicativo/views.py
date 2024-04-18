@@ -63,7 +63,6 @@ def updateVet(request, id):
 
 
 def deleteVet(request, id):
-<<<<<<< HEAD
     return redirect("deleteVet")
 
 
@@ -102,11 +101,11 @@ def cadastroTutor(request):
         return render(request, 'cadastroTutor.html')
 
 
-=======
+def salvarTutor(request):
     vet = VeterinarioCadastro.objects.get(id=id)
     vet.delete()
     return redirect(index)
->>>>>>> a8df29caf251d889a965943da2441df3d7db4e23
+
 
 
 #TUTOR

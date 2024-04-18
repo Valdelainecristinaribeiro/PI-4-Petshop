@@ -9,17 +9,26 @@
 
 .navbar-nav .nav-link {
     color: black;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
 }
 
-.navbar-btn {
-    color: black;
-    font-size: 16px;
-    font-weight: bold;
+.button-without-shadow {
+    box-shadow: none;
     background-color: #95C6F2;
-    margin-left: 1650px;
-    border-color: #95C6F2;
-    margin-top: 5px;
-    box-shadow: #95C6F2;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+footer {
+    background-color: #95C6F2;
+    color: black;
 }
