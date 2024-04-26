@@ -1,13 +1,44 @@
+from pyexpat.errors import messages
 from django.shortcuts import render, redirect
-from Aplicativo.models import VeterinarioCadastro, TutoresCadastro, Tutor
+from Aplicativo.forms import cadastroTutorForm
+#from Aplicativo.forms import TutoresCadastroForm
+from .models import VeterinarioCadastro, cadastroTutorModel
+from validate_docbr import CPF, CNPJ
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as login_django
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import MultipleObjectsReturned
+from . import views
+
+
 
 
 def index(request):
     return render(request, 'index.html')
 def cadastro(request):
     return render(request, 'cadastro.html')
+
+
+
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'GET':
+        return render(request, 'login.html') 
+    else:
+        username = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(username = username , password = password)
+        if user:
+            login_django(request, user)
+            return render(request, 'index.html')
+        else:
+            return render(request, 'login.html')
+    
+    return render(request, 'login.html')  
+
+
 def cadastroVet(request):
     return render(request, 'cadastroVet.html')
 
@@ -66,45 +97,24 @@ def deleteVet(request, id):
     return redirect("deleteVet")
 
 
-
 def cadastroTutor(request):
     if request.method == 'POST':
-        nometutor = request.POST.get('nometutor')
-        email = request.POST.get('email')
-        logradouro = request.POST.get('logradouro')
-        bairro = request.POST.get('bairro')
-        cep = request.POST.get('cep')
-        numero = request.POST.get('numero')
-        cidade = request.POST.get('cidade')
-        estado = request.POST.get('estado')
-        telefone = request.POST.get('telefone')
-        
+        form = cadastroTutorForm(request.POST)
+        tutor = cadastroTutorModel()
+        tutor.nometutor = form.data['nometutor']
+        tutor.email = form.data['email']
+        tutor.logradouro = form.data['logradouro']
+        tutor.bairro = form.data['bairro']
+        tutor.cep = form.data['cep']
+        tutor.numero = form.data['numero']
+        tutor.cidade = form.data['cidade']
+        tutor.estado = form.data['estado']
+        tutor.telefone = form.data['telefone']
+        tutor.save()
+        tutor = User.objects.create_user(username= form.data['email'], password = form.data ['password'])
+        tutor.save()
+    return render(request, 'cadastroTutor.html')
 
-        # Salvar os dados no banco de dados
-        novo_tutor = Tutor(
-            nometutor=nometutor,
-            email=email,
-            logradouro=logradouro,
-            bairro=bairro,
-            cep=cep,
-            numero=numero,
-            cidade=cidade,
-            estado=estado,
-            telefone=telefone,
-            
-        )
-        novo_tutor.save()
-
-        # Redirecionar caso o cadastro seja feito
-        return redirect('index')
-    else:
-        return render(request, 'cadastroTutor.html')
-
-
-def salvarTutor(request):
-    vet = VeterinarioCadastro.objects.get(id=id)
-    vet.delete()
-    return redirect(index)
 
 
 
