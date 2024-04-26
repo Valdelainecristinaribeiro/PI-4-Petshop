@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Veterinários</title>
+<!-- Estilos CSS aqui -->
+</head>
+<body>
+    <h1>Lista de Veterinários</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>logradouro</th>
+                <th>bairro</th>
+                <th>numero</th>
+                <th>cidade</th>
+                <th>estado</th>
+                <th>telefone</th>
+                <th>crmv</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for veterinario in veterinarios %}
+            <tr>
+                <td>{{ veterinario.nome }}</td>
+                <td>{{ veterinario.logradouro }}</td>
+                <td>{{ veterinario.bairro }}</td>
+                <td>{{ veterinario.numero }}</td>
+                <td>{{ veterinario.cidade }}</td>
+                <td>{{ veterinario.estado }}</td>
+                <td>{{ veterinario.telefone }}</td>
+                <td>{{ veterinario.crmv }}</td>
+                <td>
+                    <a href="/updateVet/{{ veterinario.id }}" class="btn btn-edit">Editar</a>
+                    <a href="/deleteVet/{{ veterinario.id }}" class="btn btn-delete">Deletar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Link para página de cadastro de veterinários -->
+    <p><a href="/cadastroVet/">Cadastrar Novo Veterinário</a></p>
+</body>
+</html>

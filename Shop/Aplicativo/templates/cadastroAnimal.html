@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetSHop</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-md-center" style="background-color:#F8F8FF; padding: 80px 0 80px 0;">
+                
+                <form action="{% url 'cadastroAnimal' %}" method="POST">
+                    {% csrf_token %}
+                    <hr>
+                    <h4 class="text-center">Dados do Animal:</h4><br>
+                    <div class="form-group">
+                        <label for="nome"><b>Nome do Pet:</b></label>
+                        <input style="width: 200px;" type="text" id="nomepet" name="nomepet" minlength="14"
+                            maxlength="14" required>
+                    <div class="form-group">
+                        <label for="email"><b>Espécie</b></label>
+                        <input style="width: 250px;" type="text" id="especie" name="especie" required>
+                        <label for="email"><b>Porte</b></label>
+                        <input style="width: 250px;" type="text" id="porte" name="porte" required>
+                        
+                    </div><br>
+                        <label for="email"><b>Raça</b></label>
+                        <input style="width: 250px;" type="text" id="raca" name="raca" required>
+                        <label for="logradouro"><b>Sexo</b></label>
+                        <input style="width: 150;" type="text" id="sexo" name="sexo" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="logradouro"><b>Data Nascimento</b></label>
+                        <input style="width: 150;" type="date" id="datanascimento" name="datanascimento" required>
+                        <label for="email"><b>CPF do Tutor</b></label>
+                        <input style="width: 250px;" type="cpftutor" id="cpf" name="cpftutor" required>
+                    </div><br>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn"
+                            style="margin: 0 20px;color: azure; background-color: #ff0000;">ENVIAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
