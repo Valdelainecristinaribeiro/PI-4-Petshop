@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from Aplicativo.forms import cadastroTutorForm
 #from Aplicativo.forms import TutoresCadastroForm
 from .models import VeterinarioCadastro, cadastroTutorModel
-from validate_docbr import CPF, CNPJ
+#from validate_docbr import CPF, CNPJ
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
@@ -18,7 +18,7 @@ from . import views
 def index(request):
     return render(request, 'index.html')
 def cadastro(request):
-    return render(request, 'cadastro.html')
+    return render(request, 'cadastroVet.html')
 
 
 
