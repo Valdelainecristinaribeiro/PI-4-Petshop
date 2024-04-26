@@ -10,46 +10,46 @@
         <div class="row justify-content-md-center" style="background-color:#F8F8FF; padding: 80px 0 80px 0;">
                 
             
-                <form action="{% url 'updateVet' Veterinario.id %}" method="POST">
+            <form action="{% url 'updateVet' veterinario.id %}" method="POST">
                     {% csrf_token %}
                     <hr>
-                    <h4 class="text-center">Dados de Usuário:</h4><br>
+                    <h4 class="text-center">Dados do Veterinário:</h4><br>
                     <div class="form-group">
                         <label for="nome"><b>Nome completo:</b></label>
                         <input style="width: 200px;" type="text" id="nome" name="nome" minlength="14"
-                            maxlength="14" value="">
+                               maxlength="14" value="{{ veterinario.nome }}">
                     <div class="form-group">
                         <label for="email"><b>Email</b></label>
-                        <input style="width: 573px;" type="email" id="email" name="email" required value="">
+                        <input style="width: 573px;" type="email" id="email" name="email" required value="{{ veterinario.email }}">
                     </div><br>
                         <label for="endereco"><b>Endereço</b></label>
-                        <input style="width: 295px;" type="text" id="endereco" name="endereco" value="" required>
+                        <input style="width: 295px;" type="text" id="endereco" name="endereco" value="{{ veterinario.logradouro }}" required>
                     </div><br>
                     <div class="form-group">
                         <label for="bairro"><b>Bairro</b></label>
-                        <input style="width: 393px ;" type="text" id="bairro" name="bairro" value="" required>
+                        <input style="width: 393px ;" type="text" id="bairro" name="bairro" value="{{ veterinario.bairro }}" required>
                         <label for="cep"><b>CEP</b></label>
-                        <input style="width: 50px ;" type="number" id="cep" name="cep" value="" required>
+                        <input style="width: 50px ;" type="number" id="cep" name="cep" value="{{ veterinario.cep }}" required>
                     </div><br>
                     <div class="form-group">
                         <label for="numero"><b>Número</b></label>
-                        <input style="width: 400px ;" type="number" id="numero" name="numero" value="" required>
+                        <input style="width: 400px ;" type="number" id="numero" name="numero" value="{{ veterinario.numero }}" required>
                         <label for="cidade"><b>Cidade</b></label>
-                        <input style="width: 75px ;" type="text" id="cidade" name="cidade" value="" required>
+                        <input style="width: 75px ;" type="text" id="cidade" name="cidade" value="{{ veterinario.cidade }}" required>
                     </div><br>
                     <div class="form-group">
                         <label for="estado"><b>Estado</b></label>
-                        <input style="width: 200px ;" type="text" id="estado" name="estado" value="" required>
+                        <input style="width: 200px ;" type="text" id="estado" name="estado" value="{{ veterinario.estado }}" required>
                         <label for="telefone"><b>Telefone</b></label>
-                        <input style="width: 200px ;" type="number" id="telefone" name="telefone" value="" required>
+                        <input style="width: 200px ;" type="number" id="telefone" name="telefone" value="{{ veterinario.telefone }}" required>
                     </div><br>
                     <div class="form-group">
                         <label for="crmv"><b>CRMV</b></label>
-                        <input style="width: 245px ;" type="text" id="crmv" name="crmv" value="" required>
+                        <input style="width: 245px ;" type="text" id="crmv" name="crmv" value="{{ veterinario.crmv }}" required>
                     </div><br>
                     <div class="form-group">
                         <label for="password"><b>Senha</b></label>
-                        <input style="width: 220px;" type="password" id="senha" name="senha" maxlength="128"required>
+                        <input style="width: 220px;" type="password" id="password" name="password" maxlength="128"required>
                     </div><br>
                    <br>
                     <div class="form-group text-center">

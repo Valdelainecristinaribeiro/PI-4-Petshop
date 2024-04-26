@@ -1,8 +1,8 @@
 from pyexpat.errors import messages
-from django.shortcuts import render, redirect
-from Aplicativo.forms import cadastroTutorForm
+from django.shortcuts import get_object_or_404, render, redirect
+from Aplicativo.forms import cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm
 #from Aplicativo.forms import TutoresCadastroForm
-from .models import VeterinarioCadastro, cadastroTutorModel
+from .models import VeterinarioCadastroModel, cadastroTutorModel,cadastroAnimalModel
 from validate_docbr import CPF, CNPJ
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -15,10 +15,6 @@ from . import views
 
 
 
-def index(request):
-    return render(request, 'index.html')
-def cadastro(request):
-    return render(request, 'cadastro.html')
 
 
 
@@ -40,61 +36,49 @@ def login(request):
 
 
 def cadastroVet(request):
+    if request.method == 'POST':
+        form = VeterinarioCadastroForm(request.POST)
+        vet = VeterinarioCadastroModel()
+        vet.nome = form.data['nome']
+        vet.email = form.data['email']
+        vet.logradouro = form.data['logradouro']
+        vet.bairro = form.data['bairro']
+        vet.cep = form.data['cep']
+        vet.numero = form.data['numero']
+        vet.cidade = form.data['cidade']
+        vet.estado = form.data['estado']
+        vet.telefone = form.data['telefone']
+        vet.crmv = form.data['crmv']
+        vet.password = form.data['password']
+        vet.save()
+        vet = User.objects.create_user(username= form.data['email'], password = form.data ['password'])
+        vet.save()
     return render(request, 'cadastroVet.html')
 
+def atualizacaoVet(request):
+    # Recupera todos os veterinários cadastrados
+    veterinarios = VeterinarioCadastroModel.objects.all()
+    return render(request, 'atualizacaoVet.html', {'veterinarios': veterinarios})
 
-#VETERINARIO
-
-#salvando no banco de dados
-def salvarVet(request):
-    vnome = request.POST.get("nome")
-    vemail = request.POST.get("email")
-    vendereco = request.POST.get("endereco")
-    vbairro = request.POST.get("bairro")
-    vnumero = request.POST.get("numero")
-    vcidade = request.POST.get("cidade")
-    vestado = request.POST.get("estado")
-    vtelefone = request.POST.get("telefone")
-    vcrmv = request.POST.get("crmv")
-    vsenha = request.POST.get("senha")
-    VeterinarioCadastro.objects.create(nome=vnome, email=vemail, endereco=vendereco, bairro=vbairro, numero=vnumero, cidade=vcidade, estado=vestado, telefone=vtelefone, 
-                                       crmv=vcrmv, senha=vsenha)
-    #mostra tudo que tem salvo no banco de dados na pagina cadastroVet
-    veterinario = VeterinarioCadastro.objects.all()
-    return render(request, "cadastroVet.html", {"cadastroveterinario" : veterinario})
-
-def editarVet(request, id):
-    vet = VeterinarioCadastro.objects.get(id=id)
-    return render(request, "updateVet.html", {"Veterinario" : vet})
-#TERMINAR O UPDATE (ERRO)
 def updateVet(request, id):
-    vnome = request.POST.get("nome")
-    vemail = request.POST.get("email")
-    vendereco = request.POST.get("endereco")
-    vbairro = request.POST.get("bairro")
-    vnumero = request.POST.get("numero")
-    vcidade = request.POST.get("cidade")
-    vestado = request.POST.get("estado")
-    vtelefone = request.POST.get("telefone")
-    vcrmv = request.POST.get("crmv")
-    vsenha = request.POST.get("senha")
-    vet = VeterinarioCadastro.objects.get(id=id)
-    vet.nome = vnome
-    vet.email = vemail
-    vet.endereco = vendereco
-    vet.bairro = vbairro
-    vet.numero = vnumero
-    vet.cidade = vcidade
-    vet.estado = vestado
-    vet.telefone = vtelefone
-    vet.crmv = vcrmv
-    vet.senha = vsenha
-    vet.save()
-    return redirect(index)
+    veterinario = get_object_or_404(VeterinarioCadastroModel, pk=id)
+    
+    if request.method == 'POST':
+        form = VeterinarioCadastroForm(request.POST, instance=veterinario)
+        if form.is_valid():
+            form.save()
+            return redirect('atualizacaoVet')
+    else:
+        form = VeterinarioCadastroForm(instance=veterinario)
+    
+    return render(request, 'updateVet.html', {'form': form, 'veterinario': veterinario})
 
 
 def deleteVet(request, id):
-    return redirect("deleteVet")
+     # Buscar o veterinário pelo ID
+    veterinario = get_object_or_404(VeterinarioCadastroModel, pk=id)
+    veterinario.delete()
+    return redirect('index.html')
 
 
 def cadastroTutor(request):
@@ -110,21 +94,38 @@ def cadastroTutor(request):
         tutor.cidade = form.data['cidade']
         tutor.estado = form.data['estado']
         tutor.telefone = form.data['telefone']
+        tutor.cpf = form.data['cpf']
         tutor.save()
         tutor = User.objects.create_user(username= form.data['email'], password = form.data ['password'])
         tutor.save()
     return render(request, 'cadastroTutor.html')
 
 
+def cadastroAnimal(request):
+    if request.method == 'POST':
+        form = cadastroAnimalForm(request.POST)
+        animal= cadastroAnimalModel()
+        animal.nomepet = form.data['nomepet']
+        animal.especie = form.data['especie']
+        animal.porte = form.data['porte']
+        animal.raca = form.data['raca']
+        animal.sexo = form.data['sexo']
+        animal.datanascimento = form.data['datanascimento']
+        animal.cpftutor = form.data['cpftutor']
+        animal.save()
+        
+
+    return render(request, 'cadastroAnimal.html')
+
+def index(request):
+    return render(request, 'index.html')
+def cadastro(request):
+    return render(request, 'cadastro.html')
+
+
 
 
 #TUTOR
 
-#defsalvartutor(request):
-    #vnome = request.POST.get("nome")
-
 #def salvaranimal(request):
     #vnome = request.POST.get("nome")
-
-
-#ANIMAIS
