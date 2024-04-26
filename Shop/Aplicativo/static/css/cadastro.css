@@ -1,0 +1,39 @@
+.h1{
+    color: black;
+    font-weight: bold;
+}
+
+.containers-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px; /* Adicionando espaçamento interno */
+    width: 48%;
+}
+
+.form-group .input {
+    font-size: 16px;
+    color: black; /* cor do texto */
+    background-color: #95C6F2; /* cor de fundo */
+    border: 1px solid #95C6F2; /* cor da borda */
+    padding: 8px; /* espaçamento interno */
+    border-radius: 5px; /* arredondamento da borda */
+    width: 550px; /* largura do input */
+    margin-bottom: 15px;
+}
+
+.container {
+    display: inline-block;
+    justify-content: flex-start; /* Alinhar o container à esquerda */
+    align-items: flex-start; /* Alinhar os itens do container à esquerda */
+    height: 100vh; /* Tornando o container de altura total da tela */
+    padding: 20px; /* Adicionando espaçamento interno */
+    width: 48%;
+}
+
+.form-container {
+    width: 50%; /* Define a largura do formulário */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border: 7px solid #95C6F2; /* Adiciona uma borda */
+    border-radius: 40px; /* Adiciona um raio de borda */
+}
+

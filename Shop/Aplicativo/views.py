@@ -2,7 +2,7 @@ from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from Aplicativo.forms import cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm
 #from Aplicativo.forms import TutoresCadastroForm
-from .models import VeterinarioCadastroModel, cadastroTutorModel,cadastroAnimalModel
+from .models import VeterinarioCadastro, cadastroTutorModel
 from validate_docbr import CPF, CNPJ
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -15,6 +15,10 @@ from . import views
 
 
 
+def index(request):
+    return render(request, 'index.html')
+def cadastro(request):
+    return render(request, 'cadastro.html')
 
 
 
