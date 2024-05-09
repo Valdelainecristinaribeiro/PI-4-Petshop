@@ -1,39 +1,51 @@
-.h1{
+.h1 {
     color: black;
     font-weight: bold;
 }
 
-.containers-wrapper {
+.container-wrapper {
     display: flex;
-    justify-content: space-between;
-    padding: 20px; /* Adicionando espaçamento interno */
-    width: 48%;
-}
-
-.form-group .input {
-    font-size: 16px;
-    color: black; /* cor do texto */
-    background-color: #95C6F2; /* cor de fundo */
-    border: 1px solid #95C6F2; /* cor da borda */
-    padding: 8px; /* espaçamento interno */
-    border-radius: 5px; /* arredondamento da borda */
-    width: 550px; /* largura do input */
-    margin-bottom: 15px;
+    /* Habilitar flexbox para arranjo horizontal */
+    justify-content: center;
+    /* Centralizar os containers horizontalmente */
+    align-items: center;
+    /* Centralizar os containers verticalmente */
+    min-height: 100vh;
+    /* Definir altura mínima para cobertura total da viewport */
 }
 
 .container {
     display: inline-block;
-    justify-content: flex-start; /* Alinhar o container à esquerda */
-    align-items: flex-start; /* Alinhar os itens do container à esquerda */
-    height: 100vh; /* Tornando o container de altura total da tela */
-    padding: 20px; /* Adicionando espaçamento interno */
+    /* Não estritamente necessário aqui */
     width: 48%;
+    /* Definir largura individual do container */
+    padding: 20px;
+    /* Manter o preenchimento interno */
 }
 
 .form-container {
-    width: 50%; /* Define a largura do formulário */
-    padding: 20px; /* Adiciona espaçamento interno */
-    border: 7px solid #95C6F2; /* Adiciona uma borda */
-    border-radius: 40px; /* Adiciona um raio de borda */
+    padding: 20px;
+    /* Adiciona espaçamento interno */
+    border: 7px solid #95C6F2;
+    /* Adiciona uma borda */
+    border-radius: 40px;
+    /* Adiciona um raio de borda */
+}
+
+.form-group .input {
+    font-size: 16px;
+    color: black;
+    /* cor do texto */
+    background-color: #95C6F2;
+    /* cor de fundo */
+    border: 1px solid #95C6F2;
+    /* cor da borda */
+    padding: 8px;
+    /* espaçamento interno */
+    border-radius: 5px;
+    /* arredondamento da borda */
+    width: 550px;
+    /* largura do input */
+    margin-bottom: 15px;
 }
 
