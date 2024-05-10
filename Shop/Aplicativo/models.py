@@ -36,3 +36,17 @@ class cadastroAnimalModel(models.Model):
     sexo = models.CharField(max_length=200)
     datanascimento = models.DateField(max_length=200)
     cpftutor = models.CharField(max_length=200)
+
+class AgendamentoModel(models.Model):
+    banhoetosa = models.BooleanField(default=False)
+    tosahigienica = models.BooleanField(default=False)
+    vanicacao = models.BooleanField(default=False)
+    exameslaboratoriais = models.BooleanField(default=False)
+    microchipagem = models.BooleanField(default=False)
+    consultaclinica = models.BooleanField(default=False)
+    atendimentodomiciliar = models.BooleanField(default=False)
+    atendimento24horas = models.BooleanField(default=False)
+    hospedagem = models.BooleanField(default=False)
+    transporte = models.BooleanField(default=False)
+    adestramento = models.BooleanField(default=False)
+

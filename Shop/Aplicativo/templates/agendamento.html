@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Agendamento</title>
+</head>
+<body>
+
+<h2>Formulário de Agendamento</h2>
+
+<form action="{% url 'criar_agendamento' %}" method="post">
+  {% csrf_token %}
+
+  <input type="checkbox" id="banhoetosa" name="servicos[]" value="banhoetosa">
+  <label for="banhoetosa">Banho e Tosa</label><br>
+
+  <input type="checkbox" id="tosahigienica" name="servicos[]" value="tosahigienica">
+  <label for="tosahigienica">Tosa Higiênica</label><br>
+
+  <input type="checkbox" id="hidratacao" name="servicos[]" value="hidratacao">
+  <label for="hidratacao">Hidratação</label><br>
+
+  <input type="checkbox" id="vacinacao" name="servicos[]" value="vacinacao">
+  <label for="vacinação">Vacinação</label><br>
+
+  <input type="checkbox" id="exameslaboratoriais" name="servicos[]" value="exameslaboratoriais">
+  <label for="exameslaboratoriais">Exames Laboratoriais</label><br>
+
+  <input type="checkbox" id="microchipagem" name="servicos[]" value="microchipagem">
+  <label for="microchipagem">Microchipagem</label><br>
+
+  <input type="checkbox" id="consultaclinica" name="servicos[]" value="consultaclinica">
+  <label for="consultaclinica">Consulta Clínica</label><br>
+
+  <input type="checkbox" id="atendimentodomiciliar" name="servicos[]" value="atendimentodomiciliar">
+  <label for="atendimentodomiciliar">Atendimento Domiciliar</label><br>
+
+  <input type="checkbox" id="atendimento24horas" name="servicos[]" value="atendimento24horas">
+  <label for="atendimento24horas">Atendimento 24 Horas</label><br>
+
+  <input type="checkbox" id="hospedagem" name="servicos[]" value="hospedagem">
+  <label for="hospedagem">Hospedagem</label><br>
+
+  <input type="checkbox" id="transporte" name="servicos[]" value="transporte">
+  <label for="transporte">Transporte</label><br>
+
+  <input type="checkbox" id="adestramento" name="servicos[]" value="adestramento">
+  <label for="adestramento">Adestramento</label><br>
+
+  <br>
+  <button type="submit">Salvar</button>
+  <button type="button" onclick="window.history.back();">Cancelar</button>
+</form>
+
+</body>
+</html>
