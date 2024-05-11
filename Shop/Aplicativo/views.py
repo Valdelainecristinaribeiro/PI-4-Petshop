@@ -1,8 +1,8 @@
 from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, render, redirect
-from Aplicativo.forms import cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm
+from Aplicativo.forms import cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm, AgendamentoForm
 #from Aplicativo.forms import TutoresCadastroForm
-from .models import VeterinarioCadastroModel, cadastroTutorModel,cadastroAnimalModel
+from .models import VeterinarioCadastroModel, cadastroTutorModel,cadastroAnimalModel , AgendamentoModel
 from validate_docbr import CPF, CNPJ
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -125,6 +125,25 @@ def index(request):
     return render(request, 'index.html')
 def cadastro(request):
     return render(request, 'cadastro.html')
+
+
+def criar_agendamento(request):
+    if request.method == 'POST':
+        form = AgendamentoForm(request.POST)
+        if form.is_valid():
+            servicos_selecionados = form.cleaned_data.get('servicos[]', [])  # Ajuste aqui para acessar o campo correto
+            print("Serviços selecionados:", servicos_selecionados)
+            for servico in servicos_selecionados:
+                # Crie uma instância do modelo e atribua os valores dos serviços selecionados
+                agendamento_model = AgendamentoModel(**{servico: True})  
+                agendamento_model.save()  # Salve o modelo no banco de dados
+            print("Agendamentos criados com sucesso!")
+            return redirect('index.html')
+        else:
+            print("Formulário inválido:", form.errors)
+    else:
+        form = AgendamentoForm()
+    return render(request, 'agendamento.html', {'form': form})
 
 
 
