@@ -22,7 +22,7 @@ class cadastroAnimalForm(forms.ModelForm):
 class AgendamentoForm(forms.ModelForm):
     banhoetosa = forms.BooleanField(required=False)
     tosahigienica = forms.BooleanField(required=False)
-    vanicacao = forms.BooleanField(required=False)
+    vacinacao = forms.BooleanField(required=False)
     exameslaboratoriais = forms.BooleanField(required=False)
     microchipagem = forms.BooleanField(required=False)
     consultaclinica = forms.BooleanField(required=False)
@@ -34,4 +34,4 @@ class AgendamentoForm(forms.ModelForm):
 
     class Meta:
         model = AgendamentoModel
-        fields = ['banhoetosa', 'tosahigienica', 'vanicacao', 'exameslaboratoriais', 'microchipagem', 'consultaclinica', 'atendimentodomiciliar', 'atendimento24horas', 'hospedagem', 'transporte', 'adestramento']
+        fields = ['tutor','animal','banhoetosa', 'tosahigienica', 'vacinacao', 'exameslaboratoriais', 'microchipagem', 'consultaclinica', 'atendimentodomiciliar', 'atendimento24horas', 'hospedagem', 'transporte', 'adestramento']

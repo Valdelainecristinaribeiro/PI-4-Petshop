@@ -12,17 +12,31 @@
 <form action="{% url 'criar_agendamento' %}" method="post">
   {% csrf_token %}
 
+<!-- Select para o tutor -->
+<select name="tutor" style="width: 200px; color: black; background-color: rgb(243, 239, 239);">
+  <option value="">Selecione</option> <!-- Opção padrão -->
+  {% for tutor in tutores %}
+    <option value="{{ tutor.id }}" style="background-color: rgb(243, 239, 239);">{{ tutor.nometutor }}</option>
+  {% endfor %}
+</select>
+
+<!-- Select para o animal -->
+<select name="animal" style="width: 200px; color: black; background-color: white;">
+  <option value="">Selecione</option> <!-- Opção padrão -->
+  {% for animal in animais %}
+    <option value="{{ animal.id }}" style="background-color: white;">{{ animal.nomepet }}</option>
+  {% endfor %}
+</select><br>
+
   <input type="checkbox" id="banhoetosa" name="servicos[]" value="banhoetosa">
   <label for="banhoetosa">Banho e Tosa</label><br>
 
   <input type="checkbox" id="tosahigienica" name="servicos[]" value="tosahigienica">
   <label for="tosahigienica">Tosa Higiênica</label><br>
-
-  <input type="checkbox" id="hidratacao" name="servicos[]" value="hidratacao">
-  <label for="hidratacao">Hidratação</label><br>
+  
 
   <input type="checkbox" id="vacinacao" name="servicos[]" value="vacinacao">
-  <label for="vacinação">Vacinação</label><br>
+  <label for="vacinacao">Vacinação</label><br>
 
   <input type="checkbox" id="exameslaboratoriais" name="servicos[]" value="exameslaboratoriais">
   <label for="exameslaboratoriais">Exames Laboratoriais</label><br>

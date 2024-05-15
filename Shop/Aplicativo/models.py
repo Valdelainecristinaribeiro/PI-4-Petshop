@@ -1,5 +1,5 @@
 from django.db import models 
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class VeterinarioCadastroModel(models.Model):
@@ -38,9 +38,11 @@ class cadastroAnimalModel(models.Model):
     cpftutor = models.CharField(max_length=200)
 
 class AgendamentoModel(models.Model):
+    tutor = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
+    animal = models.ForeignKey(cadastroAnimalModel, on_delete=models.CASCADE,default=1)
     banhoetosa = models.BooleanField(default=False)
     tosahigienica = models.BooleanField(default=False)
-    vanicacao = models.BooleanField(default=False)
+    vacinacao = models.BooleanField(default=False)
     exameslaboratoriais = models.BooleanField(default=False)
     microchipagem = models.BooleanField(default=False)
     consultaclinica = models.BooleanField(default=False)
