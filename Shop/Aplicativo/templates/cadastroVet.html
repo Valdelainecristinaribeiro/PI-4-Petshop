@@ -43,6 +43,9 @@
                         <label for="nome"><b>Nome completo:</b></label><br>
                         <input class="input" type="text" id="nome" name="nome" required>
                         <br>
+                        <label for="email"><b>Email:</b></label><br>
+                        <input class="input" type="email" id="email" name="email" required>
+                        <br>
                         <label for="endereco"><b>logradouro:</b></label><br>
                         <input class="input" type="text" id="endereco" name="logradouro" required>
                         <br>
@@ -50,10 +53,10 @@
                         <input class="input" type="text" id="bairro" name="bairro" required>
                         <br>
                         <label for="cep"><b>CEP:</b></label><br>
-                        <input class="input" type="text" id="cep" name="cep" required>
+                        <input class="input" type="number" id="cep" name="cep" required>
                         <br>
                         <label for="numero"><b>Número:</b></label><br>
-                        <input class="input" type="text" id="numero" name="numero" required>
+                        <input class="input" type="number" id="numero" name="numero" required>
                         <br>
                         <label for="cidade"><b>Cidade:</b></label><br>
                         <input class="input" type="text" id="cidade" name="cidade" required>
@@ -67,14 +70,11 @@
             <div class="container">
                 <div class="form-container">
                     <div class="form-group">
-                        <label for="email"><b>Email:</b></label><br>
-                        <input class="input" type="email" id="email" name="email" required>
-                        <br>
                         <label for="telefone"><b>Telefone:</b></label><br>
-                        <input class="input" type="text" id="telefone" name="telefone" required>
+                        <input class="input" type="number" id="telefone" name="telefone" required>
                         <br>
                         <label for="telefone"><b>Telefone 2:</b></label><br>
-                        <input class="input" type="text" id="telefone" name="telefone" required>
+                        <input class="input" type="number" id="telefone" name="telefone" required>
                         <br>
                         <label for="crmv"><b>CRMV:</b></label><br>
                         <input class="input" type="text" id="crmv" name="crmv" required>
@@ -88,19 +88,16 @@
                         <br>
                     </div>
 
-                    <div class="row justify-content-center">
-                        <div class="col-auto">
-                            <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
-                        </div>
-                        <div class="form-group col-auto">
-                            <a href="{% url 'cadastroServicos' %}"><button type="submit" class="btn btn-primary">Próximo</button></a>
-                        </div>
-                    </div>  
+                    <div class="text-center">
+                        <button type="submit" class="btn">Cancelar</button>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn">Próximo</button>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
-    {% include 'cadastroServicos.html' %}
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
