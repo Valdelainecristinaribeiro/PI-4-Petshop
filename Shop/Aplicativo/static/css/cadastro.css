@@ -4,48 +4,31 @@
 }
 
 .container-wrapper {
-    display: flex;
-    /* Habilitar flexbox para arranjo horizontal */
-    justify-content: center;
-    /* Centralizar os containers horizontalmente */
-    align-items: center;
-    /* Centralizar os containers verticalmente */
-    min-height: 100vh;
-    /* Definir altura mínima para cobertura total da viewport */
+    display: flex; /* Habilitar flexbox para arranjo horizontal */
+    justify-content: center; /* Centralizar os containers horizontalmente */
+    align-items: center; /* Centralizar os containers verticalmente */
+
 }
 
 .container {
     display: inline-block;
-    /* Não estritamente necessário aqui */
-    width: 48%;
-    /* Definir largura individual do container */
-    padding: 20px;
-    /* Manter o preenchimento interno */
+    width: 48%; /* Definir largura individual do container */
+    padding: 20px; /* Manter o preenchimento interno */
 }
 
 .form-container {
-    padding: 20px;
-    /* Adiciona espaçamento interno */
-    border: 7px solid #95C6F2;
-    /* Adiciona uma borda */
-    border-radius: 40px;
-    /* Adiciona um raio de borda */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border: 7px solid #95C6F2; /* Adiciona uma borda */
+    border-radius: 40px; /* Adiciona um raio de borda */
 }
 
 .form-group .input {
-    font-size: 16px;
-    color: black;
-    /* cor do texto */
-    background-color: #95C6F2;
-    /* cor de fundo */
-    border: 1px solid #95C6F2;
-    /* cor da borda */
-    padding: 8px;
-    /* espaçamento interno */
-    border-radius: 5px;
-    /* arredondamento da borda */
-    width: 550px;
-    /* largura do input */
-    margin-bottom: 15px;
+    font-size: 16px; /*Tamanho da fonte*/
+    color: black; /* cor do texto */
+    background-color: #95C6F2; /* cor de fundo */
+    border: 1px solid #95C6F2; /* cor da borda */
+    padding: 8px; /* espaçamento interno */
+    border-radius: 5px; /* arredondamento da borda */
+    width: 550px; /* largura do input */
+    margin-bottom: 15px; /*margin*/
 }
-
