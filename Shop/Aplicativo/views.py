@@ -1,4 +1,5 @@
 from pyexpat.errors import messages
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from Aplicativo.forms import cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm, AgendamentoForm
 #from Aplicativo.forms import TutoresCadastroForm
@@ -32,11 +33,11 @@ def login(request):
         user = authenticate(username = username , password = password)
         if user:
             login_django(request, user)
-            return render(request, 'index.html')
+            return render(request, 'criar_agendamento.html')
         else:
-            return render(request, 'login.html')
+            return render(request, 'criar_agendamento.html')
     
-    return render(request, 'login.html')  
+    return render(request, 'criar_agendamento.html')  
 
 
 def cadastroVet(request):
@@ -127,28 +128,44 @@ def cadastro(request):
     return render(request, 'cadastro.html')
 
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from .forms import AgendamentoForm
+from .models import cadastroTutorModel, cadastroAnimalModel
+
+
 def criar_agendamento(request):
     if request.method == 'POST':
         form = AgendamentoForm(request.POST)
         if form.is_valid():
-            servicos_selecionados = form.cleaned_data.get('servicos[]', [])  # Ajuste aqui para acessar o campo correto
-            print("Serviços selecionados:", servicos_selecionados)
+            agendamento = form.save(commit=False)
+            agendamento.tutor.id = request.user  # Associando o tutor atual ao agendamento
+
+            try:
+                animal_id = request.POST.get('animal')
+                animal = cadastroAnimalModel.objects.get(id=animal_id)
+                agendamento.animal = animal
+            except cadastroAnimalModel.DoesNotExist:
+                # Lidando com o caso em que o animal não foi encontrado
+                
+                pass
+
+            agendamento.save()
+
+            # Obtendo a lista de serviços marcados
+            servicos_selecionados = request.POST.getlist('servicos[]')
+
+            # Atribuindo os valores booleanos correspondentes ao objeto AgendamentoModel
             for servico in servicos_selecionados:
-                # Crie uma instância do modelo e atribua os valores dos serviços selecionados
-                agendamento_model = AgendamentoModel(**{servico: True})  
-                agendamento_model.save()  # Salve o modelo no banco de dados
-            print("Agendamentos criados com sucesso!")
-            return redirect('index.html')
-        else:
-            print("Formulário inválido:", form.errors)
+                setattr(agendamento, servico, True)
+
+            agendamento.save()  # Salvando novamente para atualizar os valores dos serviços
+            return redirect('/')  # Redireciona para a página inicial após o sucesso
     else:
         form = AgendamentoForm()
-    return render(request, 'agendamento.html', {'form': form})
 
+    tutores = cadastroTutorModel.objects.all()
+    animais = cadastroAnimalModel.objects.all()
+    return render(request, 'criar_agendamento.html', {'form': form, 'tutores': tutores, 'animais': animais})
 
-
-
-#TUTOR
-
-#def salvaranimal(request):
     #vnome = request.POST.get("nome")
