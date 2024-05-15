@@ -1,4 +1,3 @@
-from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from Aplicativo.forms import cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm, AgendamentoForm
 #from Aplicativo.forms import TutoresCadastroForm
@@ -19,6 +18,11 @@ def index(request):
     return render(request, 'index.html')
 def cadastro(request):
     return render(request, 'cadastro.html')
+@login_required
+def home(request):
+    return render(request, 'home.html')
+def cadastroServicos(request):
+    return render(request, 'cadastroServicos.html')
 
 
 
@@ -32,9 +36,9 @@ def login(request):
         user = authenticate(username = username , password = password)
         if user:
             login_django(request, user)
-            return render(request, 'index.html')
+            return render(request, 'home.html')
         else:
-            return render(request, 'login.html')
+            return render(request, 'index.html')
     
     return render(request, 'login.html')  
 
