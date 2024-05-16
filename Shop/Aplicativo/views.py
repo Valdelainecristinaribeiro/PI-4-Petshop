@@ -12,16 +12,14 @@ from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import MultipleObjectsReturned
 from . import views
-
-
+from django.shortcuts import render, redirect
 
 
 def index(request):
     return render(request, 'index.html')
+
 def cadastro(request):
     return render(request, 'cadastro.html')
-
-
 
 def login(request):
     if request.method == 'GET':
@@ -39,6 +37,7 @@ def login(request):
     
     return render(request, 'criar_agendamento.html')  
 
+#CRUD VETERINARIO
 
 def cadastroVet(request):
     if request.method == 'POST':
@@ -78,14 +77,13 @@ def updateVet(request, id):
     
     return render(request, 'updateVet.html', {'form': form, 'veterinario': veterinario})
 
-
 def deleteVet(request, id):
      # Buscar o veterinário pelo ID
     veterinario = get_object_or_404(VeterinarioCadastroModel, pk=id)
     veterinario.delete()
     return redirect('index.html')
 
-
+#CRUD TUTOR
 def cadastroTutor(request):
     if request.method == 'POST':
         form = cadastroTutorForm(request.POST)
@@ -105,6 +103,32 @@ def cadastroTutor(request):
         tutor.save()
     return render(request, 'cadastroTutor.html')
 
+def atualizacaoTutor(request):
+    # Recupera todos os Tutores cadastrados
+    tutores = cadastroTutorModel.objects.all()
+    return render(request, 'atualizacaoTutor.html', {'tutor': tutores})
+
+def updateTutor(request, id):
+    tutor = get_object_or_404(cadastroTutorModel, pk=id)
+    
+    if request.method == 'POST':
+        form = cadastroTutorForm(request.POST, instance=tutor)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = cadastroTutorForm(instance=tutor)
+    
+    return render(request, 'updateTutor.html', {'form': form, 'tutor': tutor})
+
+def deleteTutor(request, id):
+     # Buscar o Tutor pelo ID
+    tutor = get_object_or_404(cadastroTutorModel, pk=id)
+    tutor.delete()
+    return redirect('/')
+
+
+#CRUD ANIMAL
 
 def cadastroAnimal(request):
     if request.method == 'POST':
@@ -122,16 +146,34 @@ def cadastroAnimal(request):
 
     return render(request, 'cadastroAnimal.html')
 
-def index(request):
-    return render(request, 'index.html')
-def cadastro(request):
-    return render(request, 'cadastro.html')
+def atualizacaoAnimal(request):
+    # Recupera todos os animais cadastrados
+    animal = cadastroAnimalModel.objects.all()
+    return render(request, 'atualizacaoAnimal.html', {'animal': animal})
+
+def updateAnimal(request, id):
+    animal = get_object_or_404(cadastroAnimalModel, pk=id)
+    
+    if request.method == 'POST':
+        form = cadastroAnimalForm(request.POST, instance=animal)
+        if form.is_valid():
+            form.save()
+            return redirect('atualizacaoAnimal')
+    else:
+        form = cadastroAnimalForm(instance=animal)
+    
+    return render(request, 'updateAnimal.html', {'form': form, 'animal': animal})
+
+def deleteAnimal(request, id):
+     # Buscar o animal pelo ID
+    animal = get_object_or_404(cadastroAnimalModel, pk=id)
+    animal.delete()
+    return redirect('index.html')
 
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from .forms import AgendamentoForm
-from .models import cadastroTutorModel, cadastroAnimalModel
+
+def dashatualizacao(request):
+    return render(request, 'dashatualizacao.html')
 
 
 def criar_agendamento(request):

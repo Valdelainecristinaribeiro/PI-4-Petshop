@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Cards</title>
+    <style>
+        /* Estilos básicos para os cards */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            padding: 100px;
+            margin: 200px auto;
+            width: fit-content;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 100px;
+            margin: 0 10px;
+            width: 300px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        /* Estilo para o título do card */
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo para o botão de pesquisa */
+        .search-button {
+            margin-top: 20px;
+            background-color: #32aebe;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .search-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Container dos cards -->
+<div class="card-container">
+    <!-- Card do Tutor -->
+    <div class="card">
+        <div class="card-title">Tutor</div>
+        <button class="search-button" onclick="window.location.href='/atualizacaoTutor'">Pesquisar</button>
+    </div>
+
+    <!-- Card do Animal -->
+    <div class="card">
+        <div class="card-title">Animal</div>
+        <button class="search-button" onclick="window.location.href='/atualizacaoAnimal'">Pesquisar</button>
+    </div>
+
+    <!-- Card do Veterinário -->
+    <div class="card">
+        <div class="card-title">Veterinário</div>
+        <button class="search-button" onclick="window.location.href='/atualizacaoVet'">Pesquisar</button>
+    </div>
+</div>
+
+</body>
+</html>

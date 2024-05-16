@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Tutores</title>
+<!-- Estilos CSS aqui -->
+</head>
+<body>
+    <h1>Lista de Tutores</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>CPF</th>
+                <th>Logradouro</th>
+                <th>Bairro</th>
+                <th>CEP</th>
+                <th>Número</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Telefone</th>
+                <th>Senha</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tutor in tutor %}
+            <tr>
+                <td>{{ tutor.nometutor }}</td>
+                <td>{{ tutor.email }}</td>
+                <td>{{ tutor.cpf }}</td>
+                <td>{{ tutor.logradouro }}</td>
+                <td>{{ tutor.bairro }}</td>
+                <td>{{ tutor.cep }}</td>
+                <td>{{ tutor.numero }}</td>
+                <td>{{ tutor.cidade }}</td>
+                <td>{{ tutor.estado }}</td>
+                <td>{{ tutor.telefone }}</td>
+                <td>{{ tutor.senha }}</td>
+                <td>
+                    <a href="/updateTutor/{{ tutor.id }}" class="btn btn-edit">Editar</a>
+                    <a href="/deleteTutor/{{ tutor.id }}" class="btn btn-delete">Deletar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Link para página de cadastro de tutores -->
+    <p><a href="/cadastroTutor/">Cadastrar Novo Tutor</a></p>
+</body>
+</html>

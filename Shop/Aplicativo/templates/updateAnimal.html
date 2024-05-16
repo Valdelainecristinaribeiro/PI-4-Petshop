@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetSHop</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-md-center" style="background-color:#F8F8FF; padding: 80px 0 80px 0;">
+                
+            
+            <form action="{% url 'updateAnimal' animal.id %}" method="POST">
+                    {% csrf_token %}
+                    <hr>
+                    <h4 class="text-center">Dados do Animal:</h4><br>
+                    <div class="form-group">
+                        <label for="nome"><b>Nome do Pet:</b></label>
+                        <input style="width: 200px;" type="text" id="nomepet" name="nomepet" minlength="14"
+                               maxlength="14" value="{{ animal.nomepet }}">
+                    
+                        <label for="endereco"><b>Espécie</b></label>
+                        <input style="width: 295px;" type="text" id="especie" name="especie" value="{{ animal.especie }}" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="bairro"><b>Porte</b></label>
+                        <input style="width: 393px ;" type="text" id="porte" name="porte" value="{{ Animal.porte }}" required>
+                        <label for="cep"><b>Raça</b></label>
+                        <input style="width: 50px ;" type="number" id="raca" name="raca" value="{{ Animal.raca }}" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="numero"><b>Sexo</b></label>
+                        <input style="width: 400px ;" type="number" id="sexo" name="sexo" value="{{ Animal.sexo }}" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="logradouro"><b>Data Nascimento</b></label>
+                        <input style="width: 150;" type="date" id="datanascimento" name="datanascimento" value="{{ Animal.datanascimento }}"required>
+                        <label for="email"><b>CPF do Tutor</b></label>
+                        <input style="width: 250px;" type="cpftutor" id="cpf" name="cpftutor" value="{{ Animal.cpftutor }}"required>
+                    </div><br>
+                   <br>
+                    <div class="form-group text-center">
+                        <button type="submit"> Atualizar </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
