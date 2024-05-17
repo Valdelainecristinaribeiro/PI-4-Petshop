@@ -1,47 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetSHop</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
+
 <body>
-    <div class="container">
-        <div class="row justify-content-md-center" style="background-color:#F8F8FF; padding: 80px 0 80px 0;">
-                
-                <form action="{% url 'cadastroAnimal' %}" method="POST">
-                    {% csrf_token %}
-                    <hr>
-                    <h4 class="text-center">Dados do Animal:</h4><br>
-                    <div class="form-group">
-                        <label for="nome"><b>Nome do Pet:</b></label>
-                        <input style="width: 200px;" type="text" id="nomepet" name="nomepet" minlength="14"
-                            maxlength="14" required>
-                    <div class="form-group">
-                        <label for="email"><b>Espécie</b></label>
-                        <input style="width: 250px;" type="text" id="especie" name="especie" required>
-                        <label for="email"><b>Porte</b></label>
-                        <input style="width: 250px;" type="text" id="porte" name="porte" required>
-                        
-                    </div><br>
-                        <label for="email"><b>Raça</b></label>
-                        <input style="width: 250px;" type="text" id="raca" name="raca" required>
-                        <label for="logradouro"><b>Sexo</b></label>
-                        <input style="width: 150;" type="text" id="sexo" name="sexo" required>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="logradouro"><b>Data Nascimento</b></label>
-                        <input style="width: 150;" type="date" id="datanascimento" name="datanascimento" required>
-                        <label for="email"><b>CPF do Tutor</b></label>
-                        <input style="width: 250px;" type="cpftutor" id="cpf" name="cpftutor" required>
-                    </div><br>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn"
-                            style="margin: 0 20px;color: azure; background-color: #ff0000;">ENVIAR</button>
+    <nav class="navbar navbar-expand-lg custom-bg">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active left-link" aria-current="page" href="{% url 'index' %}">Pet Shop</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Sair</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'home' %}">Voltar</a>
+                </li>
+            </ul>
+        </div>
+    </nav><br>
+    <h1 class="text-center">Dados do Animal:</h1><br>
+
+
+    <form action="{% url 'cadastroAnimal' %}" method="POST">
+        {% csrf_token %}
+        <div class="container-wrapper">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="nome"><b>Nome do Pet:</b></label><br>
+                    <input class="input" type="text" id="nomepet" name="nomepet" required>
+                    <br>
+                    <label for="especie"><b>Espécie</b></label><br>
+                    <input class="input" type="text" id="especie" name="especie" required>
+                    <br>
+                    <label for="porte"><b>Porte</b></label><br>
+                    <input class="input" type="text" id="porte" name="porte" required>
+                    <br>
+                    <label for="raca"><b>Raça</b></label><br>
+                    <input class="input" type="text" id="raca" name="raca" required>
+                    <br>
+
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="sexo"><b>Sexo</b></label><br>
+                    <input class="input" type="text" id="sexo" name="sexo" required>
+                    <br>
+                    <label for="datanascimento"><b>Data Nascimento</b></label><br>
+                    <input class="input" type="date" id="datanascimento" name="datanascimento" required>
+                    <br>
+                    <label for="cpftutor"><b>CPF do Tutor</b></label><br>
+                    <input class="input" type="cpftutor" id="cpf" name="cpftutor" required>
+                    <br><br>
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
                     </div>
-                </form>
+                    <div class="form-group col-auto">
+                        <button type="submit" class="btn btn-primary">Próximo</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p>Contato: email@dominio.com</p>
+                </div>
+                <div class="col text-end">
+                    <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>

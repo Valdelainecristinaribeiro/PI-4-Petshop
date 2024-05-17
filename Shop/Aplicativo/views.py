@@ -21,6 +21,12 @@ def index(request):
 def cadastro(request):
     return render(request, 'cadastro.html')
 
+def home(request):
+    return render(request, 'home.html')
+
+def cadastroServicos(request):
+    return render(request, 'cadastroServicos.html')
+
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html') 
@@ -31,9 +37,9 @@ def login(request):
         user = authenticate(username = username , password = password)
         if user:
             login_django(request, user)
-            return render(request, 'criar_agendamento.html')
+            return render(request, 'home.html')
         else:
-            return render(request, 'criar_agendamento.html')
+            return render(request, 'index.html')
     
     return render(request, 'criar_agendamento.html')  
 

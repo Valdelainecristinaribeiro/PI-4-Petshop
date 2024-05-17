@@ -20,5 +20,7 @@ urlpatterns = [
     path('cadastroTutor/', views.cadastroTutor, name='cadastroTutor'),
     path('cadastroAnimal/', views.cadastroAnimal, name='cadastroAnimal'),
     path('criar_agendamento/', views.criar_agendamento, name='criar_agendamento'),
-    path('dashatualizacao/', views.dashatualizacao, name='dashatualizacao')
+    path('dashatualizacao/', views.dashatualizacao, name='dashatualizacao'),
+    path('home/', views.home, name='home'),
+    path('cadastroServicos/', views.cadastroServicos, name='cadastroServicos')
 ]

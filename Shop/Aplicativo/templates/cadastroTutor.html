@@ -1,61 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetSHop</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
+
 <body>
-    <div class="container">
-        <div class="row justify-content-md-center" style="background-color:#F8F8FF; padding: 80px 0 80px 0;">
-                
-                <form action="{% url 'cadastroTutor' %}" method="POST">
-                    {% csrf_token %}
-                    <hr>
-                    <h4 class="text-center">Dados do Tutor:</h4><br>
-                    <div class="form-group">
-                        <label for="nome"><b>Nome do Tutor:</b></label>
-                        <input style="width: 200px;" type="text" id="nometutor" name="nometutor" minlength="14"
-                            maxlength="14" required>
-                    <div class="form-group">
-                        <label for="email"><b>Email</b></label>
-                        <input style="width: 250px;" type="email" id="email" name="email" required>
-                        <label for="email"><b>CPF</b></label>
-                        <input style="width: 250px;" type="cpf" id="cpf" name="cpf" required>
-                    </div><br>
-                        <label for="logradouro"><b>Logradouro</b></label>
-                        <input style="width: 295px;" type="text" id="logradouro" name="logradouro" 
-                            required>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="bairro"><b>Bairro</b></label>
-                        <input style="width: 393px ;" type="text" id="bairro" name="bairro" required>
-                        <label for="cep"><b>CEP</b></label>
-                        <input style="width: 100px ;" type="number" id="cep" name="cep" required>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="numero"><b>Número</b></label>
-                        <input style="width: 400px ;" type="number" id="numero" name="numero" required>
-                        <label for="cidade"><b>Cidade</b></label>
-                        <input style="width: 75px ;" type="text" id="cidade" name="cidade" required>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="estado"><b>Estado</b></label>
-                        <input style="width: 200px ;" type="text" id="estado" name="estado" required>
-                        <label for="telefone"><b>Telefone</b></label>
-                        <input style="width: 200px ;" type="number" id="telefone" name="telefone" required>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="estado"><b>Senha</b></label>
-                        <input style="width: 200px ;" type="password" id="password" name="password" required>
-                    </div><br>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn"
-                            style="margin: 0 20px;color: azure; background-color: #ff0000;">ENVIAR</button>
+    <nav class="navbar navbar-expand-lg custom-bg">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active left-link" aria-current="page" href="{% url 'index' %}">Pet Shop</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Sair</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'home' %}">Voltar</a>
+                </li>
+            </ul>
+        </div>
+    </nav><br>
+    <h1 class="text-center">Dados do Tutor:</h1><br>
+    <form action="{% url 'cadastroTutor' %}" method="POST">
+        {% csrf_token %}
+        <div class="container-wrapper">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="nome"><b>Nome tutor:</b></label><br>
+                    <input class="input" type="text" id="nometutor" name="nometutor" required>
+                    <br>
+                    <label for="cep"><b>CEP:</b></label><br>
+                    <input class="input" type="text" id="cep" name="cep" required>
+                    <br>
+                    <label for="endereco"><b>logradouro:</b></label><br>
+                    <input class="input" type="text" id="endereco" name="logradouro" required>
+                    <br>
+                    <label for="numero"><b>Número:</b></label><br>
+                    <input class="input" type="text" id="numero" name="numero" required>
+                    <br>
+                    <label for="bairro"><b>Bairro:</b></label><br>
+                    <input class="input" type="text" id="bairro" name="bairro" required>
+                    <br>
+                    <label for="cidade"><b>Cidade:</b></label><br>
+                    <input class="input" type="text" id="cidade" name="cidade" required>
+                    <br>
+                    <label for="estado"><b>Estado:</b></label><br>
+                    <input class="input" type="text" id="estado" name="estado" required>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="email"><b>Email:</b></label><br>
+                    <input class="input" type="email" id="email" name="email" required>
+                    <br>
+                    <label for="telefone"><b>Telefone:</b></label><br>
+                    <input class="input" type="text" id="telefone" name="telefone" required>
+                    <br>
+                    <label for="telefone"><b>Telefone 2:</b></label><br>
+                    <input class="input" type="text" id="telefone" name="telefone" required>
+                    <br>
+                    <label for="cpf"><b>CPF:</b></label><br>
+                    <input class="input" type="cpf" id="cpf" name="cpf" required>
+                    <br>
+                    <label for="password"><b>Senha:</b></label><br>
+                    <input class="input" type="password" id="password" name="password" required>
+                    <br>
+                    <label for="password"><b>Confirme sua senha:</b></label><br>
+                    <input class="input" type="password" id="password" name="password" required>
+                    <br>
+                    <br>
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
                     </div>
-                </form>
+                    <div class="form-group col-auto">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p>Contato: email@dominio.com</p>
+                </div>
+                <div class="col text-end">
+                    <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>

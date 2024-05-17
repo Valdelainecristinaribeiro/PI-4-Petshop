@@ -1,71 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Agendamento</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Agendamento</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body>
+  <nav class="navbar navbar-expand-lg custom-bg">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active left-link" aria-current="page" href="{% url 'index' %}">Pet Shop</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Sair</a>
+        </li>
+        <li>
+          <a class="nav-link" href="{% url 'home' %}">Voltar</a>
+        </li>
+      </ul>
+    </div>
+  </nav><br>
 
-<h2>Formulário de Agendamento</h2>
+  <h1 class="text-center">Agendamentos</h1>
 
-<form action="{% url 'criar_agendamento' %}" method="post">
-  {% csrf_token %}
 
-<!-- Select para o tutor -->
-<select name="tutor" style="width: 200px; color: black; background-color: rgb(243, 239, 239);">
-  <option value="">Selecione</option> <!-- Opção padrão -->
-  {% for tutor in tutores %}
-    <option value="{{ tutor.id }}" style="background-color: rgb(243, 239, 239);">{{ tutor.nometutor }}</option>
-  {% endfor %}
-</select>
+  <form action="{% url 'criar_agendamento' %}" method="post">
+    {% csrf_token %}
+    <div class="container">
+      <div class="container">
+        <!-- Select para o tutor -->
+        <select name="tutor">
+          <option value="">Selecione</option> <!-- Opção padrão -->
+          {% for tutor in tutores %}
+          <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
+          {% endfor %}
+        </select>
 
-<!-- Select para o animal -->
-<select name="animal" style="width: 200px; color: black; background-color: white;">
-  <option value="">Selecione</option> <!-- Opção padrão -->
-  {% for animal in animais %}
-    <option value="{{ animal.id }}" style="background-color: white;">{{ animal.nomepet }}</option>
-  {% endfor %}
-</select><br>
+        <!-- Select para o animal -->
+        <select name="animal">
+          <option value="">Selecione</option> <!-- Opção padrão -->
+          {% for animal in animais %}
+          <option value="{{ animal.id }}">{{ animal.nomepet }}</option>
+          {% endfor %}
+        </select><br>
 
-  <input type="checkbox" id="banhoetosa" name="servicos[]" value="banhoetosa">
-  <label for="banhoetosa">Banho e Tosa</label><br>
+        <input type="checkbox" id="banhoetosa" name="servicos[]" value="banhoetosa">
+        <label for="banhoetosa">Banho e Tosa</label><br>
 
-  <input type="checkbox" id="tosahigienica" name="servicos[]" value="tosahigienica">
-  <label for="tosahigienica">Tosa Higiênica</label><br>
-  
+        <input type="checkbox" id="tosahigienica" name="servicos[]" value="tosahigienica">
+        <label for="tosahigienica">Tosa Higiênica</label><br>
 
-  <input type="checkbox" id="vacinacao" name="servicos[]" value="vacinacao">
-  <label for="vacinacao">Vacinação</label><br>
 
-  <input type="checkbox" id="exameslaboratoriais" name="servicos[]" value="exameslaboratoriais">
-  <label for="exameslaboratoriais">Exames Laboratoriais</label><br>
+        <input type="checkbox" id="vacinacao" name="servicos[]" value="vacinacao">
+        <label for="vacinacao">Vacinação</label><br>
 
-  <input type="checkbox" id="microchipagem" name="servicos[]" value="microchipagem">
-  <label for="microchipagem">Microchipagem</label><br>
+        <input type="checkbox" id="exameslaboratoriais" name="servicos[]" value="exameslaboratoriais">
+        <label for="exameslaboratoriais">Exames Laboratoriais</label><br>
 
-  <input type="checkbox" id="consultaclinica" name="servicos[]" value="consultaclinica">
-  <label for="consultaclinica">Consulta Clínica</label><br>
+        <input type="checkbox" id="microchipagem" name="servicos[]" value="microchipagem">
+        <label for="microchipagem">Microchipagem</label><br>
 
-  <input type="checkbox" id="atendimentodomiciliar" name="servicos[]" value="atendimentodomiciliar">
-  <label for="atendimentodomiciliar">Atendimento Domiciliar</label><br>
+        <input type="checkbox" id="consultaclinica" name="servicos[]" value="consultaclinica">
+        <label for="consultaclinica">Consulta Clínica</label><br>
 
-  <input type="checkbox" id="atendimento24horas" name="servicos[]" value="atendimento24horas">
-  <label for="atendimento24horas">Atendimento 24 Horas</label><br>
+        <input type="checkbox" id="atendimentodomiciliar" name="servicos[]" value="atendimentodomiciliar">
+        <label for="atendimentodomiciliar">Atendimento Domiciliar</label><br>
 
-  <input type="checkbox" id="hospedagem" name="servicos[]" value="hospedagem">
-  <label for="hospedagem">Hospedagem</label><br>
+        <input type="checkbox" id="atendimento24horas" name="servicos[]" value="atendimento24horas">
+        <label for="atendimento24horas">Atendimento 24 Horas</label><br>
 
-  <input type="checkbox" id="transporte" name="servicos[]" value="transporte">
-  <label for="transporte">Transporte</label><br>
+        <input type="checkbox" id="hospedagem" name="servicos[]" value="hospedagem">
+        <label for="hospedagem">Hospedagem</label><br>
 
-  <input type="checkbox" id="adestramento" name="servicos[]" value="adestramento">
-  <label for="adestramento">Adestramento</label><br>
+        <input type="checkbox" id="transporte" name="servicos[]" value="transporte">
+        <label for="transporte">Transporte</label><br>
 
-  <br>
-  <button type="submit">Salvar</button>
-  <button type="button" onclick="window.history.back();">Cancelar</button>
-</form>
+        <input type="checkbox" id="adestramento" name="servicos[]" value="adestramento">
+        <label for="adestramento">Adestramento</label><br>
+
+        <br>
+        <button type="submit">Salvar</button>
+        <button type="button" onclick="window.history.back();">Cancelar</button>
+
+      </div>
+    </div>
+
+  </form>
+
+
 
 </body>
+
 </html>
