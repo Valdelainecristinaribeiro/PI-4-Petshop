@@ -8,7 +8,8 @@
 </head>
 
 <body>
-
+    {% include 'nav.html' %}
+    <br>
     <form action="{% url 'updateTutor' tutor.id %}" method="POST">
         {% csrf_token %}
         <div class="container-wrapper">

@@ -37,7 +37,7 @@ def login(request):
         user = authenticate(username = username , password = password)
         if user:
             login_django(request, user)
-            return render(request, 'home.html')
+            return render(request, 'home.html', {'username': username})
         else:
             return render(request, 'index.html')
     

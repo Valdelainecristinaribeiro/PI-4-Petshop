@@ -5,49 +5,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro Serviços</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
-  <input type="checkbox" id="banhoetosa" name="servicos[]" value="banhoetosa">
-  <label for="banhoetosa">Banho e Tosa</label><br>
-
-  <input type="checkbox" id="tosahigienica" name="servicos[]" value="tosahigienica">
-  <label for="tosahigienica">Tosa Higiênica</label><br>
-
-
-  <input type="checkbox" id="vacinacao" name="servicos[]" value="vacinacao">
-  <label for="vacinacao">Vacinação</label><br>
-
-  <input type="checkbox" id="exameslaboratoriais" name="servicos[]" value="exameslaboratoriais">
-  <label for="exameslaboratoriais">Exames Laboratoriais</label><br>
-
-  <input type="checkbox" id="microchipagem" name="servicos[]" value="microchipagem">
-  <label for="microchipagem">Microchipagem</label><br>
-
-  <input type="checkbox" id="consultaclinica" name="servicos[]" value="consultaclinica">
-  <label for="consultaclinica">Consulta Clínica</label><br>
-
-  <input type="checkbox" id="atendimentodomiciliar" name="servicos[]" value="atendimentodomiciliar">
-  <label for="atendimentodomiciliar">Atendimento Domiciliar</label><br>
-
-  <input type="checkbox" id="atendimento24horas" name="servicos[]" value="atendimento24horas">
-  <label for="atendimento24horas">Atendimento 24 Horas</label><br>
-
-  <input type="checkbox" id="hospedagem" name="servicos[]" value="hospedagem">
-  <label for="hospedagem">Hospedagem</label><br>
-
-  <input type="checkbox" id="transporte" name="servicos[]" value="transporte">
-  <label for="transporte">Transporte</label><br>
-
-  <input type="checkbox" id="adestramento" name="servicos[]" value="adestramento">
-  <label for="adestramento">Adestramento</label><br>
-
+  {% include 'nav.html' %}
   <br>
-  <button type="submit">Salvar</button>
-  <button type="button" onclick="window.history.back();">Cancelar</button>
+  <h1 class="text-center">Cadastro Serviços</h1>
+  <div class="container">
+    <input type="checkbox" id="banhoetosa" name="servicos[]" value="banhoetosa">
+    <label for="banhoetosa">Banho e Tosa</label><br>
+
+    <input type="checkbox" id="tosahigienica" name="servicos[]" value="tosahigienica">
+    <label for="tosahigienica">Tosa Higiênica</label><br>
+
+
+    <input type="checkbox" id="vacinacao" name="servicos[]" value="vacinacao">
+    <label for="vacinacao">Vacinação</label><br>
+
+    <input type="checkbox" id="exameslaboratoriais" name="servicos[]" value="exameslaboratoriais">
+    <label for="exameslaboratoriais">Exames Laboratoriais</label><br>
+
+    <input type="checkbox" id="microchipagem" name="servicos[]" value="microchipagem">
+    <label for="microchipagem">Microchipagem</label><br>
+
+    <input type="checkbox" id="consultaclinica" name="servicos[]" value="consultaclinica">
+    <label for="consultaclinica">Consulta Clínica</label><br>
+
+    <input type="checkbox" id="atendimentodomiciliar" name="servicos[]" value="atendimentodomiciliar">
+    <label for="atendimentodomiciliar">Atendimento Domiciliar</label><br>
+
+    <input type="checkbox" id="atendimento24horas" name="servicos[]" value="atendimento24horas">
+    <label for="atendimento24horas">Atendimento 24 Horas</label><br>
+
+    <input type="checkbox" id="hospedagem" name="servicos[]" value="hospedagem">
+    <label for="hospedagem">Hospedagem</label><br>
+
+    <input type="checkbox" id="transporte" name="servicos[]" value="transporte">
+    <label for="transporte">Transporte</label><br>
+
+    <input type="checkbox" id="adestramento" name="servicos[]" value="adestramento">
+    <label for="adestramento">Adestramento</label><br>
+
+    <br>
+    <button type="submit">Salvar</button>
+    <button type="button" onclick="window.history.back();">Cancelar</button>
+  </div>
+
 </body>
 
 </html>

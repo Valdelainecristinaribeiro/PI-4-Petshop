@@ -1,0 +1,11 @@
+.h1 {
+    color: black;
+    font-weight: bold;
+}
+
+body {
+    background-image: url('../Aplicativo/media/fundo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
