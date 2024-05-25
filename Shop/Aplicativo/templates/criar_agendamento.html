@@ -7,7 +7,8 @@
   <title>Formulário de Agendamento</title>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/cadastroServicos.css' %}">
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -23,23 +24,23 @@
   <form action="{% url 'criar_agendamento' %}" method="post">
     {% csrf_token %}
     <div class="container">
-      <div class="container">
-        <!-- Select para o tutor -->
-        <select name="tutor">
-          <option value="">Selecione</option> <!-- Opção padrão -->
-          {% for tutor in tutores %}
-          <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
-          {% endfor %}
-        </select>
+      <!-- Select para o tutor -->
+      <select name="tutor">
+        <option value="">Selecione</option> <!-- Opção padrão -->
+        {% for tutor in tutores %}
+        <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
+        {% endfor %}
+      </select>
 
-        <!-- Select para o animal -->
-        <select name="animal">
-          <option value="">Selecione</option> <!-- Opção padrão -->
-          {% for animal in animais %}
-          <option value="{{ animal.id }}">{{ animal.nomepet }}</option>
-          {% endfor %}
-        </select><br>
+      <!-- Select para o animal -->
+      <select name="animal">
+        <option value="">Selecione</option> <!-- Opção padrão -->
+        {% for animal in animais %}
+        <option value="{{ animal.id }}">{{ animal.nomepet }}</option>
+        {% endfor %}
+      </select><br>
 
+      <div class="content">
         <input type="checkbox" id="banhoetosa" name="servicos[]" value="banhoetosa">
         <label for="banhoetosa">Banho e Tosa</label><br>
 
@@ -75,14 +76,35 @@
         <label for="adestramento">Adestramento</label><br>
 
         <br>
-        <button type="submit">Salvar</button>
-        <button type="button" onclick="window.history.back();">Cancelar</button>
-
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <a href="{% url 'index' %}" class="btn btn-danger" onclick="window.history.back();">Cancelar</a>
+          </div>
+          <div class="form-group col-auto">
+            <a href="{% url 'home' %}"><button type="submit" class="btn btn-primary">Salvar</button></a>
+          </div>
+        </div>
       </div>
     </div>
-
   </form>
 
+  <br><br><br><br>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <!-- <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p>Contato: email@dominio.com</p>
+        </div>
+        <div class="col text-end">
+          <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer> -->
 
 
 </body>
