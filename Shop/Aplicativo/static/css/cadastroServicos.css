@@ -10,13 +10,13 @@ body {
     background-attachment: fixed;
 }
 
-.container {
-    border: 5px solid #95C6F2; /* Adiciona uma borda */
-    border-radius: 50px; /* Adiciona um raio de borda */
-    padding: 10px;
-    justify-content: center;
-}
-
-.content {
-    justify-content: center;
+.checkbox {
+    border: 7px solid #95C6F2;
+    /* Adiciona uma borda */
+    border-radius: 50px;
+    /* Adiciona um raio de borda */
+    padding: 80px;
+    margin-top: 30px;
+    display: inline-block;
+    margin-left: 40%;
 }

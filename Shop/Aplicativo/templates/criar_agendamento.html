@@ -15,85 +15,68 @@
 </head>
 
 <body>
-  {% include 'nav.html' %}
-  <br>
-
-  <h1 class="text-center">Agendamentos</h1>
-
-
-  <form action="{% url 'criar_agendamento' %}" method="post">
-    {% csrf_token %}
-    <div class="container">
+  <div class="checkbox">
+    <div class="modal-header">
+      <h1 class="modal-title">Agendamentos&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+      <a href="{% url 'home' %}"><button type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button></a>
+    </div>
+    <br>
+    <form action="{% url 'criar_agendamento' %}" method="post">
+      {% csrf_token %}
       <!-- Select para o tutor -->
-      <select name="tutor">
-        <option value="">Selecione</option> <!-- Opção padrão -->
-        {% for tutor in tutores %}
-        <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
-        {% endfor %}
-      </select>
+      <h6 class="text-center">Tutor:
+        <select name="tutor">
+          <option value="">Selecione</option> <!-- Opção padrão -->
+          {% for tutor in tutores %}
+          <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
+          {% endfor %}
+        </select>
+      </h6>
 
       <!-- Select para o animal -->
-      <select name="animal">
-        <option value="">Selecione</option> <!-- Opção padrão -->
-        {% for animal in animais %}
-        <option value="{{ animal.id }}">{{ animal.nomepet }}</option>
-        {% endfor %}
-      </select><br>
+      <h6 class="text-center">Animal:
+        <select name="animal">
+          <option value="">Selecione</option> <!-- Opção padrão -->
+          {% for animal in animais %}
+          <option value="{{ animal.id }}">{{ animal.nomepet }}</option>
+          {% endfor %}
+        </select>
+      </h6>
+      <!-- Select para serviço -->
+      <h6 class="text-center">Procedimento:
+        <select name="servico">
+          <option value="">Selecione</option> <!-- Opção padrão -->
+          {% for servico in servicos %}
+          <option value="{{ servico.id}}">{{ servico.nomeservico }}</option>
+          {% endfor %}
+        </select>
+      </h6>
 
-      <div class="content">
-        <input type="checkbox" id="banhoetosa" name="servicos[]" value="banhoetosa">
-        <label for="banhoetosa">Banho e Tosa</label><br>
+      <!-- Select date-->
+      <h6 class="text-center">Data:
+        <input type="date" name="data">
+      </h6>
 
-        <input type="checkbox" id="tosahigienica" name="servicos[]" value="tosahigienica">
-        <label for="tosahigienica">Tosa Higiênica</label><br>
-
-
-        <input type="checkbox" id="vacinacao" name="servicos[]" value="vacinacao">
-        <label for="vacinacao">Vacinação</label><br>
-
-        <input type="checkbox" id="exameslaboratoriais" name="servicos[]" value="exameslaboratoriais">
-        <label for="exameslaboratoriais">Exames Laboratoriais</label><br>
-
-        <input type="checkbox" id="microchipagem" name="servicos[]" value="microchipagem">
-        <label for="microchipagem">Microchipagem</label><br>
-
-        <input type="checkbox" id="consultaclinica" name="servicos[]" value="consultaclinica">
-        <label for="consultaclinica">Consulta Clínica</label><br>
-
-        <input type="checkbox" id="atendimentodomiciliar" name="servicos[]" value="atendimentodomiciliar">
-        <label for="atendimentodomiciliar">Atendimento Domiciliar</label><br>
-
-        <input type="checkbox" id="atendimento24horas" name="servicos[]" value="atendimento24horas">
-        <label for="atendimento24horas">Atendimento 24 Horas</label><br>
-
-        <input type="checkbox" id="hospedagem" name="servicos[]" value="hospedagem">
-        <label for="hospedagem">Hospedagem</label><br>
-
-        <input type="checkbox" id="transporte" name="servicos[]" value="transporte">
-        <label for="transporte">Transporte</label><br>
-
-        <input type="checkbox" id="adestramento" name="servicos[]" value="adestramento">
-        <label for="adestramento">Adestramento</label><br>
-
-        <br>
-        <div class="row justify-content-center">
-          <div class="col-auto">
-            <a href="{% url 'index' %}" class="btn btn-danger" onclick="window.history.back();">Cancelar</a>
-          </div>
-          <div class="form-group col-auto">
-            <a href="{% url 'home' %}"><button type="submit" class="btn btn-primary">Salvar</button></a>
-          </div>
+      <h6 class="text-center">Horário:
+        <input type="time" name="horario">
+      </h6>
+      <br><br>
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <a href="{% url 'home' %}" class="btn btn-danger" onclick="window.history.back();">Cancelar</a>
+        </div>
+        <div class="form-group col-auto">
+          <button type="submit" class="btn btn-primary">Confirmar</button>
         </div>
       </div>
-    </div>
-  </form>
-
-  <br><br><br><br>
-
+    </form>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <!-- <footer>
+  <footer>
     <div class="container">
       <div class="row">
         <div class="col">
@@ -104,9 +87,7 @@
         </div>
       </div>
     </div>
-  </footer> -->
-
-
+  </footer>
 </body>
 
 </html>

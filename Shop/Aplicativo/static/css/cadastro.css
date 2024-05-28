@@ -12,11 +12,11 @@ body {
 
 .container-wrapper {
     display: inline-flex; /* Habilitar flexbox para arranjo horizontal */
-    margin-left: 10%;
+    margin-left: 15%;
 }
 
 .form-container {
-    border: 5px solid #95C6F2; /* Adiciona uma borda */
+    border: 7px solid #95C6F2; /* Adiciona uma borda */
     border-radius: 50px; /* Adiciona um raio de borda */
     padding: 50px;
 }
