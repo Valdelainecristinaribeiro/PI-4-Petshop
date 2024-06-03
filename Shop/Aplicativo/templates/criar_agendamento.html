@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,12 +26,12 @@
       <!-- Select para o tutor -->
       <h6 class="text-center">Tutor:
         <select name="tutor">
-          <option value="">Selecione</option> <!-- Opção padrão -->
-          {% for tutor in tutores %}
-          <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
-          {% endfor %}
+            <option value="">Selecione</option> <!-- Opção padrão -->
+            {% for tutor in tutores %}
+            <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
+            {% endfor %}
         </select>
-      </h6>
+    </h6>
 
       <!-- Select para o animal -->
       <h6 class="text-center">Animal:
@@ -46,12 +45,14 @@
       <!-- Select para serviço -->
       <h6 class="text-center">Procedimento:
         <select name="servico">
-          <option value="">Selecione</option> <!-- Opção padrão -->
-          {% for servico in servicos %}
-          <option value="{{ servico.id}}">{{ servico.nomeservico }}</option>
-          {% endfor %}
+            <option value="">Selecione</option>
+            {% for servico in servicos %}
+                <option value="{{ servico.id }}">{{ servico.nome }}</option>
+            {% endfor %}
         </select>
-      </h6>
+    </h6>
+    
+    
 
       <!-- Select date-->
       <h6 class="text-center">Data:
@@ -89,5 +90,4 @@
     </div>
   </footer>
 </body>
-
 </html>
