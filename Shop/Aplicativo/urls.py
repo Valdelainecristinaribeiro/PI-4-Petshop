@@ -22,5 +22,6 @@ urlpatterns = [
     path('criar_agendamento/', views.criar_agendamento, name='criar_agendamento'),
     path('dashatualizacao/', views.dashatualizacao, name='dashatualizacao'),
     path('home/', views.home, name='home'),
-    path('cadastroServicos/', views.cadastroServicos, name='cadastroServicos')
+    path('cadastroServicos/', views.cadastroServicos, name='cadastroServicos'),
+    path('visualizar_agendamentos/', views.visualizar_agendamentos, name='visualizar_agendamentos')
 ]

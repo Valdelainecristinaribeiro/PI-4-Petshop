@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Veterinários</title>
+<!-- Estilos CSS aqui -->
+</head>
+<body>
+    {% include 'nav.html' %}
+    <br>
+    <h1>Agendamentos em Aberto</h1>
+    <ul>
+        {% for agendamento in agendamentos %}
+            <li>{{ agendamento }}</li>
+        {% empty %}
+            <li>Nenhum agendamento em aberto encontrado.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
