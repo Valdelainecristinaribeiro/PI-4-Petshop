@@ -27,6 +27,9 @@ def home(request):
 def cadastroServicos(request):
     return render(request, 'cadastroServicos.html')
 
+def cadastrarVacinas(request):
+    return render(request, 'cadastrarVacinas.html')
+
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html') 

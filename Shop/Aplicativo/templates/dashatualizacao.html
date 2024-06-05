@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página com Cards</title>
+    <title>Editar</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/editar.css' %}">
 
     <!-- Bootstrap CSS -->
@@ -15,49 +15,93 @@
 
 </head>
 
+<style>
+    .card-button {
+        height: 300px;
+        width: 300px; /* Ajuste o tamanho conforme necessário */
+        padding: 50px;
+        border-width: 7px; /* Ajuste a espessura da borda */
+        border-color: #0085FF;
+        background: #9CC9F3;
+        border-radius: 30%;
+        display: inline-flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .card-button .card-title a {
+        text-decoration: none; /* Remove a linha do link */
+        color: black;
+        text-align: center;
+    }
+
+    .button-margin {
+        margin: 30px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
 <body>
     {% include 'nav.html' %}
     <br>
-    <h1 class="text-center">Pesquisar</h1>
-    <div class="container">
-        <div class="row mt-5">
-            <!-- Card 1 - Tutor -->
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Tutor</h5>
-                        <button class="search-button"
-                            onclick="window.location.href='/atualizacaoTutor'">Pesquisar</button>
+    <div class="background-img">
+        <h1 class="text-center"><b>Pesquisar</b></h1>
+        <br><br><br><br><br><br>
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <a onclick="window.location.href='/atualizacaoVet'">
+                    <div class="button-margin">
+                        <button class="card-button search-button" id="Agendamentos">
+                            <div class="card-body">
+                                <h3 class="card-title"><b>Veterinário</b></h3>
+                            </div>
+                        </button>
                     </div>
-                </div>
-            </div>
-            <!-- Card 2 - Animal -->
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Animal</h5>
-                        <button class="search-button"
-                            onclick="window.location.href='/atualizacaoAnimal'">Pesquisar</button>
+                </a>
+                <a onclick="window.location.href='/atualizacaoTutor'">
+                    <div class="button-margin">
+                        <button class="card-button search-button" id="pesquisarTutor">
+                            <div class="card-body">
+                                <h3 class="card-title"><b>Tutor</b></h3>
+                            </div>
+                        </button>
                     </div>
-                </div>
-            </div>
-            <!-- Card 3 - Veterinário -->
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Veterinário</h5>
-                        <button class="search-button"
-                            onclick="window.location.href='/atualizacaoVet'">Pesquisar</button>
+                </a>
+                <a onclick="window.location.href='/atualizacaoAnimal'">
+                    <div class="button-margin">
+                        <button class="card-button search-button" id="pesquisarAnimal">
+                            <div class="card-body">
+                                <h3 class="card-title"><b>Animal</b></h3>
+                            </div>
+                        </button>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
+    <br><br><br><br><br><br><br><br><br>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p>Contato: email@dominio.com</p>
+                </div>
+                <div class="col text-end">
+                    <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
