@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seleção de Serviços Veterinários</title>
+<!-- Estilos CSS aqui -->
+</head>
+<body>
+    {% include 'nav.html' %}
+    <br>
+    <h1>Seleção de Serviços Veterinários</h1>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <input type="checkbox" id="banhoTosa" name="servicos" value="Banho e Tosa">
+            <label for="banhoTosa">Banho e Tosa</label>
+        </div>
+        <div>
+            <input type="checkbox" id="tosaHigienica" name="servicos" value="Tosa Higiênica">
+            <label for="tosaHigienica">Tosa Higiênica</label>
+        </div>
+        <div>
+            <input type="checkbox" id="vacinacao" name="servicos" value="Vacinação">
+            <label for="vacinacao">Vacinação</label>
+        </div>
+        <div>
+            <input type="checkbox" id="exames" name="servicos" value="Exames">
+            <label for="exames">Exames</label>
+        </div>
+        <div>
+            <input type="checkbox" id="microchipagem" name="servicos" value="Microchipagem">
+            <label for="microchipagem">Microchipagem</label>
+        </div>
+        <div>
+            <input type="checkbox" id="consultaClinica" name="servicos" value="Consulta Clínica">
+            <label for="consultaClinica">Consulta Clínica</label>
+        </div>
+        <div>
+            <input type="checkbox" id="atendimentoHospitalar" name="servicos" value="Atendimento Hospitalar">
+            <label for="atendimentoHospitalar">Atendimento Hospitalar</label>
+        </div>
+        <div>
+            <input type="checkbox" id="hospedagem" name="servicos" value="Hospedagem">
+            <label for="hospedagem">Hospedagem</label>
+        </div>
+        <div>
+            <input type="checkbox" id="transporte" name="servicos" value="Transporte">
+            <label for="transporte">Transporte</label>
+        </div>
+        <div>
+            <input type="checkbox" id="adestramento" name="servicos" value="Adestramento">
+            <label for="adestramento">Adestramento</label>
+        </div>
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+    
+    <h2>Serviços Cadastrados</h2>
+    <ul>
+        {% for servico in servicos_cadastrados %}
+            <li>{{ servico.nome }}</li>
+        {% empty %}
+            <li>Nenhum serviço cadastrado.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

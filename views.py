@@ -1,9 +1,9 @@
 from pyexpat.errors import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
-from Aplicativo.forms import VacinaForm, cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm, AgendamentoForm
+from Aplicativo.forms import cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm, AgendamentoForm
 #from Aplicativo.forms import TutoresCadastroForm
-from .models import VeterinarioCadastroModel, cadastroTutorModel,cadastroAnimalModel , AgendamentoModel, ServicoModel, cadastroVacinaModel
+from .models import VeterinarioCadastroModel, cadastroTutorModel,cadastroAnimalModel , AgendamentoModel, ServicoModel
 #from validate_docbr import CPF, CNPJ
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -26,6 +26,9 @@ def home(request):
 
 def cadastroServicos(request):
     return render(request, 'cadastroServicos.html')
+
+def cadastrarVacinas(request):
+    return render(request, 'cadastrarVacinas.html')
 
 def login(request):
     if request.method == 'GET':
@@ -246,19 +249,15 @@ def visualizar_agendamentos(request):
     }
     return render(request, 'visualizar_agendamentos.html', context)
 
-def cadastroVacina(request):
+@login_required
+def criarservicos(request):
     if request.method == 'POST':
-        form = VacinaForm(request.POST)
-        vacinas = cadastroVacinaModel()
-        vacinas.vacina = form.data['vacina']
-        vacinas.datavacinado = form.data['datavacinado']
-        vacinas.nomeveterinario = form.data['nomeveterinario']
-        vacinas.proximavacina = form.data['proximavacina']
-        vacinas.datavernifugo = form.data['datavernifugo']
-        vacinas.produtovernifugo = form.data['produtovernifugo']
-        vacinas.dose = form.data['dose']
-        vacinas.pesoanimal = form.data['pesoanimal']
-        vacinas.save()
-        
-
-    return render(request, 'cadastroVacinas.html')
+        servicos_selecionados = request.POST.getlist('servicos')
+        for nome_servico in servicos_selecionados:
+            ServicoModel.objects.create(nome=nome_servico)
+        return redirect('success')  # Redireciona para uma página de sucesso após cadastrar
+    
+    # Busca todos os serviços cadastrados
+    servicos_cadastrados = ServicoModel.objects.all()
+    
+    return render(request, 'criarservicos.html', {'servicos_cadastrados': servicos_cadastrados})
