@@ -64,3 +64,14 @@ class AgendamentoModel(models.Model):
 
     def __str__(self):
         return f'Tutor: {self.tutor} - Animal: {self.animal} - Serviço: {self.servico} - Data: {self.data} - Horário: {self.horario} - Status: {self.status}'
+    
+class cadastroVacinaModel(models.Model):
+    vacina = models.CharField(max_length=200)
+    datavacinado = models.DateField(max_length=200)
+    nomeveterinario = models.CharField(max_length=200)
+    proximavacina =  models.DateField(max_length=200)
+    datavernifugo = models.DateField(max_length=200)
+    produtovernifugo = models.CharField(max_length=200)
+    dose = models.CharField(max_length=15)
+    pesoanimal = models.CharField(max_length=15)
+

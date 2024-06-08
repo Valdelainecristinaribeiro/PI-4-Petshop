@@ -1,5 +1,5 @@
 from django import forms
-from .models import cadastroTutorModel, VeterinarioCadastroModel, cadastroAnimalModel, AgendamentoModel
+from .models import cadastroTutorModel, VeterinarioCadastroModel, cadastroAnimalModel, AgendamentoModel, cadastroVacinaModel
 from. import views
 
 
@@ -35,3 +35,8 @@ class AgendamentoForm(forms.ModelForm):
     class Meta:
         model = AgendamentoModel
         fields = ['tutor','animal','banhoetosa', 'tosahigienica', 'vacinacao', 'exameslaboratoriais', 'microchipagem', 'consultaclinica', 'atendimentodomiciliar', 'atendimento24horas', 'hospedagem', 'transporte', 'adestramento']
+
+class VacinaForm(forms.ModelForm):
+    class Meta:
+        model = cadastroVacinaModel
+        fields=['vacina', 'datavacinado','nomeveterinario','proximavacina','datavernifugo', 'produtovernifugo','dose','pesoanimal']

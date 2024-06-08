@@ -11,8 +11,9 @@ body {
 }
 
 .container-wrapper {
-    display: inline-flex; /* Habilitar flexbox para arranjo horizontal */
-    margin-left: 15%;
+    display: flex; /* Habilitar flexbox para arranjo horizontal */
+    justify-content: center;
+    align-items: center;
 }
 
 .form-container {
@@ -29,4 +30,10 @@ body {
     padding: 10px; /* espaçamento interno */
     border-radius: 10px; /* arredondamento da borda */
     width: 550px; /* largura do input */
+}
+
+.container {
+    background-color: #95C6F2;
+    border-radius: 10px;
+    border: 1px solid #95C6F2; /* cor da borda */
 }

@@ -21,6 +21,7 @@ def index(request):
 def cadastro(request):
     return render(request, 'cadastro.html')
 
+# @login_required
 def home(request):
     return render(request, 'home.html')
 
@@ -248,3 +249,16 @@ def visualizar_agendamentos(request):
         'agendamentos': agendamentos
     }
     return render(request, 'visualizar_agendamentos.html', context)
+
+# @login_required
+def criarservicos(request):
+    if request.method == 'POST':
+        servicos_selecionados = request.POST.getlist('servicos')
+        for nome_servico in servicos_selecionados:
+            ServicoModel.objects.create(nome=nome_servico)
+        return redirect('success')  # Redireciona para uma página de sucesso após cadastrar
+    
+    # Busca todos os serviços cadastrados
+    servicos_cadastrados = ServicoModel.objects.all()
+    
+    return render(request, 'criarservicos.html', {'servicos_cadastrados': servicos_cadastrados})
