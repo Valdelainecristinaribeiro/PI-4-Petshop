@@ -4,18 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lista de Veterinários</title>
-<!-- Estilos CSS aqui -->
+<style>
+    .custom-btn {
+        background-color: #95C6F2;
+        width: 180px;
+        padding: 10px;
+        border: 7px solid #95C6F2;
+        border-radius: 50px;
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .h5 {
+        font-size: 30px;
+        color: black;
+    }
+    .container-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
 </head>
 <body>
     {% include 'nav.html' %}
     <br>
-    <h1>Agendamentos em Aberto</h1>
-    <ul>
-        {% for agendamento in agendamentos %}
-            <li>{{ agendamento }}</li>
-        {% empty %}
-            <li>Nenhum agendamento em aberto encontrado.</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <a href="{% url 'criar_agendamento' %}"><button class="custom-btn"><h3><b>Agendar</b></h3></button></a>
+    </div>
+    
+    <br>
+    <h1 class="text-center"><b>Meus Agendamentos</b></h1><br>
+    <h2 class="text-center">Para reagendar ou cancelar, selecione os itens desejados abaixo:</h2><br>
+    <div class="container-wrapper">
+        <ul>
+            {% for agendamento in agendamentos %}
+                <li>{{ agendamento }}</li>
+            {% empty %}
+                <li>Nenhum agendamento em aberto encontrado.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    
 </body>
 </html>

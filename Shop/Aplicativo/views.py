@@ -21,7 +21,7 @@ def index(request):
 def cadastro(request):
     return render(request, 'cadastro.html')
 
-# @login_required
+@login_required
 def home(request):
     return render(request, 'home.html')
 

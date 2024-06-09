@@ -1,83 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vacinas</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/modalVacinas.css' %}">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg custom-bg">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active left-link" aria-current="page" href="{% url 'index' %}">Pet Shop</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">Voltar</a>
-                </li>
-                {% include 'login.html' %}
-            </ul>
-        </div>
-    </nav><br>
 
-    <h1 class="text-center"><b>Cartão de Vacinas</b></h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vacinasModal">
+        Cadastrar Vacinas
+    </button>
 
-    <form action="{% url 'cadastrarVacinas' %}" method="POST">
-        {% csrf_token %}
-        <div class="container-wrapper">
-            <div class="form-container">
-                <div class="container">
-                    <h3 class="text-center"><b>Vacinas</b></h>
+
+    <div class="modal fade" id="vacinasModal" tabindex="-1" aria-labelledby="vacinasModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="text-center" id="vacinasModalLabel"><b>Cartão de Vacinas</b></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <br>
-                <div class="form-group">
-                    <div class="container">
-                        <label for="vacina"><h5><b>Vacina:</b></h5></label><br>
-                        <input class="input" type="text" id="vacina" name="vacina" required>
-                    </div>
-                    <div class="container">
-                        <label for="vacinaem"><h5><b>Vacinado em:</b></h5></label><br>
-                        <input class="input" type="date" id="vacinadoem" name="vacinadoem" required>
-                    </div>
-                    <div class="container">
-                        <label for="veterinario"><h5><b>Veterinário (a):</b></h5></label><br>
-                        <input class="input" type="text" id="veterinario" name="veterinario" required>
-                    </div>
-                    <div class="container">
-                        <label for="proximaDose"><h5><b>Próxima dose:</b></h5></label><br>
-                        <input class="input" type="date" name="proximaDose" id="proximaDose">
-                    </div>
-
-                    
-
+                <div class="modal-body" id="modalBodyContent">
+                    <form action="{% url 'cadastrarVacinas' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="custom-container-wrapper">
+                            <div class="custom-form-container">
+                                <div class="custom-container">
+                                    <h3 class="text-center"><b>Vacinas</b></h3>
+                                </div>
+                                <br>
+                                <div class="custom-form-group">
+                                    <div class="custom-container">
+                                        <label for="vacina"><h5><b>Vacina:</b></h5></label><br>
+                                        <input class="custom-input" type="text" id="vacina" name="vacina" required>
+                                    </div>
+                                    <br>
+                                    <div class="custom-container">
+                                        <label for="vacinadoem"><h5><b>Vacinado em:</b></h5></label><br>
+                                        <input class="custom-input" type="date" id="vacinadoem" name="vacinadoem" required>
+                                    </div>
+                                    <br>
+                                    <div class="custom-container">
+                                        <label for="veterinario"><h5><b>Veterinário (a):</b></h5></label><br>
+                                        <input class="custom-input" type="text" id="veterinario" name="veterinario" required>
+                                    </div>
+                                    <br>
+                                    <div class="custom-container">
+                                        <label for="proximaDose"><h5><b>Próxima dose:</b></h5></label><br>
+                                        <input class="custom-input" type="date" name="proximaDose" id="proximaDose" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="custom-container-wrapper">
+                            <div class="custom-form-container">
+                                <div class="custom-container">
+                                    <h3 class="text-center"><b>Vermífugos</b></h3>
+                                </div>
+                                <br>
+                                <div class="custom-form-group">
+                                    <div class="custom-container">
+                                        <label for="data"><h5><b>Data:</b></h5></label><br>
+                                        <input class="custom-input" type="data" id="data" name="data" required>
+                                    </div>
+                                    <br>
+                                    <div class="custom-container">
+                                        <label for="produto"><h5><b>Produto:</b></h5></label><br>
+                                        <input class="custom-input" type="text" id="produto" name="produto" required>
+                                    </div>
+                                    <br>
+                                    <div class="custom-container">
+                                        <label for="dose"><h5><b>Dose:</b></h5></label><br>
+                                        <input class="custom-input" type="text" id="dose" name="dose" required>
+                                    </div>
+                                    <br>
+                                    <div class="custom-container">
+                                        <label for="peso"><h5><b>Peso:</b></h5></label><br>
+                                        <input class="custom-input" type="text" name="peso" id="peso">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
                 </div>
-
             </div>
-
         </div>
-        <div class="container-wrapper">
-            <div class="form-container">
-                <div class="container">
-                    <h3 class="text-center"><b>Vermífugos</b></h>
-                </div>
-                <div class="form-group">
+    </div>
 
 
-                </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-eMN6xyFuhUmEfq1mg8cN0ULy+jLwRWKwrZZYQk702L3eQvrSxMFLpXKpF8WvC3gR"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVRFwiH1/QzUz4cDz+M4YWFsnfFTFt7JZr3lj/X7ndgFjCk3hS10M26vPbXimi0"
+        crossorigin="anonymous"></script>
 
-            </div>
-
-        </div>
-    </form>
-    
 </body>
+
 </html>

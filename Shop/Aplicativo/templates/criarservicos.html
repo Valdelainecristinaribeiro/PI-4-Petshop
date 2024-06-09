@@ -1,70 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seleção de Serviços Veterinários</title>
-<!-- Estilos CSS aqui -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Serviços Veterinários</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/modalServicos.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
+
 <body>
-    {% include 'nav.html' %}
-    <br>
-    <h1>Seleção de Serviços Veterinários</h1>
-    
-    <form action="" method="post">
-        {% csrf_token %}
-        <div>
-            <input type="checkbox" id="banhoTosa" name="servicos" value="Banho e Tosa">
-            <label for="banhoTosa">Banho e Tosa</label>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#servicosModal">
+        Cadastrar Serviços
+    </button>
+
+    <div class="modal fade" id="servicosModal" tabindex="-1" aria-labelledby="servicosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="text-center" id="servicosModalLabel"><b>Seleção de Serviços Veterinários</b></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBodyContent">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="custom-container-wrapper">
+                            <div class="custom-form-container">
+                                <div class="custom-container">
+                                    <h2 class="text-center"><b>Cadastrar Serviços</b></h2>
+                                </div>
+                                <br>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="banhoTosa" name="servicos" value="Banho e Tosa">
+                                    <label for="banhoTosa"><b>Banho e Tosa</b></label>
+                                </div>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="tosaHigienica" name="servicos" value="Tosa Higiênica">
+                                    <label for="tosaHigienica"><b>Tosa Higiênica</b></label>
+                                </div>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="vacinacao" name="servicos" value="Vacinação">
+                                    <label for="vacinacao"><b>Vacinação</b></label>
+                                </div>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="exames" name="servicos" value="Exames">
+                                    <label for="exames"><b>Exames</b></label>
+                                </div>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="microchipagem" name="servicos" value="Microchipagem">
+                                    <label for="microchipagem"><b>Microchipagem</b></label>
+                                </div>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="consultaClinica" name="servicos"
+                                        value="Consulta Clínica">
+                                    <label for="consultaClinica"><b>Consulta Clínica</b></label>
+                                </div>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="atendimentoHospitalar" name="servicos"
+                                        value="Atendimento Hospitalar">
+                                    <label for="atendimentoHospitalar"><b>Atendimento Hospitalar</b></label>
+                                </div>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="hospedagem" name="servicos" value="Hospedagem">
+                                    <label for="hospedagem"><b>Hospedagem</b></label>
+                                </div>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="transporte" name="servicos" value="Transporte">
+                                    <label for="transporte"><b>Transporte</b></label>
+                                </div>
+                                <div class="custom-container">
+                                    <input type="checkbox" id="adestramento" name="servicos" value="Adestramento">
+                                    <label for="adestramento"><b>Adestramento</b></label>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="custom-container-wrapper">
+                            <div class="custom-form-container">
+                                <div class="custom-container">
+                                    <h2 class="text-center"><b>Serviços Cadastrados</b></h2>
+                                </div>
+                                <div class="custom-container">
+                                    <ul>
+                                        {% for servico in servicos_cadastrados %}
+                                        <li>{{ servico.nome }}</li>
+                                        {% empty %}
+                                        <li>Nenhum serviço cadastrado.</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger"
+                                data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div>
-            <input type="checkbox" id="tosaHigienica" name="servicos" value="Tosa Higiênica">
-            <label for="tosaHigienica">Tosa Higiênica</label>
-        </div>
-        <div>
-            <input type="checkbox" id="vacinacao" name="servicos" value="Vacinação">
-            <label for="vacinacao">Vacinação</label>
-        </div>
-        <div>
-            <input type="checkbox" id="exames" name="servicos" value="Exames">
-            <label for="exames">Exames</label>
-        </div>
-        <div>
-            <input type="checkbox" id="microchipagem" name="servicos" value="Microchipagem">
-            <label for="microchipagem">Microchipagem</label>
-        </div>
-        <div>
-            <input type="checkbox" id="consultaClinica" name="servicos" value="Consulta Clínica">
-            <label for="consultaClinica">Consulta Clínica</label>
-        </div>
-        <div>
-            <input type="checkbox" id="atendimentoHospitalar" name="servicos" value="Atendimento Hospitalar">
-            <label for="atendimentoHospitalar">Atendimento Hospitalar</label>
-        </div>
-        <div>
-            <input type="checkbox" id="hospedagem" name="servicos" value="Hospedagem">
-            <label for="hospedagem">Hospedagem</label>
-        </div>
-        <div>
-            <input type="checkbox" id="transporte" name="servicos" value="Transporte">
-            <label for="transporte">Transporte</label>
-        </div>
-        <div>
-            <input type="checkbox" id="adestramento" name="servicos" value="Adestramento">
-            <label for="adestramento">Adestramento</label>
-        </div>
-        <div>
-            <button type="submit">Enviar</button>
-        </div>
-    </form>
-    
-    <h2>Serviços Cadastrados</h2>
-    <ul>
-        {% for servico in servicos_cadastrados %}
-            <li>{{ servico.nome }}</li>
-        {% empty %}
-            <li>Nenhum serviço cadastrado.</li>
-        {% endfor %}
-    </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-eMN6xyFuhUmEfq1mg8cN0ULy+jLwRWKwrZZYQk702L3eQvrSxMFLpXKpF8WvC3gR"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVRFwiH1/QzUz4cDz+M4YWFsnfFTFt7JZr3lj/X7ndgFjCk3hS10M26vPbXimi0"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>
