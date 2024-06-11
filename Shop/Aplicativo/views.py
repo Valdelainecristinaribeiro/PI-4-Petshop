@@ -31,6 +31,15 @@ def cadastroServicos(request):
 def cadastrarVacinas(request):
     return render(request, 'cadastrarVacinas.html')
 
+def agendar_cliente(request):
+    return render(request, 'agendar_cliente.html')
+
+def visualizar_cartaoVacina(request):
+    return render(request, 'visualizar_cartaoVacina.html')
+
+def autenticacao_cliente(request):
+    return render(request, 'autenticacao_cliente.html')
+
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html') 

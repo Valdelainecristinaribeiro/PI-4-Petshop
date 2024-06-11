@@ -26,6 +26,12 @@
         justify-content: center;
         align-items: center;
     }
+    .custom-container {
+        border: 7px solid #95C6F2;
+        border-radius: 100px;
+        padding: 50px;
+        width: 1700px;
+    }
 </style>
 
 </head>
@@ -40,13 +46,16 @@
     <h1 class="text-center"><b>Meus Agendamentos</b></h1><br>
     <h2 class="text-center">Para reagendar ou cancelar, selecione os itens desejados abaixo:</h2><br>
     <div class="container-wrapper">
-        <ul>
-            {% for agendamento in agendamentos %}
-                <li>{{ agendamento }}</li>
-            {% empty %}
-                <li>Nenhum agendamento em aberto encontrado.</li>
-            {% endfor %}
-        </ul>
+        <div class="custom-container">
+            <ul>
+                {% for agendamento in agendamentos %}
+                    <li>{{ agendamento }}</li>
+                {% empty %}
+                    <li>Nenhum agendamento em aberto encontrado.</li>
+                {% endfor %}
+            </ul>
+        </div>
+       
     </div>
 
     

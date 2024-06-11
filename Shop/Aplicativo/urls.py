@@ -25,6 +25,9 @@ urlpatterns = [
     path('cadastroServicos/', views.cadastroServicos, name='cadastroServicos'),
     path('visualizar_agendamentos/', views.visualizar_agendamentos, name='visualizar_agendamentos'),
     path('cadastrarVacinas/', views.cadastrarVacinas, name='cadastrarVacinas'),
-    path('criarservicos/', views.criarservicos, name='criarservicos')
+    path('criarservicos/', views.criarservicos, name='criarservicos'),
+    path('autenticacao_cliente/', views.autenticacao_cliente, name='autenticacao_cliente'),
+    path('visualizar_cartaoVacina/', views.visualizar_cartaoVacina, name='visualizar_cartaoVacina'),
+    path('agendar_cliente/', views.agendar_cliente, name='agendar_cliente')
 
 ]
