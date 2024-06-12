@@ -21,11 +21,24 @@ def index(request):
 def cadastro(request):
     return render(request, 'cadastro.html')
 
+@login_required
 def home(request):
     return render(request, 'home.html')
 
 def cadastroServicos(request):
     return render(request, 'cadastroServicos.html')
+
+def cadastrarVacinas(request):
+    return render(request, 'cadastrarVacinas.html')
+
+def agendar_cliente(request):
+    return render(request, 'agendar_cliente.html')
+
+def visualizar_cartaoVacina(request):
+    return render(request, 'visualizar_cartaoVacina.html')
+
+def autenticacao_cliente(request):
+    return render(request, 'autenticacao_cliente.html')
 
 def login(request):
     if request.method == 'GET':
@@ -246,19 +259,56 @@ def visualizar_agendamentos(request):
     }
     return render(request, 'visualizar_agendamentos.html', context)
 
-def cadastroVacina(request):
+# @login_required
+def criarservicos(request):
+    if request.method == 'POST':
+        servicos_selecionados = request.POST.getlist('servicos')
+        for nome_servico in servicos_selecionados:
+            ServicoModel.objects.create(nome=nome_servico)
+        return redirect('success')  # Redireciona para uma página de sucesso após cadastrar
+    
+    # Busca todos os serviços cadastrados
+    servicos_cadastrados = ServicoModel.objects.all()
+    
+    return render(request, 'criarservicos.html', {'servicos_cadastrados': servicos_cadastrados})
+
+def cadastrarvacina(request):
     if request.method == 'POST':
         form = VacinaForm(request.POST)
-        vacinas = cadastroVacinaModel()
-        vacinas.vacina = form.data['vacina']
-        vacinas.datavacinado = form.data['datavacinado']
-        vacinas.nomeveterinario = form.data['nomeveterinario']
-        vacinas.proximavacina = form.data['proximavacina']
-        vacinas.datavernifugo = form.data['datavernifugo']
-        vacinas.produtovernifugo = form.data['produtovernifugo']
-        vacinas.dose = form.data['dose']
-        vacinas.pesoanimal = form.data['pesoanimal']
-        vacinas.save()
-        
+        if form.is_valid():
+            form.save()
+            return redirect('success')  # Redireciona para uma página de sucesso após cadastrar
 
-    return render(request, 'cadastroVacinas.html')
+    # Busca todas as vacinas cadastradas
+    vacinas_cadastradas = cadastroVacinaModel.objects.all()
+
+    # Inicializa um novo formulário para ser usado na página
+    form = VacinaForm()
+
+    return render(request, 'cadastrarVacina.html', {'form': form, 'vacinas_cadastradas': vacinas_cadastradas})
+
+def cancelarvacina(request, id_vacina):
+    vacina = get_object_or_404(cadastroVacinaModel, id=id_vacina)
+    if request.method == 'POST':
+        vacina.delete()
+        return redirect('success')  # Redireciona para uma página de sucesso após deletar
+
+    return render(request, 'cancelarvacina.html', {'vacina': vacina})
+
+def updateVacinas(request, id_vacina):
+    vacina = get_object_or_404(cadastroVacinaModel, id=id_vacina)
+    if request.method == 'POST':
+        form = VacinaForm(request.POST, instance=vacina)
+        if form.is_valid():
+            form.save()
+            return redirect('success')  # Redireciona para uma página de sucesso após atualizar
+
+    else:
+        form = VacinaForm(instance=vacina)
+
+    return render(request, 'atualizarvacina.html', {'form': form})
+
+# views.py
+def visualizarvacinas(request):
+    vacinas = cadastroVacinaModel.objects.all()
+    return render(request, 'visualizarvacinas.html', {'vacinas': vacinas})
