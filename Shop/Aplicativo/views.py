@@ -1,9 +1,9 @@
 from pyexpat.errors import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
-from Aplicativo.forms import cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm, AgendamentoForm, ServicoForm
+from Aplicativo.forms import VacinaForm, cadastroTutorForm,VeterinarioCadastroForm, cadastroAnimalForm, AgendamentoForm, ServicoForm
 #from Aplicativo.forms import TutoresCadastroForm
-from .models import VeterinarioCadastroModel, cadastroTutorModel,cadastroAnimalModel , AgendamentoModel, ServicoModel
+from .models import VeterinarioCadastroModel, cadastroTutorModel,cadastroAnimalModel , AgendamentoModel, ServicoModel, cadastroVacinaModel
 #from validate_docbr import CPF, CNPJ
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -41,6 +41,9 @@ def visualizar_cartaoVacina(request):
 
 def autenticacao_cliente(request):
     return render(request, 'autenticacao_cliente.html')
+
+def home_cliente(request):
+    return render(request, 'home_cliente.html')
 
 
 def login(request):
@@ -315,6 +318,7 @@ def fechar_agendamento(request, agendamento_id):
     return redirect('visualizar_agendamentos')
 
 def criarservicos(request):
+
     if request.method == 'POST':
         servicos_selecionados = request.POST.getlist('servicos')
         
@@ -332,3 +336,71 @@ def criarservicos(request):
     # Caso GET, carrega a página com os serviços cadastrados
     servicos_cadastrados = ServicoModel.objects.all()
     return render(request, 'criarservicos.html', {'servicos_cadastrados': servicos_cadastrados})
+
+def cadastrarvacina(request):
+    if request.method == 'POST':
+        form = VacinaForm(request.POST)
+        vacinas = cadastroVacinaModel()
+        vacinas.vacina = form.data['vacina']
+        vacinas.datavacinado = form.data['datavacinado']
+        vacinas.nomeveterinario = form.data['nomeveterinario']
+        vacinas.proximavacina = form.data['proximavacina']
+        vacinas.datavernifugo = form.data['datavernifugo']
+        vacinas.produtovernifugo = form.data['produtovernifugo']
+        vacinas.dose = form.data['dose']
+        vacinas.pesoanimal = form.data['pesoanimal']
+        vacinas.save()
+
+        if form.is_valid():
+            form.save()
+            return redirect('success')  # Redireciona para uma página de sucesso após cadastrar
+
+    # Busca todas as vacinas cadastradas
+    vacinas_cadastradas = cadastroVacinaModel.objects.all()
+
+    # Inicializa um novo formulário para ser usado na página
+    form = VacinaForm()
+
+    return render(request, 'cadastrarVacina.html', {'form': form, 'vacinas_cadastradas': vacinas_cadastradas})
+
+def cancelarvacina(request, id_vacina):
+    vacina = get_object_or_404(cadastroVacinaModel, id=id_vacina)
+    if request.method == 'POST':
+        vacina.delete()
+        return redirect('success')  # Redireciona para uma página de sucesso após deletar
+
+    return render(request, 'cancelarvacina.html', {'vacina': vacina})
+
+def updateVacinas(request, id_vacina):
+    vacina = get_object_or_404(cadastroVacinaModel, id=id_vacina)
+    if request.method == 'POST':
+        form = VacinaForm(request.POST, instance=vacina)
+        if form.is_valid():
+            form.save()
+            return redirect('success')  # Redireciona para uma página de sucesso após atualizar
+
+    else:
+        form = VacinaForm(instance=vacina)
+
+    return render(request, 'atualizarvacina.html', {'form': form})
+
+    return render(request, 'cadastroVacinas.html')
+
+def visualizarvacinas(request):
+    vacinas = cadastroVacinaModel.objects.all()
+    return render(request, 'visualizarvacinas.html', {'vacinas': vacinas})
+
+
+def login_cliente(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home_cliente')
+        else:
+            error_message = "Credenciais inválidas. Por favor, tente novamente."
+            return render(request, 'autenticacao_cliente.html', {'error_message': error_message})
+    else:
+        return render(request, 'agendar_cliente.html')
