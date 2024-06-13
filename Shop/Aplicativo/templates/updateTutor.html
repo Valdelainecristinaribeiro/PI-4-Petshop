@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetSHop</title>
+    <title>PetShop</title>
+    <!-- Inclua aqui o CSS do Bootstrap e seu CSS personalizado, se necessário -->
 </head>
-
 <body>
     {% include 'nav.html' %}
     <br>
@@ -14,48 +13,49 @@
         {% csrf_token %}
         <div class="container-wrapper">
             <div class="form-container">
+                {{ form.non_field_errors }}
                 <div class="form-group">
-                    <label for="nome"><b>Nome tutor:</b></label><br>
-                    <input class="input" type="text" id="nometutor" name="nometutor" required>
+                    <label for="nometutor"><b>Nome tutor:</b></label><br>
+                    {{ form.nometutor }}
                     <br>
                     <label for="cep"><b>CEP:</b></label><br>
-                    <input class="input" type="text" id="cep" name="cep" required>
+                    {{ form.cep }}
                     <br>
-                    <label for="endereco"><b>logradouro:</b></label><br>
-                    <input class="input" type="text" id="endereco" name="logradouro" required>
+                    <label for="logradouro"><b>Logradouro:</b></label><br>
+                    {{ form.logradouro }}
                     <br>
                     <label for="numero"><b>Número:</b></label><br>
-                    <input class="input" type="text" id="numero" name="numero" required>
+                    {{ form.numero }}
                     <br>
                     <label for="bairro"><b>Bairro:</b></label><br>
-                    <input class="input" type="text" id="bairro" name="bairro" required>
+                    {{ form.bairro }}
                     <br>
                     <label for="cidade"><b>Cidade:</b></label><br>
-                    <input class="input" type="text" id="cidade" name="cidade" required>
+                    {{ form.cidade }}
                     <br>
                     <label for="estado"><b>Estado:</b></label><br>
-                    <input class="input" type="text" id="estado" name="estado" required>
+                    {{ form.estado }}
                 </div>
             </div>
             <div class="form-container">
                 <div class="form-group">
                     <label for="email"><b>Email:</b></label><br>
-                    <input class="input" type="email" id="email" name="email" required>
+                    {{ form.email }}
                     <br>
                     <label for="telefone"><b>Telefone:</b></label><br>
-                    <input class="input" type="text" id="telefone" name="telefone" required>
+                    {{ form.telefone }}
                     <br>
-                    <label for="telefone"><b>Telefone 2:</b></label><br>
-                    <input class="input" type="text" id="telefone" name="telefone" required>
+                    <label for="telefone2"><b>Telefone 2:</b></label><br>
+                    {{ form.telefone2 }}
                     <br>
                     <label for="cpf"><b>CPF:</b></label><br>
-                    <input class="input" type="cpf" id="cpf" name="cpf" required>
+                    {{ form.cpf }}
                     <br>
                     <label for="password"><b>Senha:</b></label><br>
-                    <input class="input" type="password" id="password" name="password" required>
+                    {{ form.password }}
                     <br>
-                    <label for="password"><b>Confirme sua senha:</b></label><br>
-                    <input class="input" type="password" id="password" name="password" required>
+                    <label for="password_confirm"><b>Confirme sua senha:</b></label><br>
+                    {{ form.password_confirm }}
                     <br>
                     <br>
                 </div>
@@ -71,9 +71,5 @@
             </div>
         </div>
     </form>
-    </div>
-    </div>
-    </div>
 </body>
-
 </html>

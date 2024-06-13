@@ -1,13 +1,17 @@
 from django import forms
-from .models import cadastroTutorModel, VeterinarioCadastroModel, cadastroAnimalModel, AgendamentoModel, cadastroVacinaModel
+from .models import ServicoModel, cadastroTutorModel, VeterinarioCadastroModel, cadastroAnimalModel, AgendamentoModel, cadastroVacinaModel
 from. import views
 
-
+class ServicoForm(forms.ModelForm):
+    class Meta:
+        model = ServicoModel
+        fields = ['nome']
 
 class VeterinarioCadastroForm(forms.ModelForm):
     class Meta:
         model = VeterinarioCadastroModel
-        fields=['nome', 'email','logradouro','bairro','numero','cidade','estado','telefone','crmv','password']
+        fields=['nome', 'cep','email','logradouro','bairro','numero','cidade','estado','telefone','crmv','password']
+
 
 class cadastroTutorForm(forms.ModelForm):
     class Meta:

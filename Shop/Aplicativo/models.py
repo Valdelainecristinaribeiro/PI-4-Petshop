@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class VeterinarioCadastroModel(models.Model):
     nome = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
+    cep=models.CharField(max_length=255, default='000000000')
     logradouro = models.CharField(max_length=255)
     bairro = models.CharField(max_length=100)
     numero = models.CharField(max_length=10)
@@ -43,7 +44,7 @@ class cadastroAnimalModel(models.Model):
 
 class ServicoModel(models.Model):
     nome = models.CharField(max_length=200, unique=True, default='Serviço Temporário')
-    preco = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    
 
     def __str__(self):
         return self.nome
