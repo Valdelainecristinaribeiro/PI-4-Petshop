@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetSHop</title>
+    <title>PetShop</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
@@ -12,7 +12,6 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
 </head>
 
 <body>
@@ -23,41 +22,44 @@
         {% csrf_token %}
         <div class="container-wrapper">
             <div class="form-container">
+                {{ form.non_field_errors }}
                 <div class="form-group">
-                    <label for="nome"><b>Nome do Pet:</b></label><br>
-                    <input class="input" type="text" id="nomepet" name="nomepet" required>
+                    <label for="nomepet"><b>Nome do Pet:</b></label><br>
+                    {{ form.nomepet }}
                     <br>
-                    <label for="especie"><b>Espécie</b></label><br>
-                    <input class="input" type="text" id="especie" name="especie" required>
+                    <label for="especie"><b>Espécie:</b></label><br>
+                    {{ form.especie }}
                     <br>
-                    <label for="porte"><b>Porte</b></label><br>
-                    <input class="input" type="text" id="porte" name="porte" required>
+                    <label for="cor"><b>Cor:</b></label><br>
+                    {{ form.cor }}
                     <br>
-                    <label for="raca"><b>Raça</b></label><br>
-                    <input class="input" type="text" id="raca" name="raca" required>
+                    <label for="porte"><b>Porte:</b></label><br>
+                    {{ form.porte }}
                     <br>
-
+                    <label for="raca"><b>Raça:</b></label><br>
+                    {{ form.raca }}
+                    <br>
                 </div>
             </div>
             <div class="form-container">
                 <div class="form-group">
-                    <label for="sexo"><b>Sexo</b></label><br>
-                    <input class="input" type="text" id="sexo" name="sexo" required>
+                    <br><label for="sexo"><b>Sexo:</b></label><br>
+                    {{ form.sexo }}
                     <br>
-                    <label for="datanascimento"><b>Data Nascimento</b></label><br>
-                    <input class="input" type="date" id="datanascimento" name="datanascimento" required>
+                    <label for="datanascimento"><b>Data Nascimento:</b></label><br>
+                    {{ form.datanascimento }}
                     <br>
-                    <label for="cpftutor"><b>CPF do Tutor</b></label><br>
-                    <input class="input" type="cpftutor" id="cpf" name="cpftutor" required>
+                    <label for="cpftutor"><b>CPF do Tutor:</b></label><br>
+                    {{ form.cpftutor }}
                     <br><br>
                 </div>
                 <br>
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
+                        <a href="{% url 'home' %}" class="btn btn-danger">Cancelar</a>
                     </div>
                     <div class="form-group col-auto">
-                        <button type="submit" class="btn btn-primary">Próximo</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetSHop</title>
+    <title>PetShop - Atualizar Veterinário</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
@@ -26,47 +26,44 @@
             <div class="form-container">
                 <div class="form-group">
                     <label for="nome"><b>Nome completo:</b></label><br>
-                    <input class="input" type="text" id="nome" name="nome" required>
+                    <input class="input" type="text" id="nome" name="nome" value="{{ veterinario.nome }}" required>
                     <br>
                     <label for="cep"><b>CEP:</b></label><br>
-                    <input class="input" type="text" id="cep" name="cep" required>
+                    <input class="input" type="text" id="cep" name="cep" value="{{ veterinario.cep }}" required>
                     <br>
-                    <label for="endereco"><b>logradouro:</b></label><br>
-                    <input class="input" type="text" id="endereco" name="logradouro" required>
+                    <label for="endereco"><b>Logradouro:</b></label><br>
+                    <input class="input" type="text" id="endereco" name="logradouro" value="{{ veterinario.logradouro }}" required>
                     <br>
                     <label for="numero"><b>Número:</b></label><br>
-                    <input class="input" type="text" id="numero" name="numero" required>
+                    <input class="input" type="text" id="numero" name="numero" value="{{ veterinario.numero }}" required>
                     <br>
                     <label for="bairro"><b>Bairro:</b></label><br>
-                    <input class="input" type="text" id="bairro" name="bairro" required>
+                    <input class="input" type="text" id="bairro" name="bairro" value="{{ veterinario.bairro }}" required>
                     <br>
                     <label for="cidade"><b>Cidade:</b></label><br>
-                    <input class="input" type="text" id="cidade" name="cidade" required>
+                    <input class="input" type="text" id="cidade" name="cidade" value="{{ veterinario.cidade }}" required>
                     <br>
                     <label for="estado"><b>Estado:</b></label><br>
-                    <input class="input" type="text" id="estado" name="estado" required>
+                    <input class="input" type="text" id="estado" name="estado" value="{{ veterinario.estado }}" required>
                     <br>
                 </div>
             </div>
             <div class="form-container">
                 <div class="form-group">
                     <label for="email"><b>Email:</b></label><br>
-                    <input class="input" type="email" id="email" name="email" required>
+                    <input class="input" type="email" id="email" name="email" value="{{ veterinario.email }}" required>
                     <br>
                     <label for="telefone"><b>Telefone:</b></label><br>
-                    <input class="input" type="text" id="telefone" name="telefone" required>
-                    <br>
-                    <label for="telefone"><b>Telefone 2:</b></label><br>
-                    <input class="input" type="text" id="telefone" name="telefone" required>
+                    <input class="input" type="text" id="telefone" name="telefone" value="{{ veterinario.telefone }}" required>
                     <br>
                     <label for="crmv"><b>CRMV:</b></label><br>
-                    <input class="input" type="text" id="crmv" name="crmv" required>
+                    <input class="input" type="text" id="crmv" name="crmv" value="{{ veterinario.crmv }}" required>
                     <br>
                     <label for="password"><b>Senha:</b></label><br>
                     <input class="input" type="password" id="password" name="password" required>
                     <br>
-                    <label for="password"><b>Confirme sua senha:</b></label><br>
-                    <input class="input" type="password" id="password" name="password" required>
+                    <label for="confirm_password"><b>Confirme sua senha:</b></label><br>
+                    <input class="input" type="password" id="confirm_password" name="confirm_password" required>
                     <br>
                     <br>
                 </div>
@@ -82,5 +79,7 @@
             </div>
         </div>
     </form>
+
+</body>
 
 </html>
