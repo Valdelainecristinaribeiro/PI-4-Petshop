@@ -32,8 +32,11 @@
         padding: 50px;
         width: 1700px;
     }
+    .action-btns {
+        display: flex;
+        gap: 10px;
+    }
 </style>
-
 </head>
 <body>
     {% include 'nav.html' %}
@@ -41,7 +44,6 @@
     <div class="container">
         <a href="{% url 'criar_agendamento' %}"><button class="custom-btn"><h3><b>Agendar</b></h3></button></a>
     </div>
-    
     <br>
     <h1 class="text-center"><b>Meus Agendamentos</b></h1><br>
     <h2 class="text-center">Para reagendar ou cancelar, selecione os itens desejados abaixo:</h2><br>
@@ -49,15 +51,24 @@
         <div class="custom-container">
             <ul>
                 {% for agendamento in agendamentos %}
-                    <li>{{ agendamento }}</li>
+                    <li>
+                        {{ agendamento }}
+                        <div class="action-btns">
+                            <form action="{% url 'cancelar_agendamento' agendamento.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Cancelar</button>
+                            </form>
+                            <form action="{% url 'fechar_agendamento' agendamento.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success">Serviço Realizado</button>
+                            </form>
+                        </div>
+                    </li>
                 {% empty %}
                     <li>Nenhum agendamento em aberto encontrado.</li>
                 {% endfor %}
             </ul>
         </div>
-       
     </div>
-
-    
 </body>
 </html>

@@ -28,6 +28,8 @@ urlpatterns = [
     path('criarservicos/', views.criarservicos, name='criarservicos'),
     path('autenticacao_cliente/', views.autenticacao_cliente, name='autenticacao_cliente'),
     path('visualizar_cartaoVacina/', views.visualizar_cartaoVacina, name='visualizar_cartaoVacina'),
-    path('agendar_cliente/', views.agendar_cliente, name='agendar_cliente')
+    path('agendar_cliente/', views.agendar_cliente, name='agendar_cliente'),
+    path('cancelar_agendamento/<int:agendamento_id>/', views.cancelar_agendamento, name='cancelar_agendamento'),
+    path('fechar_agendamento/<int:agendamento_id>/', views.fechar_agendamento, name='fechar_agendamento')
 
 ]

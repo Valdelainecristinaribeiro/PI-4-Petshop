@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import MultipleObjectsReturned
 from . import views
 from django.shortcuts import render, redirect
+from django.contrib import messages
+
 
 
 def index(request):
@@ -208,13 +210,6 @@ def dashatualizacao(request):
 
 
 
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import ServicoModel, AgendamentoModel, cadastroTutorModel, cadastroAnimalModel
-
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import ServicoModel, AgendamentoModel, cadastroTutorModel, cadastroAnimalModel
 
 def criar_agendamento(request):
     servicos = ServicoModel.objects.all()
@@ -256,6 +251,7 @@ def criar_agendamento(request):
             'tutores': cadastroTutorModel.objects.all(),
             'animais': cadastroAnimalModel.objects.all(),
             'servicos': servicos,
+            'redirect_home': True,  # Adiciona um indicador para redirecionar
         })
 
     tutores = cadastroTutorModel.objects.all()
@@ -268,24 +264,25 @@ def criar_agendamento(request):
     return render(request, 'criar_agendamento.html', context)
 
 
-    context = {
-        'tutores': tutores,
-        'animais': animais,
-        'servicos': servicos
-    }
-    return render(request, 'criar_agendamento.html', context)
-
-
 def visualizar_agendamentos(request):
-    # Obtenha os agendamentos em aberto para o tutor atual
-    tutor_id = request.user.id  # Supondo que o tutor esteja logado
+    tutor_id = request.user.id
     agendamentos = AgendamentoModel.objects.filter(tutor_id=tutor_id, status='aberto')
-    
-    context = {
-        'agendamentos': agendamentos
-    }
-    return render(request, 'visualizar_agendamentos.html', context)
 
+    return render(request, 'visualizar_agendamentos.html', {'agendamentos': agendamentos})
+
+def cancelar_agendamento(request, agendamento_id):
+    agendamento = get_object_or_404(AgendamentoModel, id=agendamento_id)
+    agendamento.status = 'cancelado'
+    agendamento.save()
+    messages.success(request, 'Agendamento cancelado com sucesso!')
+    return redirect('visualizar_agendamentos')
+
+def fechar_agendamento(request, agendamento_id):
+    agendamento = get_object_or_404(AgendamentoModel, id=agendamento_id)
+    agendamento.status = 'fechado'
+    agendamento.save()
+    messages.success(request, 'Agendamento marcado como realizado!')
+    return redirect('visualizar_agendamentos')
 # @login_required
 def criarservicos(request):
     if request.method == 'POST':
