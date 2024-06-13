@@ -42,24 +42,30 @@ def visualizar_cartaoVacina(request):
 def autenticacao_cliente(request):
     return render(request, 'autenticacao_cliente.html')
 
+
 def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html') 
-    else:
+        return render(request, 'login.html')
+    elif request.method == 'POST':
         username = request.POST.get('email')
         password = request.POST.get('password')
 
-        user = authenticate(username = username , password = password)
-        if user:
+        if not username or not password:
+            messages.error(request, 'Por favor, preencha todos os campos.')
+            return render(request, 'login.html')
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
             login_django(request, user)
-            return render(request, 'home.html', {'username': username})
+            return redirect('home')  # Substitua 'home' pelo nome da sua view de página inicial
         else:
+            messages.error(request, 'Email ou senha incorretos.')
             return render(request, 'index.html')
-    
-    return render(request, 'criar_agendamento.html')  
+
+    return render(request, 'login.html')
 
 #CRUD VETERINARIO
-
 def cadastroVet(request):
     if request.method == 'POST':
         form = VeterinarioCadastroForm(request.POST)
@@ -187,9 +193,7 @@ def deleteTutor(request, id):
     tutor.delete()
     return redirect('atualizacaoTutor')
 
-
 #CRUD ANIMAL
-
 def cadastroAnimal(request):
     if request.method == 'POST':
         form = cadastroAnimalForm(request.POST)
@@ -233,15 +237,10 @@ def deleteAnimal(request, id):
     animal.delete()
     return redirect('updateAnimal')
 
-
-
 def dashatualizacao(request):
     return render(request, 'dashatualizacao.html')
 
-
-
 #CRUD AGENDAMENTO
-
 def criar_agendamento(request):
     servicos = ServicoModel.objects.all()
 
@@ -293,7 +292,6 @@ def criar_agendamento(request):
         'servicos': servicos
     }
     return render(request, 'criar_agendamento.html', context)
-
 
 def visualizar_agendamentos(request):
     tutor_id = request.user.id
