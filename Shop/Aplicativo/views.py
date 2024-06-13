@@ -61,23 +61,32 @@ def login(request):
 def cadastroVet(request):
     if request.method == 'POST':
         form = VeterinarioCadastroForm(request.POST)
-        vet = VeterinarioCadastroModel()
-        vet.nome = form.data['nome']
-        vet.email = form.data['email']
-        vet.logradouro = form.data['logradouro']
-        vet.bairro = form.data['bairro']
-        vet.cep = form.data['cep']
-        vet.numero = form.data['numero']
-        vet.cidade = form.data['cidade']
-        vet.estado = form.data['estado']
-        vet.telefone = form.data['telefone']
-        vet.crmv = form.data['crmv']
-        vet.password = form.data['password']
-        vet.save()
-        vet = User.objects.create_user(username= form.data['email'], password = form.data ['password'])
-        vet.save()
-    return render(request, 'cadastroVet.html')
-
+        if form.is_valid():
+            vet = VeterinarioCadastroModel()
+            vet.nome = form.cleaned_data['nome']
+            vet.email = form.cleaned_data['email']
+            vet.logradouro = form.cleaned_data['logradouro']
+            vet.bairro = form.cleaned_data['bairro']
+            vet.cep = form.cleaned_data['cep']
+            vet.numero = form.cleaned_data['numero']
+            vet.cidade = form.cleaned_data['cidade']
+            vet.estado = form.cleaned_data['estado']
+            vet.telefone = form.cleaned_data['telefone']
+            vet.crmv = form.cleaned_data['crmv']
+            vet.password = form.cleaned_data['password']
+            vet.save()
+            
+            user = User.objects.create_user(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
+            user.save()
+            
+            messages.success(request, 'Cadastro realizado com sucesso!')
+            return redirect('home')  # Redirecione para uma página de sucesso ou
+            # return render(request, 'cadastroVet.html')  # Renderize a mesma página com a mensagem
+        
+    else:
+        form = VeterinarioCadastroForm()
+    
+    return render(request, 'cadastroVet.html', {'form': form})
 def atualizacaoVet(request):
     # Recupera todos os veterinários cadastrados
     veterinarios = VeterinarioCadastroModel.objects.all()
@@ -100,7 +109,7 @@ def deleteVet(request, id):
      # Buscar o veterinário pelo ID
     veterinario = get_object_or_404(VeterinarioCadastroModel, pk=id)
     veterinario.delete()
-    return redirect('index.html')
+    return redirect('atualizacaoVet')
 
 #CRUD TUTOR
 def cadastroTutor(request):
@@ -198,36 +207,42 @@ def dashatualizacao(request):
 
 
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Field
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import ServicoModel, AgendamentoModel, cadastroTutorModel, cadastroAnimalModel
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import ServicoModel, AgendamentoModel, cadastroTutorModel, cadastroAnimalModel
 
 def criar_agendamento(request):
-    # Obter todos os objetos ServicoModel
     servicos = ServicoModel.objects.all()
 
     if request.method == "POST":
-        tutor_id = request.POST['tutor']
-        animal_id = request.POST['animal']
-        servico_id = request.POST['servico']
-        data = request.POST['data']
-        horario = request.POST['horario']
+        tutor_id = request.POST.get('tutor')
+        animal_id = request.POST.get('animal')
+        servico_id = request.POST.get('servico')
+        data = request.POST.get('data')
+        horario = request.POST.get('horario')
 
-        # Verificar se o serviço existe
-        servico = ServicoModel.objects.filter(id=servico_id).first()
-        if not servico:
-            # Definir a mensagem de erro
-            error_message = "O serviço selecionado não está disponível. Por favor, selecione outro serviço."
-            # Passar a mensagem de erro para o template
-            context = {
-                'error_message': error_message,
+        if not tutor_id or not animal_id or not servico_id or not data or not horario:
+            messages.error(request, 'Todos os campos são obrigatórios.')
+            return render(request, 'criar_agendamento.html', {
                 'tutores': cadastroTutorModel.objects.all(),
                 'animais': cadastroAnimalModel.objects.all(),
-                'servicos': servicos
-            }
-            # Renderizar a mesma página com a mensagem de erro
-            return render(request, 'criar_agendamento.html', context)
+                'servicos': servicos,
+            })
 
-        # Criar uma nova instância de AgendamentoModel com o serviço correto
+        servico = ServicoModel.objects.filter(id=servico_id).first()
+        if not servico:
+            messages.error(request, 'O serviço selecionado não está disponível. Por favor, selecione outro serviço.')
+            return render(request, 'criar_agendamento.html', {
+                'tutores': cadastroTutorModel.objects.all(),
+                'animais': cadastroAnimalModel.objects.all(),
+                'servicos': servicos,
+            })
+
         agendamento = AgendamentoModel(
             tutor_id=tutor_id,
             animal_id=animal_id,
@@ -236,10 +251,22 @@ def criar_agendamento(request):
             horario=horario
         )
         agendamento.save()
-        return redirect('criar_agendamento')  # redirecionar para onde for necessário
+        messages.success(request, 'Cadastro realizado com sucesso!')
+        return render(request, 'criar_agendamento.html', {
+            'tutores': cadastroTutorModel.objects.all(),
+            'animais': cadastroAnimalModel.objects.all(),
+            'servicos': servicos,
+        })
 
     tutores = cadastroTutorModel.objects.all()
     animais = cadastroAnimalModel.objects.all()
+    context = {
+        'tutores': tutores,
+        'animais': animais,
+        'servicos': servicos
+    }
+    return render(request, 'criar_agendamento.html', context)
+
 
     context = {
         'tutores': tutores,
