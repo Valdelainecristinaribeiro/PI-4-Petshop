@@ -37,3 +37,8 @@ body {
     border-radius: 10px;
     border: 1px solid #95C6F2; /* cor da borda */
 }
+
+.img {
+    width: 70px;
+    height: 70px;
+}

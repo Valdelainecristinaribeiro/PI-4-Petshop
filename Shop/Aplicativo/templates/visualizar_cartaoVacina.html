@@ -1,16 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar Carteira de Vacina</title>
-</head>
-<body>
-    <div class="container-wrapper">
-        <div class="container">
-            <h1>Visualizar Carteira de Vacinas</h1>
-        </div>
+    <title>Visualizar Cartão de Vacina</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/editar.css' %}">
 
-    </div>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        .container {
+            border: 7px solid #95C6F2;
+            border-radius: 50px;
+            padding: 40px;
+            width: fit-content;
+        }
+        .container-wrapper {
+            display: flex; /* Habilitar flexbox para arranjo horizontal */
+            justify-content: center;
+            align-items: center;
+        }
+        tr, th, td {
+            border: 7px solid #95C6F2;
+            border-radius: 50px;
+            padding: 20px;
+        }
+        .img {
+        width: 50px;
+        height: 50px;
+        }
+        .container h5 {
+            margin: 0;
+            padding: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .container p {
+            margin: 5px 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg custom-bg">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active left-link" aria-current="page" href="#">
+                        <img src='{% static "Aplicativo/media/logo.png"%}' class="img">
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Voltar</a>
+                </li>
+            </ul>
+        </div>
+    </nav><br>
+    <div class="background-img">
+        <h1 class="text-center">Cartão Vacinas</h1>
+        <div class="container-wrapper">
+            <div class="container">
+                <ul style="list-style-type: none; padding: 0;">
+                    {% for animal in animais %}
+                    <li>
+                        <div class="container">
+                            <h5>Nome do Pet:</h5>
+                            <p>{{ animal.nomepet }}</p>
+                        </div>
+                        <div class="container">
+                            <h5>Espécie:</h5>
+                            <p>{{ animal.especie }}</p>
+                        </div>
+                        <div class="container">
+                            <h5>Porte:</h5>
+                            <p>{{ animal.porte }}</p>
+                        </div>
+                        <div class="container">
+                            <h5>Raça:</h5>
+                            <p>{{ animal.raca }}</p>
+                        </div>
+                        <div class="container">
+                            <h5>Sexo:</h5>
+                            <p>{{ animal.sexo }}</p>
+                        </div>
+                        <div class="container">
+                            <h5>Data de Nascimento:</h5>
+                            <p>{{ animal.datanascimento }}</p>
+                        </div>
+                        <div class="container">
+                            <h5>CPF do Tutor:</h5>
+                            <p>{{ animal.cpftutor }}</p>
+                        </div>
+                        <div class="container">
+                            <h5>Ações:</h5>
+                            <!-- Incluir aqui os links ou botões de ação -->
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                <!-- <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <h5><b>Nome do Pet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5>
+                            </th>
+                            <th>
+                                <h5><b>Espécie&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5>
+                            </th>
+                            <th>
+                                <h5><b>Porte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5>
+                            </th>
+                            <th>
+                                <h5><b>Raça&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5>
+                            </th>
+                            <th>
+                                <h5><b>Sexo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5>
+                            </th>
+                            <th>
+                                <h5><b>Data de Nascimento&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5>
+                            </th>
+                            <th>
+                                <h5><b>CPF do Tutor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5>
+                            </th>
+                            <th>
+                                <h5><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ações&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+                                </h5>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for animal in animais %}
+                        <tr>
+                            <td>
+                                <h5><b>{{ animal.nomepet }}</b></h5>
+                            </td>
+                            <td>
+                                <h5><b>{{ animal.especie }}</b></h5>
+                            </td>
+                            <td>
+                                <h5><b>{{ animal.porte }}</b></h5>
+                            </td>
+                            <td>
+                                <h5><b>{{ animal.raca }}</b></h5>
+                            </td>
+                            <td>
+                                <h5><b>{{ animal.sexo }}</b></h5>
+                            </td>
+                            <td>
+                                <h5><b>{{ animal.datanascimento }}</b></h5>
+                            </td>
+                            <td>
+                                <h5><b>{{ animal.cpftutor }}</b></h5>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table> -->
+            </div>
+            <div class="container">
+                <div>
+                    <table>
+                        <h2 class="text-center"><b>Vacinas</b></h2>
+                        <thead>
+                            <tr>
+                                <th><h5><b>Vacina&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                                <th><h5><b>Data Vacinado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                                <th><h5><b>Nome Veterinário&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                                <th><h5><b>Próxima Vacina&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for vacina in vacinas %}
+                            <tr>
+                                <th><h5><b>{{ vacina.vacina }}</b></h5></th>
+                                <th><h5><b>{{ vacina.datavacinado }}</b></h5></th>
+                                <th><h5><b>{{ vacina.nomeveterinario }}</b></h5></th>
+                                <th><h5><b>{{ vacina.proximavacina }}</b></h5></th>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <table>
+                        <h2 class="text-center"><b>Vermífugo</b></h2>
+                        <thead>
+                            <tr>
+                                <th><h5><b>Data Vermífugo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                                <th><h5><b>Produto Vermífugo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                                <th><h5><b>Dose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                                <th><h5><b>Peso Animal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for vacina in vacinas %}
+                            <tr>
+                                <th><h5><b>{{ vacina.datavernifugo }}</b></h5></th>
+                                <th><h5><b>{{ vacina.produtovernifugo }}</b></h5></th>
+                                <th><h5><b>{{ vacina.dose }}</b></h5></th>
+                                <th><h5><b>{{ vacina.pesoanimal }}</b></h5></th>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
 </body>
+
 </html>

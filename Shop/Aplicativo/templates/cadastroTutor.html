@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetShop</title>
+    <title>Cadastar Tutores</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
@@ -15,7 +15,7 @@
 <body>
     {% include 'nav.html' %}
     <br>
-    <h1 class="text-center">Dados do Tutor:</h1>
+    <h1 class="text-center"><b>Dados do Tutor:</b></h1>
     <form action="{% url 'cadastroTutor' %}" method="POST">
         {% csrf_token %}
         <div class="container-wrapper">

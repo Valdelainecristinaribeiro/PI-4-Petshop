@@ -33,17 +33,63 @@ def cadastroServicos(request):
 def cadastrarVacinas(request):
     return render(request, 'cadastrarVacinas.html')
 
-def agendar_cliente(request):
-    return render(request, 'agendar_cliente.html')
-
-def visualizar_cartaoVacina(request):
-    return render(request, 'visualizar_cartaoVacina.html')
-
-def autenticacao_cliente(request):
-    return render(request, 'autenticacao_cliente.html')
+def agenda_cliente(request):
+    return render(request, 'agenda_cliente.html')
 
 def home_cliente(request):
     return render(request, 'home_cliente.html')
+
+def agendamento_cliente(request):
+    servicos = ServicoModel.objects.all()
+
+    if request.method == "POST":
+        tutor_id = request.POST.get('tutor')
+        animal_id = request.POST.get('animal')
+        servico_id = request.POST.get('servico')
+        data = request.POST.get('data')
+        horario = request.POST.get('horario')
+
+        if not tutor_id or not animal_id or not servico_id or not data or not horario:
+            messages.error(request, 'Todos os campos são obrigatórios.')
+            return render(request, 'agendamento_cliente.html', {
+                'tutores': cadastroTutorModel.objects.all(),
+                'animais': cadastroAnimalModel.objects.all(),
+                'servicos': servicos,
+            })
+
+        servico = ServicoModel.objects.filter(id=servico_id).first()
+        if not servico:
+            messages.error(request, 'O serviço selecionado não está disponível. Por favor, selecione outro serviço.')
+            return render(request, 'agendamento_cliente.html', {
+                'tutores': cadastroTutorModel.objects.all(),
+                'animais': cadastroAnimalModel.objects.all(),
+                'servicos': servicos,
+            })
+
+        agendamento = AgendamentoModel(
+            tutor_id=tutor_id,
+            animal_id=animal_id,
+            servico_id=servico_id,
+            data=data,
+            horario=horario
+        )
+        agendamento.save()
+        messages.success(request, 'Cadastro realizado com sucesso!')
+        return render(request, 'agendamento_cliente.html', {
+            'tutores': cadastroTutorModel.objects.all(),
+            'animais': cadastroAnimalModel.objects.all(),
+            'servicos': servicos,
+            'redirect_home': True,  # Adiciona um indicador para redirecionar
+        })
+
+    tutores = cadastroTutorModel.objects.all()
+    animais = cadastroAnimalModel.objects.all()
+    context = {
+        'tutores': tutores,
+        'animais': animais,
+        'servicos': servicos
+    }
+    return render(request, 'agendamento_cliente.html', context)
 
 
 def login(request):
@@ -171,6 +217,30 @@ def cadastroTutor(request):
     else:
         form = cadastroTutorForm()
     return render(request, 'cadastroTutor.html', {'form': form})
+
+def autenticacao_cliente(request):
+    if request.method == 'POST':
+        return render(request, 'autenticacao_cliente.html')
+    elif request.method == 'POST':
+        username = request.POST.get('email')
+        password = request.POST.get('password') 
+        
+        if not username or not password:
+            messages.error(request, 'Por favor, preencha todos os campos.')
+            return render(request, 'autenticacao_cliente.html')
+        
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login_django(request, user)
+            return redirect('agendar_cliente')
+        else:
+            messages.error(request, 'Email ou senha incorretos.')
+            return render(request, 'home_cliente.html')
+
+    return render(request, 'autenticacao_cliente.html')
+           
+
 def atualizacaoTutor(request):
     # Recupera todos os Tutores cadastrados
     tutores = cadastroTutorModel.objects.all()
@@ -386,21 +456,7 @@ def updateVacinas(request, id_vacina):
 
     return render(request, 'cadastroVacinas.html')
 
-def visualizarvacinas(request):
+def visualizar_cartaoVacina(request):
     vacinas = cadastroVacinaModel.objects.all()
-    return render(request, 'visualizarvacinas.html', {'vacinas': vacinas})
+    return render(request, 'visualizar_cartaoVacina.html', {'vacinas': vacinas})
 
-
-def login_cliente(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(request, email=email, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('home_cliente')
-        else:
-            error_message = "Credenciais inválidas. Por favor, tente novamente."
-            return render(request, 'autenticacao_cliente.html', {'error_message': error_message})
-    else:
-        return render(request, 'agendar_cliente.html')

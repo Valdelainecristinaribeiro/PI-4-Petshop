@@ -25,14 +25,13 @@ urlpatterns = [
     path('cadastroServicos/', views.cadastroServicos, name='cadastroServicos'),
     path('visualizar_agendamentos/', views.visualizar_agendamentos, name='visualizar_agendamentos'),
     path('cadastrarVacinas/', views.cadastrarVacinas, name='cadastrarVacinas'),
-    path('visualizarvacinas/', views.visualizarvacinas, name='visualizarvacinas'),
     path('updateVacinas/', views.updateVacinas, name='updateVacinas'),
     path('criarservicos/', views.criarservicos, name='criarservicos'),
     path('autenticacao_cliente/', views.autenticacao_cliente, name='autenticacao_cliente'),
     path('visualizar_cartaoVacina/', views.visualizar_cartaoVacina, name='visualizar_cartaoVacina'),
-    path('agendar_cliente/', views.agendar_cliente, name='agendar_cliente'),
+    path('agenda_cliente/', views.agenda_cliente, name='agenda_cliente'),
     path('cancelar_agendamento/<int:agendamento_id>/', views.cancelar_agendamento, name='cancelar_agendamento'),
     path('fechar_agendamento/<int:agendamento_id>/', views.fechar_agendamento, name='fechar_agendamento'),
-    path('login_cliente/', views.login_cliente, name='login_cliente'),
-    path('home_cliente/', views.home_cliente, name='home_cliente')
+    path('home_cliente/', views.home_cliente, name='home_cliente'),
+    path('agendamento_cliente/', views.agendamento_cliente,  name='agendamento_cliente')
 ]

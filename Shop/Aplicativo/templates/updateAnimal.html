@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetShop</title>
+    <title>Atualizar Animais</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}">
@@ -13,11 +13,46 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+<style>
+    .campo-formulario {
+        background-color: #95C6F2;
+        border-radius: 10px;
+        border: 1px solid #95C6F2;
+        padding: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        /* Sombra suave */
+    }
+
+    .campo-formulario label {
+        font-weight: bold;
+        /* Texto em negrito para a label */
+    }
+
+    .campo-formulario input[type="text"],
+    .campo-formulario input[type="email"],
+    .campo-formulario select {
+        font-size: 16px;
+        color: black;
+        /* cor do texto */
+        background-color: #95C6F2;
+        /* cor de fundo */
+        border: 1px solid #95C6F2;
+        /* cor da borda */
+        padding: 3px;
+        /* espaçamento interno */
+        border-radius: 10px;
+        /* arredondamento da borda */
+        width: 550px;
+        /* largura do input */
+        box-sizing: border-box;
+        /* Caixa de modelo que inclui padding e border */
+    }
+</style>
 
 <body>
     {% include 'nav.html' %}
     <br>
-    <h1 class="text-center">Dados do Animal:</h1><br>
+    <h1 class="text-center"><b>Atualizar Animal:</b></h1><br>
     <form action="{% url 'updateAnimal' animal.id %}" method="POST">
         {% csrf_token %}
         <div class="container-wrapper">
@@ -25,36 +60,44 @@
                 {{ form.non_field_errors }}
                 <div class="form-group">
                     <label for="nomepet"><b>Nome do Pet:</b></label><br>
-                    {{ form.nomepet }}
-                    <br>
+                    <div class="campo-formulario">
+                        {{ form.nomepet }}
+                    </div>
                     <label for="especie"><b>Espécie:</b></label><br>
-                    {{ form.especie }}
-                    <br>
+                    <div class="campo-formulario">
+                        {{ form.especie }}
+                    </div>
                     <label for="cor"><b>Cor:</b></label><br>
-                    {{ form.cor }}
-                    <br>
+                    <div class="campo-formulario">
+                        {{ form.cor }}
+                    </div>
                     <label for="porte"><b>Porte:</b></label><br>
-                    {{ form.porte }}
-                    <br>
+                    <div class="campo-formulario">
+                        {{ form.porte }}
+                    </div>
                     <label for="raca"><b>Raça:</b></label><br>
-                    {{ form.raca }}
-                    <br>
+                    <div class="campo-formulario">
+                        {{ form.raca }}
+                    </div>
                 </div>
             </div>
             <div class="form-container">
                 <div class="form-group">
-                    <br><label for="sexo"><b>Sexo:</b></label><br>
-                    {{ form.sexo }}
-                    <br>
+                    <label for="sexo"><b>Sexo:</b></label><br>
+                    <div class="campo-formulario">
+                        {{ form.sexo }}
+                    </div>
                     <label for="datanascimento"><b>Data Nascimento:</b></label><br>
-                    {{ form.datanascimento }}
-                    <br>
+                    <div class="campo-formulario">
+                        {{ form.datanascimento }}
+                    </div>
                     <label for="cpftutor"><b>CPF do Tutor:</b></label><br>
-                    {{ form.cpftutor }}
-                    <br><br>
+                    <div class="campo-formulario">
+                        {{ form.cpftutor }}
+                    </div><br>
                 </div>
-                <br>
-                <div class="row justify-content-center">
+                <br><br><br>
+                <div class="row justify-content-end">
                     <div class="col-auto">
                         <a href="{% url 'home' %}" class="btn btn-danger">Cancelar</a>
                     </div>
@@ -66,5 +109,4 @@
         </div>
     </form>
 </body>
-
 </html>

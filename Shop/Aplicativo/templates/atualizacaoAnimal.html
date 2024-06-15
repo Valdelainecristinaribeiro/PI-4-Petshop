@@ -19,7 +19,11 @@
     border-radius: 50px;
     padding: 20px;
     width: fit-content;
-}
+    }
+    .img {
+        width: 70px;
+        height: 70px;
+    }
 </style>
 
 </head>
@@ -29,7 +33,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active left-link" aria-current="page" href="{% url 'index' %}">Pet Shop</a>
+                    <a class="nav-link active left-link" aria-current="page" href="{% url 'index' %}">
+                        <img src='{% static "Aplicativo/media/logo.png"%}' class="img">
+                    </a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">

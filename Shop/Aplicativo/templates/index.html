@@ -2,59 +2,94 @@
 <html lang="pt-br">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/carrossel.css' %}">
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-  <title>Pet Shop</title>
+    <title>Pet Shop</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg custom-bg">
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active left-link" aria-current="page" href="{% url 'index' %}">Pet Shop</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'cadastroVet' %}">Registrar</a>
-            </li>
-            {% include 'login.html' %}
-        </ul>
-    </div>
-    </div>
-</nav>
-
-  <div class="img-fluid img">
-    <img src='{% static "Aplicativo/media/fundo.png"%}'>
-  </div>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <p>Contato: email@dominio.com</p>
+    <nav class="navbar navbar-expand-lg custom-bg">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active left-link" aria-current="page" href="{% url 'index' %}">
+                        <img src='{% static "Aplicativo/media/logo.png"%}' class="img">
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cadastroVet' %}">Registrar</a>
+                </li>
+                {% include 'login.html' %}
+            </ul>
         </div>
-        <div class="col text-end">
-          <p>&copy; 2024. Todos os direitos reservados.</p>
+    </nav>
+
+    <div class="carousel">
+        <div class="carousel-container">
+            <img src="{% static 'Aplicativo/media/img.webp' %}">
+            <img src="{% static 'Aplicativo/media/cachorro.jpg' %}">
+            <img src="{% static 'Aplicativo/media/gato.png' %}">
+            <img src="{% static 'Aplicativo/media/carrossel_1.png' %}">
+            <img src="{% static 'Aplicativo/media/cachorro_.png' %}">
+            <img src="{% static 'Aplicativo/media/carossel_2.jpeg' %}">
+            <img src="{% static 'Aplicativo/media/carossel_3.jpeg' %}">
+            <img src="{% static 'Aplicativo/media/gato_2.png' %}">
+            <img src="{% static 'Aplicativo/media/carossel_4.jpeg' %}">
+            <img src="{% static 'Aplicativo/media/gato_3.png' %}">
+            <img src="{% static 'Aplicativo/media/carossel_5.jpeg' %}">
+            <img src="{% static 'Aplicativo/media/gato_4.png' %}">
+            <img src="{% static 'Aplicativo/media/amigos.png' %}">
+            <img src="{% static 'Aplicativo/media/cachorro_gato.png' %}">
         </div>
-      </div>
+        <div class="carousel-buttons">
+            <button class="carousel-button" id="prev">&#10094;</button>
+            <button class="carousel-button" id="next">&#10095;</button>
+        </div>
     </div>
-  </footer>
+
+    <script>
+        const carouselContainer = document.querySelector('.carousel-container');
+        const images = document.querySelectorAll('.carousel img');
+        const totalImages = images.length;
+        let index = 0;
+
+        document.getElementById('prev').addEventListener('click', () => {
+            index = (index - 1 + totalImages) % totalImages;
+            updateCarousel();
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            index = (index + 1) % totalImages;
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            const translateX = -index * 100;
+            carouselContainer.style.transform = `translateX(${translateX}%)`;
+        }
+
+        function autoSlide() {
+            index = (index + 1) % totalImages;
+            updateCarousel();
+        }
+
+        setInterval(autoSlide, 3000); // Change image every 3 seconds
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 

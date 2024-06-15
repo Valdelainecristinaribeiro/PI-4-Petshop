@@ -17,19 +17,32 @@
 <style>
     .card-button {
         height: 300px;
-        width: 300px; /* Ajuste o tamanho conforme necessário */
+        width: 300px;
+        /* Ajuste o tamanho conforme necessário */
         padding: 50px;
-        border-width: 7px; /* Ajuste a espessura da borda */
+        border-width: 7px;
+        /* Ajuste a espessura da borda */
         border-color: #0085FF;
         background: #9CC9F3;
         border-radius: 30%;
         display: inline-flex;
         justify-content: space-evenly;
         align-items: center;
+        transition: background-color 0.3s ease;
+        /* Adicionando transição de cor de fundo */
+    }
+
+    .card-button:hover {
+        background-color: #9CC9F3;
+        /* Cor inicial quando não hover */
+        background-image: linear-gradient(to bottom right, #0085FF, #3498db);
+        /* Cor espelhada */
+        color: white;
     }
 
     .card-button .card-title a {
-        text-decoration: none; /* Remove a linha do link */
+        text-decoration: none;
+        /* Remove a linha do link */
         color: black;
         text-align: center;
     }
@@ -47,9 +60,9 @@
 
 <body>
     {% include 'nav.html' %}
-    <br><br>
+    <br>
     <div class="background-img">
-        <h1 class="text-center"><b>Bem-vindo {{ nome }}!</b></h1><br>
+        <h1 class="text-center"><b>Bem-vindo {{ nome }}!</b></h1>
 
         <div class="container">
             <div class="d-flex justify-content-center">
@@ -57,7 +70,7 @@
                     <div class="button-margin">
                         <button class="card-button" id="Agendar">
                             <div class="card-body">
-                                <h3 class="card-title"><b>Agendar</b></h3>
+                                <h2 class="card-title"><b>Agendar</b></h2>
                             </div>
                         </button>
                     </div>
@@ -66,7 +79,7 @@
                     <div class="button-margin">
                         <button class="card-button" id="cadastroTutor">
                             <div class="card-body">
-                                <h3 class="card-title"><b>Cadastrar Tutor</b></h3>
+                                <h2 class="card-title"><b>Cadastrar Tutor</b></h2>
                             </div>
                         </button>
                     </div>
@@ -75,7 +88,7 @@
                     <div class="button-margin">
                         <button class="card-button" id="cadastroAnimal">
                             <div class="card-body">
-                                <h3 class="card-title"><b>Cadastrar Animal</b></h3>
+                                <h2 class="card-title"><b>Cadastrar Animal</b></h2>
                             </div>
                         </button>
                     </div>

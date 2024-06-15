@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,61 +8,56 @@
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cadastroServicos.css' %}">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
+
 <body>
-<!-- Botão de login -->
-<button class="button-without-shadow" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
-    Login
-</button>
-
-<!-- Modal de login -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Formulário de login -->
-                <form action="{% url 'autenticacao_cliente' %}" method="post">
-                    {% csrf_token %}
-                    <!-- Mensagens de erro -->
-                    {% if messages %}
-                    {% for message in messages %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ message }}
-                    </div>
-                    {% endfor %}
-                    {% endif %}
-
-                    <div class="mb-3">
-                        <label for="cpf" class="form-label">CPF</label>
-                        <input type="cpf" class="form-control" id="cpf" name="cpf" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Entrar</button>
-                </form>
-            </div>
+    <div class="checkbox">
+        <div class="modal-header">
+            <h1 class="modal-title">Login&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+            <a href="{% url 'home_cliente' %}"><button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button></a>
         </div>
-    </div>
-</div>
+        <br>
+        <!-- Formulário de login -->
+        <form action="{% url 'autenticacao_cliente' %}" method="post">
+            {% csrf_token %}
+            <!-- Mensagens de erro -->
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
 
-<!-- Bootstrap JS (opcional, se necessário) -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-    integrity="sha384-eMN6xyFuhUmEfq1mg8cN0ULy+jLwRWKwrZZYQk702L3eQvrSxMFLpXKpF8WvC3gR"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVRFwiH1/QzUz4cDz+M4YWFsnfFTFt7JZr3lj/X7ndgFjCk3hS10M26vPbXimi0"
-    crossorigin="anonymous"></script>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+
+    </div>
+
+    <!-- Bootstrap JS (opcional, se necessário) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-eMN6xyFuhUmEfq1mg8cN0ULy+jLwRWKwrZZYQk702L3eQvrSxMFLpXKpF8WvC3gR"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVRFwiH1/QzUz4cDz+M4YWFsnfFTFt7JZr3lj/X7ndgFjCk3hS10M26vPbXimi0"
+        crossorigin="anonymous"></script>
 
 
 </body>
+
 </html>
