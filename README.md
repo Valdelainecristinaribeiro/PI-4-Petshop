@@ -12,7 +12,7 @@
 4. Crie e ative o ambiente virtual:
     ```
     python -m venv .venv
-5-Ative o ambiente
+5. Ative o ambiente
     .\.venv\Scripts\activate
     ```
 6. Instale as dependências:
