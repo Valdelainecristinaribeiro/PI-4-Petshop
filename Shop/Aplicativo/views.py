@@ -34,6 +34,9 @@ def cadastrarVacinas(request):
     return render(request, 'cadastrarVacinas.html')
 
 def agenda_cliente(request):
+    tutor_id = request.user.id
+    agendamentos = AgendamentoModel.objects.filter(tutor_id=tutor_id, status='aberto')
+    return render(request, 'visualizar_agendamentos.html', {'agendamentos': agendamentos})
     return render(request, 'agenda_cliente.html')
 
 def home_cliente(request):
@@ -369,9 +372,9 @@ def criar_agendamento(request):
 def visualizar_agendamentos(request):
     tutor_id = request.user.id
     agendamentos = AgendamentoModel.objects.filter(tutor_id=tutor_id, status='aberto')
-
     return render(request, 'visualizar_agendamentos.html', {'agendamentos': agendamentos})
 
+    
 def cancelar_agendamento(request, agendamento_id):
     agendamento = get_object_or_404(AgendamentoModel, id=agendamento_id)
     agendamento.status = 'cancelado'
