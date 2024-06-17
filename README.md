@@ -65,3 +65,17 @@
     ```
     python manage.py runserver
     ```
+### Integrantes
+- [Valdelaine Ribeiro](https://github.com/Valdelainecristinaribeiro)
+- [Marcel Araujo](https://github.com/araujomarcel)
+- [Beatriz Honorato](https://github.com/BeatrizHonorato)
+- [Larissa Volsi](https://github.com/Lvolsi)
+
+
+| Função | Responsável |
+| ------ | ------ |
+| **Scrum Master** |Valdelaine Ribeiro |
+| **Documentação** | Larissa Volsi |
+| **Desenvolvedor Back-End** | Marcel Araujo e Beatriz Honorato |
+| **Desenvolvedor Front-End** | Valdelaine Ribeiro e Larissa Volsi |
+| **Banco de dados** | Marcel Araujo e Beatriz Honorato |
