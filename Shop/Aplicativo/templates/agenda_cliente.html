@@ -103,10 +103,14 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
     <h2 class="text-center">Para reagendar ou cancelar, selecione os itens desejados abaixo:</h2><br>
     <div class="container-wrapper">
         <div class="custom-container">
-            
+            <ul>
                 {% for agendamento in agendamentos %}
-                    <li>
-                        {{ agendamento }}
+                    <div class="agendamento-item">
+                        <h6><b>{{ agendamento.data }}</b><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ agendamento.horario }}</b></h6>
+                        <div class="agendamento">
+                            <h4 class="text" style="margin-left: 50px;"><b>{{ agendamento.servico.nome }}</b></h4>
+                            <h6 class="text" style="margin-left: 65px;"><b>{{ agendamento.animal.nome }}</b></h6>
+                        </div>    
                         <div class="action-btns">
                             <form action="{% url 'cancelar_agendamento' agendamento.id %}" method="post" style="display:inline;">
                                 {% csrf_token %}
@@ -117,7 +121,7 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
                                 <button type="submit" class="btn btn-success">Serviço Realizado</button>
                             </form>
                         </div>
-                    </li>
+                    </div>
                 {% empty %}
                     <li>Nenhum agendamento em aberto encontrado.</li>
                 {% endfor %}

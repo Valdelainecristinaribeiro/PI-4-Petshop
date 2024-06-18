@@ -36,7 +36,7 @@ def cadastrarVacinas(request):
 def agenda_cliente(request):
     tutor_id = request.user.id
     agendamentos = AgendamentoModel.objects.filter(tutor_id=tutor_id, status='aberto')
-    return render(request, 'visualizar_agendamentos.html', {'agendamentos': agendamentos})
+    return render(request, 'agenda_cliente.html', {'agendamentos': agendamentos})
     return render(request, 'agenda_cliente.html')
 
 def home_cliente(request):
@@ -223,10 +223,8 @@ def cadastroTutor(request):
 
 def autenticacao_cliente(request):
     if request.method == 'POST':
-        return render(request, 'autenticacao_cliente.html')
-    elif request.method == 'POST':
         username = request.POST.get('email')
-        password = request.POST.get('password') 
+        password = request.POST.get('password')
         
         if not username or not password:
             messages.error(request, 'Por favor, preencha todos os campos.')
@@ -236,13 +234,12 @@ def autenticacao_cliente(request):
 
         if user is not None:
             login_django(request, user)
-            return redirect('agendar_cliente')
+            return redirect('agenda_cliente')
         else:
             messages.error(request, 'Email ou senha incorretos.')
-            return render(request, 'home_cliente.html')
-
+            return render(request, 'autenticacao_cliente.html')
+    
     return render(request, 'autenticacao_cliente.html')
-           
 
 def atualizacaoTutor(request):
     # Recupera todos os Tutores cadastrados
@@ -317,21 +314,37 @@ def dashatualizacao(request):
     return render(request, 'dashatualizacao.html')
 
 #CRUD AGENDAMENTO
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import AgendamentoModel, ServicoModel, cadastroAnimalModel
+
 def criar_agendamento(request):
     servicos = ServicoModel.objects.all()
 
+    # Obtenha o usuário autenticado
+    usuario = request.user
+
     if request.method == "POST":
-        tutor_id = request.POST.get('tutor')
         animal_id = request.POST.get('animal')
         servico_id = request.POST.get('servico')
         data = request.POST.get('data')
         horario = request.POST.get('horario')
 
-        if not tutor_id or not animal_id or not servico_id or not data or not horario:
+        # Filtre os animais para garantir que pertencem ao usuário autenticado
+        animais_usuario = cadastroAnimalModel.objects.filter(tutor=usuario)
+
+        if not animal_id or not servico_id or not data or not horario:
             messages.error(request, 'Todos os campos são obrigatórios.')
             return render(request, 'criar_agendamento.html', {
-                'tutores': cadastroTutorModel.objects.all(),
-                'animais': cadastroAnimalModel.objects.all(),
+                'animais': animais_usuario,
+                'servicos': servicos,
+            })
+
+        # Verifique se o animal selecionado pertence ao usuário
+        if not animais_usuario.filter(id=animal_id).exists():
+            messages.error(request, 'Animal selecionado não encontrado ou não pertence ao usuário.')
+            return render(request, 'criar_agendamento.html', {
+                'animais': animais_usuario,
                 'servicos': servicos,
             })
 
@@ -339,13 +352,13 @@ def criar_agendamento(request):
         if not servico:
             messages.error(request, 'O serviço selecionado não está disponível. Por favor, selecione outro serviço.')
             return render(request, 'criar_agendamento.html', {
-                'tutores': cadastroTutorModel.objects.all(),
-                'animais': cadastroAnimalModel.objects.all(),
+                'animais': animais_usuario,
                 'servicos': servicos,
             })
 
+        # Inserir um novo agendamento
         agendamento = AgendamentoModel(
-            tutor_id=tutor_id,
+            tutor=usuario,
             animal_id=animal_id,
             servico_id=servico_id,
             data=data,
@@ -353,21 +366,16 @@ def criar_agendamento(request):
         )
         agendamento.save()
         messages.success(request, 'Cadastro realizado com sucesso!')
-        return render(request, 'criar_agendamento.html', {
-            'tutores': cadastroTutorModel.objects.all(),
-            'animais': cadastroAnimalModel.objects.all(),
-            'servicos': servicos,
-            'redirect_home': True,  # Adiciona um indicador para redirecionar
-        })
+        return redirect('visualizar_agendamentos')
 
-    tutores = cadastroTutorModel.objects.all()
-    animais = cadastroAnimalModel.objects.all()
+    # Filtre os animais para garantir que pertencem ao usuário autenticado
+    animais_usuario = cadastroAnimalModel.objects.filter(tutor=usuario)
     context = {
-        'tutores': tutores,
-        'animais': animais,
+        'animais': animais_usuario,
         'servicos': servicos
     }
     return render(request, 'criar_agendamento.html', context)
+
 
 def visualizar_agendamentos(request):
     tutor_id = request.user.id
