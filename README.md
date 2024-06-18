@@ -12,23 +12,25 @@
 4. Crie e ative o ambiente virtual:
     ```
     python -m venv .venv
+    ```
 5. Ative o ambiente
+    ```
     .\.venv\Scripts\activate
     ```
-6. Instale as dependências:
+7. Instale as dependências:
     ```
     pip install -r requirements.txt
     ```
-7. Navegue até o diretório 'Shop':
+8. Navegue até o diretório 'Shop':
     ```
     cd Shop
     ```
-8. Execute as migrações do banco de dados:
+9. Execute as migrações do banco de dados:
     ```
     python manage.py makemigrations
     python manage.py migrate
     ```
-9. Inicie o servidor:
+10. Inicie o servidor:
     ```
     python manage.py runserver
     ```
