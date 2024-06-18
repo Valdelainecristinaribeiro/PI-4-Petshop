@@ -321,30 +321,18 @@ from .models import AgendamentoModel, ServicoModel, cadastroAnimalModel
 def criar_agendamento(request):
     servicos = ServicoModel.objects.all()
 
-    # Obtenha o usuário autenticado
-    usuario = request.user
-
     if request.method == "POST":
+        tutor_id = request.POST.get('tutor')
         animal_id = request.POST.get('animal')
         servico_id = request.POST.get('servico')
         data = request.POST.get('data')
         horario = request.POST.get('horario')
 
-        # Filtre os animais para garantir que pertencem ao usuário autenticado
-        animais_usuario = cadastroAnimalModel.objects.filter(tutor=usuario)
-
-        if not animal_id or not servico_id or not data or not horario:
+        if not tutor_id or not animal_id or not servico_id or not data or not horario:
             messages.error(request, 'Todos os campos são obrigatórios.')
             return render(request, 'criar_agendamento.html', {
-                'animais': animais_usuario,
-                'servicos': servicos,
-            })
-
-        # Verifique se o animal selecionado pertence ao usuário
-        if not animais_usuario.filter(id=animal_id).exists():
-            messages.error(request, 'Animal selecionado não encontrado ou não pertence ao usuário.')
-            return render(request, 'criar_agendamento.html', {
-                'animais': animais_usuario,
+                'tutores': cadastroTutorModel.objects.all(),
+                'animais': cadastroAnimalModel.objects.all(),
                 'servicos': servicos,
             })
 
@@ -352,13 +340,13 @@ def criar_agendamento(request):
         if not servico:
             messages.error(request, 'O serviço selecionado não está disponível. Por favor, selecione outro serviço.')
             return render(request, 'criar_agendamento.html', {
-                'animais': animais_usuario,
+                'tutores': cadastroTutorModel.objects.all(),
+                'animais': cadastroAnimalModel.objects.all(),
                 'servicos': servicos,
             })
 
-        # Inserir um novo agendamento
         agendamento = AgendamentoModel(
-            tutor=usuario,
+            tutor_id=tutor_id,
             animal_id=animal_id,
             servico_id=servico_id,
             data=data,
@@ -366,12 +354,18 @@ def criar_agendamento(request):
         )
         agendamento.save()
         messages.success(request, 'Cadastro realizado com sucesso!')
-        return redirect('visualizar_agendamentos')
+        return render(request, 'criar_agendamento.html', {
+            'tutores': cadastroTutorModel.objects.all(),
+            'animais': cadastroAnimalModel.objects.all(),
+            'servicos': servicos,
+            'redirect_home': True,  # Adiciona um indicador para redirecionar
+        })
 
-    # Filtre os animais para garantir que pertencem ao usuário autenticado
-    animais_usuario = cadastroAnimalModel.objects.filter(tutor=usuario)
+    tutores = cadastroTutorModel.objects.all()
+    animais = cadastroAnimalModel.objects.all()
     context = {
-        'animais': animais_usuario,
+        'tutores': tutores,
+        'animais': animais,
         'servicos': servicos
     }
     return render(request, 'criar_agendamento.html', context)
