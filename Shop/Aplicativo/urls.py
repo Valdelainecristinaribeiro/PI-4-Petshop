@@ -24,9 +24,9 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('cadastroServicos/', views.cadastroServicos, name='cadastroServicos'),
     path('visualizar_agendamentos/', views.visualizar_agendamentos, name='visualizar_agendamentos'),
-    path('cadastrarVacinas/', views.cadastrarVacinas, name='cadastrarVacinas'),
-    path('updateVacinas/', views.updateVacinas, name='updateVacinas'),
+    path('updateVacinas/<int:id_vacina>/', views.updateVacinas, name='updateVacinas'),
     path('criarservicos/', views.criarservicos, name='criarservicos'),
+    path('cadastrarVacinas/', views.cadastrarVacinas, name='cadastrarVacinas'),
     path('autenticacao_cliente/', views.autenticacao_cliente, name='autenticacao_cliente'),
     path('visualizar_cartaoVacina/', views.visualizar_cartaoVacina, name='visualizar_cartaoVacina'),
     path('agenda_cliente/', views.agenda_cliente, name='agenda_cliente'),
@@ -35,5 +35,7 @@ urlpatterns = [
     path('home_cliente/', views.home_cliente, name='home_cliente'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
-    path('agendamento_cliente/', views.agendamento_cliente,  name='agendamento_cliente')
+    path('agendamento_cliente/', views.agendamento_cliente,  name='agendamento_cliente'),
+    path('cancelar_vacina/<int:id_vacina>/', views.cancelar_vacina, name='cancelar_vacina')
+
 ]

@@ -43,4 +43,4 @@ class AgendamentoForm(forms.ModelForm):
 class VacinaForm(forms.ModelForm):
     class Meta:
         model = cadastroVacinaModel
-        fields=['vacina', 'datavacinado','nomeveterinario','proximavacina','datavernifugo', 'produtovernifugo','dose','pesoanimal']
+        fields = ['tutor', 'animal', 'vacina', 'datavacinado', 'nomeveterinario', 'proximavacina', 'datavernifugo', 'produtovernifugo', 'dose', 'pesoanimal']

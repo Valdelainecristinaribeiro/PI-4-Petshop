@@ -75,4 +75,6 @@ class cadastroVacinaModel(models.Model):
     produtovernifugo = models.CharField(max_length=200)
     dose = models.CharField(max_length=15)
     pesoanimal = models.CharField(max_length=15)
+    tutor = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    animal = models.ForeignKey('cadastroAnimalModel', on_delete=models.CASCADE, default=1)
 
