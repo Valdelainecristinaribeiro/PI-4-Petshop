@@ -33,6 +33,12 @@ def cadastroServicos(request):
 def cadastrarVacinas(request):
     return render(request, 'cadastrarVacinas.html')
 
+def about(request):
+        return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
 def agenda_cliente(request):
     tutor_id = request.user.id
     agendamentos = AgendamentoModel.objects.filter(tutor_id=tutor_id, status='aberto')
