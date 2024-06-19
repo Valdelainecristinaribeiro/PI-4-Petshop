@@ -439,30 +439,32 @@ def cadastrarVacinas(request):
     }
     
     return render(request, 'cadastrarVacinas.html', context)
-def cancelarvacina(request, id_vacina):
-    vacina = get_object_or_404(cadastroVacinaModel, id=id_vacina)
-    if request.method == 'POST':
-        vacina.delete()
-        return redirect('success')  # Redireciona para uma página de sucesso após deletar
 
-    return render(request, 'cancelarvacina.html', {'vacina': vacina})
+def cancelar_vacina(request, id_vacina):
+    vacina = get_object_or_404(cadastroVacinaModel, pk=id_vacina)
+    vacina.delete()
+    return redirect('visualizar_cartaoVacina')
 
 def updateVacinas(request, id_vacina):
     vacina = get_object_or_404(cadastroVacinaModel, id=id_vacina)
+    
     if request.method == 'POST':
         form = VacinaForm(request.POST, instance=vacina)
         if form.is_valid():
             form.save()
-            return redirect('success')  # Redireciona para uma página de sucesso após atualizar
-
+            messages.success(request, 'Vacina atualizada com sucesso!')
+            return redirect('visualizar_cartaoVacina')  # Redireciona para página de sucesso após salvar
     else:
         form = VacinaForm(instance=vacina)
-
-    return render(request, 'cadastroVacinas.html', {'form': form})
-
-    return render(request, 'cadastroVacinas.html')
+    
+    # Carrega os nomes do tutor e do animal
+    tutor_nome = vacina.tutor.nometutor if (vacina.tutor and hasattr(vacina.tutor, 'nometutor')) else ''
+    animal_nome = vacina.animal.nomepet if (vacina.animal and hasattr(vacina.animal, 'nomepet')) else ''
+    
+    return render(request, 'updateVacinas.html', {'form': form, 'vacina': vacina, 'tutor_nome': tutor_nome, 'animal_nome': animal_nome})
 
 def visualizar_cartaoVacina(request):
     vacinas = cadastroVacinaModel.objects.all()
     return render(request, 'visualizar_cartaoVacina.html', {'vacinas': vacinas})
+
 

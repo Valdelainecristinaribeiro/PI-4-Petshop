@@ -176,6 +176,7 @@
                                 <th><h5><b>Data Vacinado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
                                 <th><h5><b>Nome Veterinário&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
                                 <th><h5><b>Próxima Vacina&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                                <th><h5><b>Cancelar ou Atualizar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -185,6 +186,16 @@
                                 <th><h5><b>{{ vacina.datavacinado }}</b></h5></th>
                                 <th><h5><b>{{ vacina.nomeveterinario }}</b></h5></th>
                                 <th><h5><b>{{ vacina.proximavacina }}</b></h5></th>
+                                <div class="action-btns">
+                                     <form action="{% url 'cancelar_vacina' vacina.id %}" method="post" style="display:inline;">
+                                        {% csrf_token %}
+                                        <th><h5><b>  <button type="submit" class="btn btn-danger">Cancelar</button>
+                                    </form>
+                                    <form action="{% url 'updateVacinas' vacina.id %}" method="post" style="display:inline;">
+                                        {% csrf_token %}
+                                      <button type="submit" class="btn btn-success">Atualizar</button></b></h5></th>
+                                    </form>
+                                </div>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -199,6 +210,7 @@
                                 <th><h5><b>Produto Vermífugo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
                                 <th><h5><b>Dose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
                                 <th><h5><b>Peso Animal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
+                                <th><h5><b>Cancelar ou Atualizar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></h5></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -208,6 +220,16 @@
                                 <th><h5><b>{{ vacina.produtovernifugo }}</b></h5></th>
                                 <th><h5><b>{{ vacina.dose }}</b></h5></th>
                                 <th><h5><b>{{ vacina.pesoanimal }}</b></h5></th>
+                                <div class="action-btns">
+                                    <form action="{% url 'cancelar_vacina' vacina.id %}" method="post" style="display:inline;">
+                                       {% csrf_token %}
+                                       <th><h5><b>  <button type="submit" class="btn btn-danger">Cancelar</button>
+                                   </form>
+                                   <form action="{% url 'updateVacinas' vacina.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                     <button type="submit" class="btn btn-success">Atualizar</button></b></h5></th>
+                                </form>
+                               </div>
                             </tr>
                             {% endfor %}
                         </tbody>
