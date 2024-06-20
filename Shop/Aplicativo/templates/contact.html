@@ -5,50 +5,70 @@
     <meta charset="utf-8">
     <title>PetLover - Pet Care Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-
+    {% load static %}
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Flaticon Font -->
-    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="{% static 'Aplicativo/lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="{% static 'Aplicativo/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Aplicativo/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">{% load static %}
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Flaticon Font -->
+    <link href="{% static 'Aplicativo/lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'Aplicativo/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Aplicativo/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 
 <body>
     <!-- Navbar Start -->
     <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5 custom-navbar justify-content-between align-items-center">
-            <a href="index_site.html" class="navbar-brand d-none d-lg-block">
-                <img src="C:\Users\laris\Desktop\Template PI Pets\Pet_Inteligente_Template_Site\img\Logo_Pet_Inteligente (2).png" alt="Home" style="height: 70px; width: 70px;">
-                <a href="index_site.html" class="navbar-brand d-none d-lg-block">
+        <nav
+            class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5 custom-navbar justify-content-between align-items-center">
+            <a href="{% url 'index' %}" class="navbar-brand d-none d-lg-block">
+                <img src="{% static 'Aplicativo/media/Logo_Pet_Inteligente.png' %}"
+                    alt="Home" style="height: 70px; width: 70px;">
+                <a href="{% url 'index' %}" class="navbar-brand d-none d-lg-block">
                     <h1 class="mb-0 display-5 text-capitalize text-white" style="font-size: 1.9rem; line-height: 1.5;">
                         <span class="text-primary">Pet</span>Inteligente
                     </h1>
                 </a>
-                
-                
-                            </a>
+
+
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="about.html" class="nav-item nav-link">Sobre nossos serviços</a>
-                    <a href="contact.html" class="nav-item nav-link">Contato</a>
+                    <a href="{% url 'about' %}" class="nav-item nav-link">Sobre nossos serviços</a>
+                    <a href="{% url 'contact' %}" class="nav-item nav-link">Contato</a>
                 </div>
             </div>
         </nav>
@@ -68,32 +88,40 @@
                     <div id="success"></div>
                     <form name="sentMessage" id="contactForm" novalidate="novalidate">
                         <div class="control-group">
-                            <input type="text" class="form-control p-4" id="name" placeholder="Seu nome" required="required" data-validation-required-message="Please enter your name" />
+                            <input type="text" class="form-control p-4" id="name" placeholder="Seu nome"
+                                required="required" data-validation-required-message="Please enter your name" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="email" class="form-control p-4" id="email" placeholder="Seu melhor e-mail" required="required" data-validation-required-message="Please enter your email" />
+                            <input type="email" class="form-control p-4" id="email" placeholder="Seu melhor e-mail"
+                                required="required" data-validation-required-message="Please enter your email" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="text" class="form-control p-4" id="subject" placeholder="Assunto" required="required" data-validation-required-message="Please enter a subject" />
+                            <input type="text" class="form-control p-4" id="subject" placeholder="Assunto"
+                                required="required" data-validation-required-message="Please enter a subject" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <textarea class="form-control p-4" rows="6" id="message" placeholder="Mensagem" required="required" data-validation-required-message="Please enter your message"></textarea>
+                            <textarea class="form-control p-4" rows="6" id="message" placeholder="Mensagem"
+                                required="required"
+                                data-validation-required-message="Please enter your message"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div>
-                            <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Enviar mensagem!</button>
+                            <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Enviar
+                                mensagem!</button>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-12 mb-n2 p-0">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.9519816487173!2d-47.3340212!3d-22.355441899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c87088f8596037%3A0xe6300980fc459049!2sFATEC%20Araras%20%22Ant%C3%B4nio%20Brambila%22%20-%20Faculdade%20de%20Tecnologia%20de%20Araras!5e0!3m2!1spt-BR!2sbr!4v1718676126092!5m2!1spt-BR!2sbr" 
-                        width="100%" height="500" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.9519816487173!2d-47.3340212!3d-22.355441899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c87088f8596037%3A0xe6300980fc459049!2sFATEC%20Araras%20%22Ant%C3%B4nio%20Brambila%22%20-%20Faculdade%20de%20Tecnologia%20de%20Araras!5e0!3m2!1spt-BR!2sbr!4v1718676126092!5m2!1spt-BR!2sbr"
+                    width="100%" height="500" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            
+
         </div>
     </div>
     <!-- Contact End -->
@@ -103,8 +131,12 @@
     <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-md-5">
         <div class="row pt-5">
             <div class="col-lg-4 col-md-12 mb-5">
-                <h1 class="mb-3 display-5 text-capitalize text-white"><span class="text-primary">Pet</span>Inteligente</h1>
-                <p class="m-0">PetInteligente é uma plataforma dedicada ao gerenciamento eficiente de pet shops, facilitando o cadastro e agendamento de serviços para veterinários e tutores de animais de estimação. Oferecemos soluções intuitivas para melhorar a experiência de cuidado e gestão para todos os nossos clientes.</p>
+                <h1 class="mb-3 display-5 text-capitalize text-white"><span class="text-primary">Pet</span>Inteligente
+                </h1>
+                <p class="m-0">PetInteligente é uma plataforma dedicada ao gerenciamento eficiente de pet shops,
+                    facilitando o cadastro e agendamento de serviços para veterinários e tutores de animais de
+                    estimação. Oferecemos soluções intuitivas para melhorar a experiência de cuidado e gestão para todos
+                    os nossos clientes.</p>
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
@@ -114,17 +146,24 @@
                         <p><i class="fa fa-phone-alt mr-2"></i>+55 (19) 3541-3004</p>
                         <p><i class="fa fa-envelope mr-2"></i>valdelaine.ribeiro@fatec.sp.gov.br</p>
                         <div class="d-flex justify-content-start mt-4">
-                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                                style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                                style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                                style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                                style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-primary mb-4">Links populares</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-white mb-2" href="index_site.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-white mb-2" href="about.html"><i class="fa fa-angle-right mr-2"></i>Nossos serviços</a>
+                            <a class="text-white mb-2" href="{% url 'index' %}"><i
+                                    class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-white mb-2" href="{% url 'about' %}"><i
+                                    class="fa fa-angle-right mr-2"></i>Nossos
+                                serviços</a>
                         </div>
                     </div>
                 </div>
@@ -146,22 +185,21 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
 
     <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>

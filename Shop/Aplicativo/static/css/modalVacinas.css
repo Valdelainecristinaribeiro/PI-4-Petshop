@@ -4,15 +4,14 @@
 }
 
 .custom-container-wrapper {
-    display: inline-flex; /* Habilitar flexbox para arranjo horizontal */
-    justify-content: space-evenly;
+    display: inline-block; /* Habilitar flexbox para arranjo horizontal */
+    justify-content: center;
     align-items: center;
 }
 
 .custom-form-container {
-    border: 7px solid #95C6F2; /* Adiciona uma borda */
-    border-radius: 50px; /* Adiciona um raio de borda */
-    padding: 20px;
+    padding: 30px;
+    width: 630px;
 }
 
 .custom-form-group .custom-input {
@@ -20,7 +19,7 @@
     color: black; /* cor do texto */
     background-color: #95C6F2; /* cor de fundo */
     border: 1px solid #95C6F2; /* cor da borda */
-    padding: 10px; /* espaçamento interno */
+    padding: 8px; /* espaçamento interno */
     border-radius: 10px; /* arredondamento da borda */
     width: 300px;
 }
@@ -28,7 +27,8 @@
 .custom-container {
     background-color: #95C6F2; /* cor de fundo */
     border: 1px solid #95C6F2; /* cor da borda */
-    padding: 10px; /* espaçamento interno */
+    padding: 8px; /* espaçamento interno */
     border-radius: 10px; /* arredondamento da borda */
     width: 320px;
+    margin-left: 110px;
 }

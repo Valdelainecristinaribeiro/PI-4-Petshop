@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,128 +8,171 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/modalVacinas.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-          <style>
-            .form-select {
-                background-color: #95C6F2; /* Cor de fundo azul */
-                color: black; /* Cor do texto branco */
-            }
-        </style>
+    <style>
+        .form-select {
+            background-color: #95C6F2;
+            /* Cor de fundo azul */
+            color: black;
+            /* Cor do texto branco */
+            padding: 10px;
+        }
+        .container {
+            border: 7px solid #95C6F2; /* cor da borda */
+            border-radius: 50px; /* arredondamento da borda */
+            width: 1500px;
+            height: 820px;
+        }
+    </style>
 </head>
+
 <body>
-<div class="container mt-5">
     <h1 class="text-center"><b>Cartão de Vacinas</b></h1>
-    <form id="vacinaForm" action="{% url 'cadastrarVacinas' %}" method="POST">
-        {% csrf_token %}
-
-        <div class="custom-container-wrapper">
-            <div class="custom-form-container">
-                <div class="custom-container">
-                    <label for="tutor"><h5><b>Tutor:</b></h5></label>
-                    <select class="form-select" id="tutor" name="tutor" required>
-                        <option value="" selected disabled>Selecione</option> <!-- Opção padrão -->
-                        {% for tutor in tutores %}
-                            <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <br>
-                <div class="custom-container">
-                    <label for="animal"><h5><b>Animal:</b></h5></label>
-                    <select class="form-select" id="animal" name="animal" required>
-                        <option value="" selected disabled>Selecione</option> <!-- Opção padrão -->
-                        {% for animal in animais %}
-                            <option value="{{ animal.id }}">{{ animal.nomepet }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <br>
-                <div class="custom-container">
-                    <h3 class="text-center"><b>Vacinas</b></h3>
-                </div>
-                <br>
-                <div class="custom-form-group">
+    <div class="container mt-5">
+        <form id="vacinaForm" action="{% url 'cadastrarVacinas' %}" method="POST">
+            {% csrf_token %}
+            <div class="custom-container-wrapper">
+                <div class="custom-form-container">
                     <div class="custom-container">
-                        <label for="vacina"><h5><b>Vacina:</b></h5></label>
-                        <input class="custom-input" type="text" id="vacina" name="vacina" required>
+                            <h3 class="text-center"><b>Tutor</b></h3>
+                    </div>
+                    <div class="custom-form-group">
+                        <div class="custom-container">
+                            <select class="form-select" id="tutor" name="tutor" required>
+                                <option value="" selected disabled>Selecione</option> <!-- Opção padrão -->
+                                {% for tutor in tutores %}
+                                <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br><hr>
+                    <div class="custom-container">
+                        <h3 class="text-center"><b>Vacinas</b></h3>
                     </div>
                     <br>
-                    <div class="custom-container">
-                        <label for="datavacinado"><h5><b>Vacinado em:</b></h5></label>
-                        <input class="custom-input" type="date" id="datavacinado" name="datavacinado" required>
+                    <div class="custom-form-group">
+                        <div class="custom-container">
+                            <label for="vacina">
+                                <h5><b>Vacina:</b></h5>
+                            </label>
+                            <input class="custom-input" type="text" id="vacina" name="vacina" required>
+                        </div>
+                        <br>
+                        <div class="custom-container">
+                            <label for="datavacinado">
+                                <h5><b>Vacinado em:</b></h5>
+                            </label>
+                            <input class="custom-input" type="date" id="datavacinado" name="datavacinado" required>
+                        </div>
+                        <br>
+                        <div class="custom-container">
+                            <label for="nomeveterinario">
+                                <h5><b>Veterinário (a):</b></h5>
+                            </label>
+                            <input class="custom-input" type="text" id="nomeveterinario" name="nomeveterinario"
+                                required>
+                        </div>
+                        <br>
+                        <div class="custom-container">
+                            <label for="proximavacina">
+                                <h5><b>Próxima dose:</b></h5>
+                            </label>
+                            <input class="custom-input" type="date" id="proximavacina" name="proximavacina" required>
+                        </div>
                     </div>
                     <br>
+                    <br>
+                </div>
+            </div>
+            <div class="custom-container-wrapper">
+                <div class="custom-form-container">
                     <div class="custom-container">
-                        <label for="nomeveterinario"><h5><b>Veterinário (a):</b></h5></label>
-                        <input class="custom-input" type="text" id="nomeveterinario" name="nomeveterinario" required>
+                            <h3 class="text-center"><b>Animal</b></h3>
+                    </div>
+                    <div class="custom-form-group">
+                        <div class="custom-container">
+                            <select class="form-select" id="animal" name="animal" required>
+                                <option value="" selected disabled>Selecione</option> <!-- Opção padrão -->
+                                {% for animal in animais %}
+                                <option value="{{ animal.id }}">{{ animal.nomepet }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br><hr>
+                    <div class="custom-container">
+                        <h3 class="text-center"><b>Vermífugos</b></h3>
                     </div>
                     <br>
-                    <div class="custom-container">
-                        <label for="proximavacina"><h5><b>Próxima dose:</b></h5></label>
-                        <input class="custom-input" type="date" id="proximavacina" name="proximavacina" required>
+                    <div class="custom-form-group">
+                        <div class="custom-container">
+                            <label for="datavernifugo">
+                                <h5><b>Data:</b></h5>
+                            </label>
+                            <input class="custom-input" type="date" id="datavernifugo" name="datavernifugo" required>
+                        </div>
+                        <br>
+                        <div class="custom-container">
+                            <label for="produtovernifugo">
+                                <h5><b>Produto:</b></h5>
+                            </label>
+                            <input class="custom-input" type="text" id="produtovernifugo" name="produtovernifugo"
+                                required>
+                        </div>
+                        <br>
+                        <div class="custom-container">
+                            <label for="dose">
+                                <h5><b>Dose:</b></h5>
+                            </label>
+                            <input class="custom-input" type="text" id="dose" name="dose" required>
+                        </div>
+                        <br>
+                        <div class="custom-container">
+                            <label for="pesoanimal">
+                                <h5><b>Peso:</b></h5>
+                            </label>
+                            <input class="custom-input" type="text" id="pesoanimal" name="pesoanimal">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <a href="{% url 'dashatualizacao' %}" class="btn btn-danger">Cancelar</a>
+                        </div>
+                        <div class="form-group col-auto">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="custom-container-wrapper mt-4">
-            <div class="custom-form-container">
-                <div class="custom-container">
-                    <h3 class="text-center"><b>Vermífugos</b></h3>
-                </div>
-                <br>
-                <div class="custom-form-group">
-                    <div class="custom-container">
-                        <label for="datavernifugo"><h5><b>Data:</b></h5></label>
-                        <input class="custom-input" type="date" id="datavernifugo" name="datavernifugo" required>
-                    </div>
-                    <br>
-                    <div class="custom-container">
-                        <label for="produtovernifugo"><h5><b>Produto:</b></h5></label>
-                        <input class="custom-input" type="text" id="produtovernifugo" name="produtovernifugo" required>
-                    </div>
-                    <br>
-                    <div class="custom-container">
-                        <label for="dose"><h5><b>Dose:</b></h5></label>
-                        <input class="custom-input" type="text" id="dose" name="dose" required>
-                    </div>
-                    <br>
-                    <div class="custom-container">
-                        <label for="pesoanimal"><h5><b>Peso:</b></h5></label>
-                        <input class="custom-input" type="text" id="pesoanimal" name="pesoanimal">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Salvar</button>
-        </div>
-    </form>
-</div>
- <!-- Exibir mensagens de erro ou sucesso -->
- {% if messages %}
- <div class="container">
-     {% for message in messages %}
-         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-     {% endfor %}
- </div>
-{% endif %}
+        </form>
+    </div>
+    <!-- Exibir mensagens de erro ou sucesso -->
+    {% if messages %}
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-     crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
-<!--Script para redirecionar após 5 segundos-->
-{% if redirect_home %}
-   <script>
-     document.addEventListener('DOMContentLoaded', function () {
-       setTimeout(function () {
-         window.location.href = "{% url 'home' %}";
-       }, 3000);  // 3 segundos de atraso
-     });
-   </script>
-   {% endif %}
-</script>
+    <!--Script para redirecionar após 5 segundos-->
+    {% if redirect_home %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                window.location.href = "{% url 'home' %}";
+            }, 3000);  // 3 segundos de atraso
+        });
+    </script>
+    {% endif %}
+    </script>
 </body>
+
 </html>
