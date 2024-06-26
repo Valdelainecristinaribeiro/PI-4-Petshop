@@ -18,9 +18,12 @@
             /* Cor do texto branco */
             padding: 10px;
         }
+
         .container {
-            border: 7px solid #95C6F2; /* cor da borda */
-            border-radius: 50px; /* arredondamento da borda */
+            border: 7px solid #95C6F2;
+            /* cor da borda */
+            border-radius: 50px;
+            /* arredondamento da borda */
             width: 1500px;
             height: 820px;
         }
@@ -35,19 +38,21 @@
             <div class="custom-container-wrapper">
                 <div class="custom-form-container">
                     <div class="custom-container">
-                            <h3 class="text-center"><b>Tutor</b></h3>
+                        <h3 class="text-center"><b>Tutor</b></h3>
                     </div>
                     <div class="custom-form-group">
                         <div class="custom-container">
                             <select class="form-select" id="tutor" name="tutor" required>
-                                <option value="" selected disabled>Selecione</option> <!-- Opção padrão -->
+                                <option value="" selected disabled>Selecione</option>
+                                <!-- Opção padrão -->
                                 {% for tutor in tutores %}
                                 <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
-                    <br><hr>
+                    <br>
+                    <hr>
                     <div class="custom-container">
                         <h3 class="text-center"><b>Vacinas</b></h3>
                     </div>
@@ -71,8 +76,7 @@
                             <label for="nomeveterinario">
                                 <h5><b>Veterinário (a):</b></h5>
                             </label>
-                            <input class="custom-input" type="text" id="nomeveterinario" name="nomeveterinario"
-                                required>
+                            <input class="custom-input" type="text" id="nomeveterinario" name="nomeveterinario" required>
                         </div>
                         <br>
                         <div class="custom-container">
@@ -89,19 +93,21 @@
             <div class="custom-container-wrapper">
                 <div class="custom-form-container">
                     <div class="custom-container">
-                            <h3 class="text-center"><b>Animal</b></h3>
+                        <h3 class="text-center"><b>Animal</b></h3>
                     </div>
                     <div class="custom-form-group">
                         <div class="custom-container">
                             <select class="form-select" id="animal" name="animal" required>
-                                <option value="" selected disabled>Selecione</option> <!-- Opção padrão -->
+                                <option value="" selected disabled>Selecione</option>
+                                <!-- Opção padrão -->
                                 {% for animal in animais %}
                                 <option value="{{ animal.id }}">{{ animal.nomepet }}</option>
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
-                    <br><hr>
+                    <br>
+                    <hr>
                     <div class="custom-container">
                         <h3 class="text-center"><b>Vermífugos</b></h3>
                     </div>
@@ -118,8 +124,7 @@
                             <label for="produtovernifugo">
                                 <h5><b>Produto:</b></h5>
                             </label>
-                            <input class="custom-input" type="text" id="produtovernifugo" name="produtovernifugo"
-                                required>
+                            <input class="custom-input" type="text" id="produtovernifugo" name="produtovernifugo" required>
                         </div>
                         <br>
                         <div class="custom-container">
@@ -140,6 +145,9 @@
                     <div class="row justify-content-end">
                         <div class="col-auto">
                             <a href="{% url 'dashatualizacao' %}" class="btn btn-danger">Cancelar</a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="{% url 'visualizar_cartaoVacina' %}" class="btn btn-info">Visualizar Vacinas</a>
                         </div>
                         <div class="form-group col-auto">
                             <button type="submit" class="btn btn-primary">Salvar</button>
@@ -162,7 +170,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <!--Script para redirecionar após 5 segundos-->
+    <!-- Script para redirecionar após 5 segundos -->
     {% if redirect_home %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {

@@ -11,8 +11,11 @@
 
     <style>
         .form-select {
-            background-color: #95C6F2; /* Cor de fundo azul */
-            color: black; /* Cor do texto branco */
+            background-color: #151616; /* Cor de fundo azul */
+        }
+
+        .form-select option {
+            color: black; /* Cor do texto das opções do select */
         }
     </style>
 </head>
@@ -29,11 +32,10 @@
                     <div class="custom-container">
                         <label for="tutor"><h5><b>Tutor:</b></h5></label>
                         <select class="form-select" id="tutor" name="tutor" required>
-                            <option value="" selected disabled>Selecione</option> <!-- Opção padrão -->
+                            <option value="" selected disabled>Selecione</option>
                             {% if tutor_nome %}
                                 <option value="{{ vacina.tutor.id }}" selected>{{ tutor_nome }}</option>
                             {% endif %}
-                            <!-- Lista de tutores disponíveis -->
                             {% for tutor in tutores %}
                                 <option value="{{ tutor.id }}">{{ tutor.nometutor }}</option>
                             {% endfor %}

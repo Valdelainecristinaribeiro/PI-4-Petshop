@@ -447,21 +447,32 @@ def cancelar_vacina(request, id_vacina):
 
 def updateVacinas(request, id_vacina):
     vacina = get_object_or_404(cadastroVacinaModel, id=id_vacina)
-    
+
     if request.method == 'POST':
         form = VacinaForm(request.POST, instance=vacina)
         if form.is_valid():
             form.save()
             messages.success(request, 'Vacina atualizada com sucesso!')
-            return redirect('visualizar_cartaoVacina')  # Redireciona para página de sucesso após salvar
+            return redirect('visualizar_cartaoVacina')  # Redireciona após salvar com sucesso
     else:
         form = VacinaForm(instance=vacina)
-    
+
     # Carrega os nomes do tutor e do animal
     tutor_nome = vacina.tutor.nometutor if (vacina.tutor and hasattr(vacina.tutor, 'nometutor')) else ''
     animal_nome = vacina.animal.nomepet if (vacina.animal and hasattr(vacina.animal, 'nomepet')) else ''
-    
-    return render(request, 'updateVacinas.html', {'form': form, 'vacina': vacina, 'tutor_nome': tutor_nome, 'animal_nome': animal_nome})
+
+    # Busca todos os tutores e animais
+    tutores = User.objects.all()  # Ajuste o modelo para buscar os dados corretos do tutor
+    animais = cadastroAnimalModel.objects.all()  # Ajuste o modelo para buscar os dados corretos dos animais
+
+    return render(request, 'updateVacinas.html', {
+        'form': form,
+        'vacina': vacina,
+        'tutor_nome': tutor_nome,
+        'animal_nome': animal_nome,
+        'tutores': tutores,
+        'animais': animais
+    })
 
 def visualizar_cartaoVacina(request):
     vacinas = cadastroVacinaModel.objects.all()

@@ -59,53 +59,13 @@
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Voltar</a>
+                    <a class="nav-link" href="{% url 'dashatualizacao' %}">Voltar</a>
                 </li>
             </ul>
         </div>
     </nav><br>
     <div class="background-img">
-        <h1 class="text-center">Cartão Vacinas</h1>
-        <div class="container-wrapper">
-            <div class="container">
-                <ul style="list-style-type: none; padding: 0;">
-                    {% for animal in animais %}
-                    <li>
-                        <div class="container">
-                            <h5>Nome do Pet:</h5>
-                            <p>{{ animal.nomepet }}</p>
-                        </div>
-                        <div class="container">
-                            <h5>Espécie:</h5>
-                            <p>{{ animal.especie }}</p>
-                        </div>
-                        <div class="container">
-                            <h5>Porte:</h5>
-                            <p>{{ animal.porte }}</p>
-                        </div>
-                        <div class="container">
-                            <h5>Raça:</h5>
-                            <p>{{ animal.raca }}</p>
-                        </div>
-                        <div class="container">
-                            <h5>Sexo:</h5>
-                            <p>{{ animal.sexo }}</p>
-                        </div>
-                        <div class="container">
-                            <h5>Data de Nascimento:</h5>
-                            <p>{{ animal.datanascimento }}</p>
-                        </div>
-                        <div class="container">
-                            <h5>CPF do Tutor:</h5>
-                            <p>{{ animal.cpftutor }}</p>
-                        </div>
-                        <div class="container">
-                            <h5>Ações:</h5>
-                            <!-- Incluir aqui os links ou botões de ação -->
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
+        
                 
                 <!-- <table>
                     <thead>
@@ -165,7 +125,7 @@
                         {% endfor %}
                     </tbody>
                 </table> -->
-            </div>
+
             <div class="container">
                 <div>
                     <table>
